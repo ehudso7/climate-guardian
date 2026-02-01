@@ -1,0 +1,97 @@
+{
+  "name": "AI Climate Guardian",
+  "short_name": "Climate Guardian",
+  "description": "Your personal AI for sustainable living. Get daily micro-missions to reduce your carbon footprint.",
+  "start_url": "/?source=pwa",
+  "display": "standalone",
+  "background_color": "#f0fdf4",
+  "theme_color": "#059669",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en",
+  "categories": ["lifestyle", "utilities", "environment"],
+  "icons": [
+    {
+      "src": "/icons/icon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icons/icon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icons/icon-128x128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icons/icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icons/icon-152x152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icons/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshots/screenshot-mobile.png",
+      "sizes": "390x844",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Climate Guardian on mobile"
+    },
+    {
+      "src": "/screenshots/screenshot-desktop.png",
+      "sizes": "1920x1080",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Climate Guardian on desktop"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Today's Mission",
+      "short_name": "Mission",
+      "description": "View your daily climate mission",
+      "url": "/mission?source=shortcut",
+      "icons": [{ "src": "/icons/mission-icon.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "My Progress",
+      "short_name": "Progress",
+      "description": "Check your climate impact",
+      "url": "/progress?source=shortcut",
+      "icons": [{ "src": "/icons/progress-icon.png", "sizes": "192x192" }]
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false
+}

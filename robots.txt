@@ -1,0 +1,18 @@
+# AI Climate Guardian - robots.txt
+
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://climateguardian.ai/sitemap.xml
+
+# Disallow admin/private areas (when implemented)
+Disallow: /admin/
+Disallow: /api/
+Disallow: /private/
+
+# Allow search engines to crawl everything else
+Allow: /
+
+# Crawl-delay for polite crawling
+Crawl-delay: 1
