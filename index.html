@@ -1,51 +1,223 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Your Personal AI Climate Guardian: Optimize your life to minimize carbon footprint with daily micro-missions. Free AI agent for sustainable living.">
-    <meta name="keywords" content="AI climate app, sustainable living, carbon footprint tracker, eco-friendly lifestyle, climate action">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- Security Headers (configure on server) -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://lottie.host https://www.google-analytics.com;">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    
+    <!-- Primary Meta Tags -->
+    <title>AI Climate Guardian | Your Personal AI for Sustainable Living</title>
+    <meta name="title" content="AI Climate Guardian | Your Personal AI for Sustainable Living">
+    <meta name="description" content="Get personalized daily micro-missions to reduce your carbon footprint. Join 1M+ climate heroes saving 12M+ kg of CO2. Free AI-powered sustainable living assistant.">
+    <meta name="keywords" content="AI climate app, carbon footprint tracker, sustainable living, eco-friendly lifestyle, climate action, environmental app, green living, carbon offset">
     <meta name="author" content="AI Climate Guardian">
-    <meta property="og:title" content="Your Personal AI Climate Guardian">
-    <meta property="og:description" content="Become a Climate Hero in 60 Seconds. One daily action. Massive impact.">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <link rel="canonical" href="https://climateguardian.ai/">
+    
+    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
+    <meta property="og:url" content="https://climateguardian.ai/">
+    <meta property="og:title" content="AI Climate Guardian | Become a Climate Hero in 60 Seconds">
+    <meta property="og:description" content="Get personalized daily micro-missions to reduce your carbon footprint. Join 1M+ climate heroes. Free AI-powered sustainable living.">
+    <meta property="og:image" content="https://climateguardian.ai/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="AI Climate Guardian - Your Personal AI for Sustainable Living">
+    <meta property="og:site_name" content="AI Climate Guardian">
+    <meta property="og:locale" content="en_US">
+    
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Your Personal AI Climate Guardian">
-    <meta name="twitter:description" content="Join 1M+ saving the planet with AI-powered micro-missions.">
-    <title>Your Personal AI Climate Guardian | AI-Powered Sustainable Living</title>
+    <meta name="twitter:url" content="https://climateguardian.ai/">
+    <meta name="twitter:title" content="AI Climate Guardian | Become a Climate Hero in 60 Seconds">
+    <meta name="twitter:description" content="Get personalized daily micro-missions to reduce your carbon footprint. Join 1M+ climate heroes.">
+    <meta name="twitter:image" content="https://climateguardian.ai/twitter-image.jpg">
+    <meta name="twitter:creator" content="@climateguardian">
+    <meta name="twitter:site" content="@climateguardian">
     
-    <!-- Lottie CDN for animations -->
-    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <!-- PWA & Mobile -->
+    <meta name="theme-color" content="#059669">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Climate Guardian">
+    <meta name="application-name" content="Climate Guardian">
+    <meta name="msapplication-TileColor" content="#059669">
+    <meta name="msapplication-config" content="/browserconfig.xml">
+    <link rel="manifest" href="/manifest.json">
     
-    <!-- Google Fonts -->
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#059669">
+    
+    <!-- Preconnect for Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://unpkg.com">
+    <link rel="preconnect" href="https://lottie.host">
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" as="style">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Structured Data / Schema.org -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "AI Climate Guardian",
+        "applicationCategory": "LifestyleApplication",
+        "operatingSystem": "Web, iOS, Android",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "ratingCount": "12847",
+            "bestRating": "5",
+            "worstRating": "1"
+        },
+        "description": "AI-powered personal assistant for sustainable living. Get daily micro-missions to reduce your carbon footprint.",
+        "url": "https://climateguardian.ai",
+        "author": {
+            "@type": "Organization",
+            "name": "Climate Guardian Inc."
+        }
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "AI Climate Guardian",
+        "url": "https://climateguardian.ai",
+        "logo": "https://climateguardian.ai/logo.png",
+        "sameAs": [
+            "https://twitter.com/climateguardian",
+            "https://facebook.com/climateguardian",
+            "https://instagram.com/climateguardian",
+            "https://linkedin.com/company/climateguardian"
+        ],
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "customer support",
+            "email": "support@climateguardian.ai"
+        }
+    }
+    </script>
+    
+    <!-- Lottie Player (deferred) -->
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js" defer></script>
     
     <style>
         /* ========================================
-           CSS Variables & Reset
+           CSS Variables & Design Tokens
         ======================================== */
         :root {
-            --primary-green: #10b981;
-            --primary-dark: #059669;
-            --accent-gold: #fbbf24;
-            --bg-light: #f0fdf4;
-            --bg-dark: #064e3b;
-            --text-dark: #1f2937;
-            --text-light: #6b7280;
-            --white: #ffffff;
-            --glass-bg: rgba(255, 255, 255, 0.85);
-            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
-            --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.12);
-            --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.15);
-            --radius-sm: 8px;
-            --radius-md: 16px;
-            --radius-lg: 24px;
+            /* Colors */
+            --color-primary: #10b981;
+            --color-primary-dark: #059669;
+            --color-primary-light: #34d399;
+            --color-accent: #fbbf24;
+            --color-accent-dark: #f59e0b;
+            --color-bg-light: #f0fdf4;
+            --color-bg-white: #ffffff;
+            --color-bg-dark: #064e3b;
+            --color-text-primary: #1f2937;
+            --color-text-secondary: #6b7280;
+            --color-text-muted: #9ca3af;
+            --color-text-inverse: #ffffff;
+            --color-error: #dc2626;
+            --color-error-light: #fee2e2;
+            --color-success: #16a34a;
+            --color-success-light: #dcfce7;
+            --color-border: #e5e7eb;
+            --color-glass: rgba(255, 255, 255, 0.85);
+            
+            /* Spacing */
+            --space-xs: 4px;
+            --space-sm: 8px;
+            --space-md: 16px;
+            --space-lg: 24px;
+            --space-xl: 32px;
+            --space-2xl: 48px;
+            --space-3xl: 64px;
+            --space-4xl: 96px;
+            
+            /* Typography */
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            --font-size-xs: 0.75rem;
+            --font-size-sm: 0.875rem;
+            --font-size-base: 1rem;
+            --font-size-lg: 1.125rem;
+            --font-size-xl: 1.25rem;
+            --font-size-2xl: 1.5rem;
+            --font-size-3xl: 2rem;
+            --font-size-4xl: 2.5rem;
+            --font-size-5xl: 3rem;
+            
+            /* Border Radius */
+            --radius-sm: 6px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
             --radius-full: 9999px;
+            
+            /* Shadows */
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.12);
+            --shadow-xl: 0 20px 50px rgba(0, 0, 0, 0.15);
+            --shadow-primary: 0 8px 30px rgba(16, 185, 129, 0.35);
+            
+            /* Transitions */
+            --transition-fast: 150ms ease;
+            --transition-base: 250ms ease;
+            --transition-slow: 400ms ease;
+            
+            /* Z-index layers */
+            --z-dropdown: 100;
+            --z-sticky: 200;
+            --z-fixed: 300;
+            --z-modal-backdrop: 400;
+            --z-modal: 500;
+            --z-toast: 600;
+            --z-cookie: 700;
+            
+            /* Focus ring */
+            --focus-ring: 0 0 0 3px rgba(16, 185, 129, 0.4);
         }
 
-        * {
+        /* Dark mode support */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --color-bg-light: #0f1f1a;
+                --color-bg-white: #1a2f28;
+                --color-text-primary: #f9fafb;
+                --color-text-secondary: #d1d5db;
+                --color-border: #374151;
+                --color-glass: rgba(0, 0, 0, 0.75);
+            }
+        }
+
+        /* ========================================
+           CSS Reset & Base Styles
+        ======================================== */
+        *, *::before, *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -53,14 +225,95 @@
 
         html {
             scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+            text-size-adjust: 100%;
+        }
+
+        /* Reduced motion preference */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg-light);
-            color: var(--text-dark);
+            font-family: var(--font-family);
+            font-size: var(--font-size-base);
             line-height: 1.6;
+            color: var(--color-text-primary);
+            background-color: var(--color-bg-light);
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Prevent body scroll when modal open */
+        body.modal-open {
+            overflow: hidden;
+            position: fixed;
+            width: 100%;
+        }
+
+        img, picture, video, canvas, svg {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+
+        input, button, textarea, select {
+            font: inherit;
+            color: inherit;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            background: none;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* Focus styles for accessibility */
+        :focus-visible {
+            outline: none;
+            box-shadow: var(--focus-ring);
+        }
+
+        /* Skip link for accessibility */
+        .skip-link {
+            position: absolute;
+            top: -100%;
+            left: var(--space-md);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--color-primary-dark);
+            color: var(--color-text-inverse);
+            border-radius: var(--radius-sm);
+            z-index: var(--z-toast);
+            font-weight: 600;
+            transition: top var(--transition-fast);
+        }
+
+        .skip-link:focus {
+            top: var(--space-md);
+        }
+
+        /* Screen reader only */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
         }
 
         /* ========================================
@@ -69,185 +322,228 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 var(--space-lg);
         }
 
         .gradient-text {
-            background: linear-gradient(135deg, var(--primary-green), var(--primary-dark));
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
+        /* Loading skeleton */
+        .skeleton {
+            background: linear-gradient(90deg, var(--color-border) 25%, var(--color-bg-light) 50%, var(--color-border) 75%);
+            background-size: 200% 100%;
+            animation: skeleton-loading 1.5s infinite;
+            border-radius: var(--radius-sm);
+        }
+
+        @keyframes skeleton-loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        /* Button loading state */
+        .btn-loading {
+            position: relative;
+            color: transparent !important;
+            pointer-events: none;
+        }
+
+        .btn-loading::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            margin: -10px 0 0 -10px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
         /* ========================================
            Navigation
         ======================================== */
-        nav {
+        .nav {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            z-index: 1000;
-            background: var(--glass-bg);
+            z-index: var(--z-fixed);
+            background: var(--color-glass);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(16, 185, 129, 0.1);
-            padding: 16px 0;
+            padding: var(--space-md) 0;
+            transition: transform var(--transition-base), box-shadow var(--transition-base);
         }
 
-        .nav-content {
+        .nav--hidden {
+            transform: translateY(-100%);
+        }
+
+        .nav--scrolled {
+            box-shadow: var(--shadow-md);
+        }
+
+        .nav__content {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .logo {
+        .nav__logo {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: var(--space-sm);
             font-weight: 700;
-            font-size: 1.25rem;
-            color: var(--primary-dark);
+            font-size: var(--font-size-xl);
+            color: var(--color-primary-dark);
         }
 
-        .logo-icon {
-            width: 36px;
-            height: 36px;
-            background: linear-gradient(135deg, var(--primary-green), var(--primary-dark));
+        .nav__logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
             border-radius: var(--radius-sm);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
+            font-size: var(--font-size-xl);
         }
 
-        .nav-cta {
-            background: linear-gradient(135deg, var(--primary-green), var(--primary-dark));
-            color: var(--white);
-            padding: 10px 24px;
+        .nav__cta {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+            color: var(--color-text-inverse);
+            padding: var(--space-sm) var(--space-lg);
             border-radius: var(--radius-full);
             font-weight: 600;
-            font-size: 0.9rem;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+            font-size: var(--font-size-sm);
+            transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+            box-shadow: var(--shadow-primary);
         }
 
-        .nav-cta:hover {
+        .nav__cta:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 25px rgba(16, 185, 129, 0.4);
+            box-shadow: 0 10px 35px rgba(16, 185, 129, 0.4);
         }
 
         /* ========================================
            Hero Section
         ======================================== */
-        #hero {
+        .hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 120px 20px 80px;
-            background: linear-gradient(180deg, var(--bg-light) 0%, #dcfce7 50%, var(--bg-light) 100%);
+            padding: calc(80px + var(--space-3xl)) var(--space-lg) var(--space-3xl);
+            background: linear-gradient(180deg, var(--color-bg-light) 0%, #dcfce7 50%, var(--color-bg-light) 100%);
             position: relative;
             overflow: hidden;
         }
 
-        .hero-bg-circles {
+        .hero__bg {
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            inset: 0;
             overflow: hidden;
             z-index: 0;
+            pointer-events: none;
         }
 
-        .hero-bg-circles::before,
-        .hero-bg-circles::after {
+        .hero__bg::before,
+        .hero__bg::after {
             content: '';
             position: absolute;
             border-radius: 50%;
-            opacity: 0.1;
+            opacity: 0.08;
         }
 
-        .hero-bg-circles::before {
+        .hero__bg::before {
             width: 600px;
             height: 600px;
-            background: var(--primary-green);
+            background: var(--color-primary);
             top: -200px;
             right: -100px;
-            animation: float 8s ease-in-out infinite;
+            animation: hero-float 8s ease-in-out infinite;
         }
 
-        .hero-bg-circles::after {
+        .hero__bg::after {
             width: 400px;
             height: 400px;
-            background: var(--accent-gold);
+            background: var(--color-accent);
             bottom: -100px;
             left: -100px;
-            animation: float 6s ease-in-out infinite reverse;
+            animation: hero-float 6s ease-in-out infinite reverse;
         }
 
-        @keyframes float {
+        @keyframes hero-float {
             0%, 100% { transform: translateY(0) rotate(0deg); }
             50% { transform: translateY(-30px) rotate(5deg); }
         }
 
-        .hero-content {
+        .hero__content {
             position: relative;
             z-index: 1;
             text-align: center;
             max-width: 800px;
         }
 
-        .hero-badge {
+        .hero__badge {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            background: var(--white);
-            padding: 8px 16px;
+            gap: var(--space-sm);
+            background: var(--color-bg-white);
+            padding: var(--space-sm) var(--space-md);
             border-radius: var(--radius-full);
-            font-size: 0.875rem;
+            font-size: var(--font-size-sm);
             font-weight: 500;
-            color: var(--primary-dark);
-            margin-bottom: 24px;
+            color: var(--color-primary-dark);
+            margin-bottom: var(--space-lg);
             box-shadow: var(--shadow-sm);
-            animation: fadeInUp 0.6s ease;
+            animation: fade-in-up 0.6s ease both;
         }
 
-        .hero-badge-dot {
+        .hero__badge-dot {
             width: 8px;
             height: 8px;
-            background: var(--primary-green);
+            background: var(--color-primary);
             border-radius: 50%;
             animation: pulse 2s ease-in-out infinite;
         }
 
         @keyframes pulse {
             0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(1.2); }
+            50% { opacity: 0.5; transform: scale(1.3); }
         }
 
-        .hero-title {
-            font-size: clamp(2.5rem, 6vw, 4rem);
+        .hero__title {
+            font-size: clamp(var(--font-size-3xl), 6vw, var(--font-size-5xl));
             font-weight: 800;
             line-height: 1.1;
-            margin-bottom: 24px;
-            animation: fadeInUp 0.6s ease 0.1s both;
+            margin-bottom: var(--space-lg);
+            animation: fade-in-up 0.6s ease 0.1s both;
         }
 
-        .hero-subtitle {
-            font-size: clamp(1.1rem, 2.5vw, 1.35rem);
-            color: var(--text-light);
-            margin-bottom: 40px;
+        .hero__subtitle {
+            font-size: clamp(var(--font-size-lg), 2.5vw, var(--font-size-xl));
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-xl);
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
-            animation: fadeInUp 0.6s ease 0.2s both;
+            animation: fade-in-up 0.6s ease 0.2s both;
         }
 
-        @keyframes fadeInUp {
+        @keyframes fade-in-up {
             from {
                 opacity: 0;
                 transform: translateY(30px);
@@ -258,32 +554,59 @@
             }
         }
 
-        .animation-container {
+        .hero__animation {
             width: 320px;
             height: 320px;
-            margin: 0 auto 40px;
+            margin: 0 auto var(--space-xl);
             position: relative;
-            animation: fadeInUp 0.6s ease 0.3s both;
+            animation: fade-in-up 0.6s ease 0.3s both;
         }
 
-        .animation-container lottie-player {
+        .hero__animation lottie-player {
             width: 100%;
             height: 100%;
         }
 
-        .co2-overlay {
+        /* Lottie fallback */
+        .hero__animation-fallback {
+            display: none;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--color-primary-light), var(--color-primary-dark));
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+            font-size: 6rem;
+            animation: rotate-slow 20s linear infinite;
+        }
+
+        @keyframes rotate-slow {
+            to { transform: rotate(360deg); }
+        }
+
+        .hero__animation.lottie-error .hero__animation-fallback {
+            display: flex;
+        }
+
+        .hero__animation.lottie-error lottie-player {
+            display: none;
+        }
+
+        .hero__co2-overlay {
             position: absolute;
             bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
-            background: var(--glass-bg);
+            background: var(--color-glass);
             backdrop-filter: blur(10px);
-            padding: 12px 24px;
+            -webkit-backdrop-filter: blur(10px);
+            padding: var(--space-sm) var(--space-lg);
             border-radius: var(--radius-full);
             box-shadow: var(--shadow-md);
             font-weight: 600;
-            color: var(--primary-dark);
+            color: var(--color-primary-dark);
             animation: bounce 2s ease-in-out infinite;
+            white-space: nowrap;
         }
 
         @keyframes bounce {
@@ -291,268 +614,313 @@
             50% { transform: translateX(-50%) translateY(-8px); }
         }
 
-        .co2-value {
-            font-size: 1.5rem;
-            color: var(--primary-green);
+        .hero__co2-value {
+            font-size: var(--font-size-2xl);
+            font-weight: 800;
+            color: var(--color-primary);
         }
 
-        .cta-primary {
-            background: linear-gradient(135deg, var(--primary-green), var(--primary-dark));
-            color: var(--white);
-            padding: 18px 48px;
+        .hero__cta {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+            color: var(--color-text-inverse);
+            padding: var(--space-md) var(--space-2xl);
             border-radius: var(--radius-full);
-            font-size: 1.1rem;
+            font-size: var(--font-size-lg);
             font-weight: 700;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 30px rgba(16, 185, 129, 0.4);
-            animation: fadeInUp 0.6s ease 0.4s both;
+            transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+            box-shadow: var(--shadow-primary);
+            animation: fade-in-up 0.6s ease 0.4s both;
             position: relative;
             overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-sm);
         }
 
-        .cta-primary::before {
+        .hero__cta::before {
             content: '';
             position: absolute;
             top: 0;
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
             transition: left 0.5s ease;
         }
 
-        .cta-primary:hover::before {
+        .hero__cta:hover::before {
             left: 100%;
         }
 
-        .cta-primary:hover {
+        .hero__cta:hover {
             transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 12px 40px rgba(16, 185, 129, 0.5);
+            box-shadow: 0 12px 40px rgba(16, 185, 129, 0.45);
         }
 
-        .hero-stats {
+        .hero__stats {
             display: flex;
             justify-content: center;
-            gap: 40px;
-            margin-top: 60px;
-            animation: fadeInUp 0.6s ease 0.5s both;
+            gap: var(--space-2xl);
+            margin-top: var(--space-3xl);
+            animation: fade-in-up 0.6s ease 0.5s both;
         }
 
-        .stat-item {
+        .hero__stat {
             text-align: center;
         }
 
-        .stat-value {
-            font-size: 2rem;
+        .hero__stat-value {
+            font-size: var(--font-size-3xl);
             font-weight: 800;
-            color: var(--primary-dark);
+            color: var(--color-primary-dark);
         }
 
-        .stat-label {
-            font-size: 0.875rem;
-            color: var(--text-light);
+        .hero__stat-label {
+            font-size: var(--font-size-sm);
+            color: var(--color-text-secondary);
+        }
+
+        /* ========================================
+           Section Base Styles
+        ======================================== */
+        .section {
+            padding: var(--space-4xl) var(--space-lg);
+        }
+
+        .section--white {
+            background: var(--color-bg-white);
+        }
+
+        .section--light {
+            background: var(--color-bg-light);
+        }
+
+        .section--dark {
+            background: linear-gradient(135deg, var(--color-bg-dark), #065f46);
+            color: var(--color-text-inverse);
+        }
+
+        .section__header {
+            text-align: center;
+            margin-bottom: var(--space-3xl);
+        }
+
+        .section__tag {
+            display: inline-block;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.1));
+            color: var(--color-primary-dark);
+            padding: var(--space-sm) var(--space-lg);
+            border-radius: var(--radius-full);
+            font-size: var(--font-size-sm);
+            font-weight: 600;
+            margin-bottom: var(--space-md);
+        }
+
+        .section--dark .section__tag {
+            background: rgba(255, 255, 255, 0.15);
+            color: var(--color-text-inverse);
+        }
+
+        .section__title {
+            font-size: clamp(var(--font-size-2xl), 4vw, var(--font-size-4xl));
+            font-weight: 800;
+            margin-bottom: var(--space-md);
+        }
+
+        .section__subtitle {
+            font-size: var(--font-size-lg);
+            color: var(--color-text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .section--dark .section__subtitle {
+            color: rgba(255, 255, 255, 0.8);
         }
 
         /* ========================================
            Social Proof Section
         ======================================== */
-        #social-proof {
-            padding: 100px 20px;
-            background: var(--white);
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-tag {
-            display: inline-block;
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.1));
-            color: var(--primary-dark);
-            padding: 8px 20px;
-            border-radius: var(--radius-full);
-            font-size: 0.875rem;
-            font-weight: 600;
-            margin-bottom: 16px;
-        }
-
-        .section-title {
-            font-size: clamp(2rem, 4vw, 2.75rem);
-            font-weight: 800;
-            margin-bottom: 16px;
-        }
-
-        .section-subtitle {
-            font-size: 1.1rem;
-            color: var(--text-light);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .testimonials-grid {
+        .testimonials {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 24px;
-            margin-bottom: 60px;
+            gap: var(--space-lg);
+            margin-bottom: var(--space-3xl);
         }
 
-        .testimonial-card {
-            background: var(--bg-light);
-            padding: 32px;
+        .testimonial {
+            background: var(--color-bg-light);
+            padding: var(--space-xl);
             border-radius: var(--radius-lg);
             position: relative;
-            transition: all 0.3s ease;
+            transition: transform var(--transition-base), box-shadow var(--transition-base);
+            opacity: 0;
+            transform: translateY(30px);
         }
 
-        .testimonial-card:hover {
+        .testimonial.visible {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .testimonial:hover {
             transform: translateY(-5px);
             box-shadow: var(--shadow-lg);
         }
 
-        .testimonial-stars {
-            color: var(--accent-gold);
-            font-size: 1.2rem;
-            margin-bottom: 16px;
+        .testimonial__badge {
+            position: absolute;
+            top: var(--space-md);
+            right: var(--space-md);
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+            color: var(--color-text-inverse);
+            padding: var(--space-xs) var(--space-sm);
+            border-radius: var(--radius-full);
+            font-size: var(--font-size-xs);
+            font-weight: 600;
         }
 
-        .testimonial-text {
-            font-size: 1.05rem;
+        .testimonial__stars {
+            color: var(--color-accent);
+            font-size: var(--font-size-lg);
+            margin-bottom: var(--space-md);
+            letter-spacing: 2px;
+        }
+
+        .testimonial__stars[aria-label]::before {
+            content: '';
+        }
+
+        .testimonial__text {
+            font-size: var(--font-size-base);
             line-height: 1.7;
-            margin-bottom: 20px;
-            color: var(--text-dark);
+            margin-bottom: var(--space-lg);
+            color: var(--color-text-primary);
         }
 
-        .testimonial-author {
+        .testimonial__author {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: var(--space-sm);
         }
 
-        .author-avatar {
+        .testimonial__avatar {
             width: 48px;
             height: 48px;
-            background: linear-gradient(135deg, var(--primary-green), var(--primary-dark));
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--white);
+            color: var(--color-text-inverse);
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: var(--font-size-lg);
+            flex-shrink: 0;
         }
 
-        .author-info {
-            text-align: left;
-        }
-
-        .author-name {
+        .testimonial__name {
             font-weight: 600;
-            color: var(--text-dark);
+            color: var(--color-text-primary);
         }
 
-        .author-handle {
-            font-size: 0.875rem;
-            color: var(--text-light);
-        }
-
-        .impact-badge {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: linear-gradient(135deg, var(--primary-green), var(--primary-dark));
-            color: var(--white);
-            padding: 6px 12px;
-            border-radius: var(--radius-full);
-            font-size: 0.75rem;
-            font-weight: 600;
+        .testimonial__handle {
+            font-size: var(--font-size-sm);
+            color: var(--color-text-secondary);
         }
 
         /* Win Cards */
-        .win-cards-section {
+        .win-cards {
             text-align: center;
         }
 
-        .win-cards-title {
-            font-size: 1.5rem;
+        .win-cards__title {
+            font-size: var(--font-size-2xl);
             font-weight: 700;
-            margin-bottom: 24px;
+            margin-bottom: var(--space-lg);
         }
 
-        .win-cards-grid {
+        .win-cards__grid {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 16px;
+            gap: var(--space-md);
         }
 
         .win-card {
             background: linear-gradient(135deg, #dcfce7, #bbf7d0);
-            padding: 20px 28px;
+            padding: var(--space-lg);
             border-radius: var(--radius-md);
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
             border: 2px solid transparent;
             position: relative;
-            overflow: hidden;
+            text-align: left;
+            min-width: 260px;
         }
 
         .win-card::before {
-            content: '🌱';
+            content: attr(data-icon);
             position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 1.2rem;
+            top: var(--space-sm);
+            right: var(--space-sm);
+            font-size: var(--font-size-xl);
         }
 
         .win-card:hover {
-            transform: scale(1.05);
-            border-color: var(--primary-green);
+            transform: scale(1.03);
+            border-color: var(--color-primary);
             box-shadow: var(--shadow-md);
         }
 
-        .win-card-text {
-            font-weight: 600;
-            color: var(--primary-dark);
+        .win-card:focus-visible {
+            border-color: var(--color-primary);
         }
 
-        .win-card-cta {
-            font-size: 0.875rem;
-            color: var(--text-light);
-            margin-top: 8px;
+        .win-card__text {
+            font-weight: 600;
+            color: var(--color-primary-dark);
+            padding-right: var(--space-xl);
+        }
+
+        .win-card__cta {
+            font-size: var(--font-size-sm);
+            color: var(--color-text-secondary);
+            margin-top: var(--space-sm);
         }
 
         /* ========================================
            Features Section
         ======================================== */
-        #features {
-            padding: 100px 20px;
-            background: linear-gradient(180deg, var(--bg-light) 0%, var(--white) 100%);
-        }
-
-        .features-grid {
+        .features {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 32px;
+            gap: var(--space-xl);
         }
 
-        .feature-card {
-            background: var(--white);
-            padding: 40px 32px;
+        .feature {
+            background: var(--color-bg-white);
+            padding: var(--space-xl);
             border-radius: var(--radius-lg);
             text-align: center;
-            transition: all 0.3s ease;
+            transition: transform var(--transition-base), box-shadow var(--transition-base);
             box-shadow: var(--shadow-sm);
+            opacity: 0;
+            transform: translateY(30px);
         }
 
-        .feature-card:hover {
+        .feature.visible {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .feature:hover {
             transform: translateY(-8px);
             box-shadow: var(--shadow-lg);
         }
 
-        .feature-icon {
+        .feature__icon {
             width: 72px;
             height: 72px;
             background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.1));
@@ -560,400 +928,392 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
-            margin: 0 auto 24px;
+            font-size: var(--font-size-3xl);
+            margin: 0 auto var(--space-lg);
         }
 
-        .feature-title {
-            font-size: 1.25rem;
+        .feature__title {
+            font-size: var(--font-size-xl);
             font-weight: 700;
-            margin-bottom: 12px;
+            margin-bottom: var(--space-sm);
         }
 
-        .feature-description {
-            color: var(--text-light);
-            font-size: 0.95rem;
+        .feature__description {
+            color: var(--color-text-secondary);
+            font-size: var(--font-size-sm);
         }
 
         /* ========================================
-           Viral/Gamification Section
+           Viral Section
         ======================================== */
-        #viral {
-            padding: 100px 20px;
-            background: linear-gradient(135deg, var(--bg-dark), #065f46);
-            color: var(--white);
-            position: relative;
-            overflow: hidden;
-        }
-
-        #viral::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(16, 185, 129, 0.2), transparent);
-            border-radius: 50%;
-        }
-
-        .viral-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        .viral-grid {
+        .viral__grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 60px;
+            gap: var(--space-3xl);
             align-items: center;
         }
 
-        @media (max-width: 768px) {
-            .viral-grid {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-        }
-
-        .viral-left h2 {
-            font-size: clamp(2rem, 4vw, 2.75rem);
+        .viral__title {
+            font-size: clamp(var(--font-size-2xl), 4vw, var(--font-size-4xl));
             font-weight: 800;
-            margin-bottom: 24px;
+            margin-bottom: var(--space-lg);
         }
 
-        .viral-left p {
-            font-size: 1.1rem;
+        .viral__description {
+            font-size: var(--font-size-lg);
             opacity: 0.9;
-            margin-bottom: 32px;
+            margin-bottom: var(--space-xl);
             line-height: 1.7;
         }
 
         .referral-box {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
-            padding: 24px;
+            -webkit-backdrop-filter: blur(10px);
+            padding: var(--space-lg);
             border-radius: var(--radius-md);
-            margin-bottom: 24px;
+            margin-bottom: var(--space-lg);
         }
 
-        .referral-label {
-            font-size: 0.875rem;
+        .referral-box__label {
+            font-size: var(--font-size-sm);
             opacity: 0.8;
-            margin-bottom: 12px;
+            margin-bottom: var(--space-sm);
         }
 
-        .referral-link-box {
+        .referral-box__input-group {
             display: flex;
-            gap: 12px;
+            gap: var(--space-sm);
         }
 
-        .referral-link {
+        .referral-box__input {
             flex: 1;
             background: rgba(255, 255, 255, 0.2);
-            border: none;
-            padding: 14px 18px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: var(--space-sm) var(--space-md);
             border-radius: var(--radius-sm);
-            color: var(--white);
-            font-size: 0.95rem;
+            color: var(--color-text-inverse);
+            font-size: var(--font-size-sm);
         }
 
-        .copy-btn {
-            background: var(--accent-gold);
-            color: var(--bg-dark);
-            border: none;
-            padding: 14px 24px;
+        .referral-box__input:focus {
+            outline: none;
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .referral-box__btn {
+            background: var(--color-accent);
+            color: var(--color-bg-dark);
+            padding: var(--space-sm) var(--space-lg);
             border-radius: var(--radius-sm);
             font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            transition: transform var(--transition-fast);
+            white-space: nowrap;
         }
 
-        .copy-btn:hover {
+        .referral-box__btn:hover {
             transform: scale(1.05);
         }
 
-        .cta-white {
-            background: var(--white);
-            color: var(--primary-dark);
-            padding: 16px 36px;
+        .btn--white {
+            background: var(--color-bg-white);
+            color: var(--color-primary-dark);
+            padding: var(--space-md) var(--space-xl);
             border-radius: var(--radius-full);
-            font-size: 1rem;
+            font-size: var(--font-size-base);
             font-weight: 700;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            transition: transform var(--transition-fast);
             box-shadow: var(--shadow-lg);
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-sm);
         }
 
-        .cta-white:hover {
+        .btn--white:hover {
             transform: translateY(-3px);
         }
 
-        /* Badges Section */
+        /* Badges Showcase */
         .badges-showcase {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
-            padding: 40px;
+            -webkit-backdrop-filter: blur(10px);
+            padding: var(--space-xl);
             border-radius: var(--radius-lg);
             text-align: center;
         }
 
-        .badges-title {
-            font-size: 1.25rem;
+        .badges-showcase__title {
+            font-size: var(--font-size-xl);
             font-weight: 700;
-            margin-bottom: 24px;
+            margin-bottom: var(--space-lg);
         }
 
         .badges-grid {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 16px;
-            margin-bottom: 32px;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-xl);
         }
 
         .badge {
-            background: linear-gradient(135deg, var(--accent-gold), #f59e0b);
-            color: var(--bg-dark);
-            padding: 12px 20px;
+            background: linear-gradient(135deg, var(--color-accent), var(--color-accent-dark));
+            color: var(--color-bg-dark);
+            padding: var(--space-sm) var(--space-md);
             border-radius: var(--radius-full);
             font-weight: 600;
-            font-size: 0.9rem;
-            display: flex;
+            font-size: var(--font-size-sm);
+            display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: var(--space-xs);
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: transform var(--transition-fast);
         }
 
         .badge:hover {
             transform: scale(1.1);
         }
 
-        .badge-locked {
+        .badge--locked {
             background: rgba(255, 255, 255, 0.2);
             color: rgba(255, 255, 255, 0.6);
+            cursor: default;
+        }
+
+        .badge--locked:hover {
+            transform: none;
         }
 
         .streak-display {
             background: rgba(255, 255, 255, 0.1);
-            padding: 20px;
+            padding: var(--space-lg);
             border-radius: var(--radius-md);
-            margin-top: 24px;
         }
 
-        .streak-value {
-            font-size: 2.5rem;
+        .streak-display__value {
+            font-size: var(--font-size-4xl);
             font-weight: 800;
-            color: var(--accent-gold);
+            color: var(--color-accent);
         }
 
-        .streak-label {
-            font-size: 0.875rem;
+        .streak-display__label {
+            font-size: var(--font-size-sm);
             opacity: 0.8;
         }
 
         /* ========================================
            Premium Section
         ======================================== */
-        #premium {
-            padding: 100px 20px;
-            background: var(--white);
-        }
-
         .premium-card {
-            max-width: 600px;
+            max-width: 560px;
             margin: 0 auto;
-            background: linear-gradient(135deg, var(--bg-light), #dcfce7);
-            padding: 48px;
-            border-radius: var(--radius-lg);
+            background: linear-gradient(135deg, var(--color-bg-light), #dcfce7);
+            padding: var(--space-2xl);
+            border-radius: var(--radius-xl);
             text-align: center;
             position: relative;
             overflow: hidden;
-            box-shadow: var(--shadow-lg);
+            box-shadow: var(--shadow-xl);
         }
 
-        .premium-badge {
+        .premium-card__badge {
             position: absolute;
-            top: 20px;
-            right: -35px;
-            background: var(--accent-gold);
-            color: var(--bg-dark);
-            padding: 8px 40px;
-            font-size: 0.75rem;
+            top: 24px;
+            right: -32px;
+            background: var(--color-accent);
+            color: var(--color-bg-dark);
+            padding: var(--space-xs) var(--space-2xl);
+            font-size: var(--font-size-xs);
             font-weight: 700;
             transform: rotate(45deg);
+            letter-spacing: 0.5px;
         }
 
-        .premium-icon {
-            font-size: 3rem;
-            margin-bottom: 24px;
+        .premium-card__icon {
+            font-size: var(--font-size-5xl);
+            margin-bottom: var(--space-lg);
         }
 
-        .premium-title {
-            font-size: 2rem;
+        .premium-card__title {
+            font-size: var(--font-size-3xl);
             font-weight: 800;
-            margin-bottom: 16px;
+            margin-bottom: var(--space-md);
         }
 
-        .premium-price {
-            margin-bottom: 32px;
+        .premium-card__price {
+            margin-bottom: var(--space-xl);
         }
 
-        .price-value {
-            font-size: 3rem;
+        .premium-card__price-value {
+            font-size: var(--font-size-5xl);
             font-weight: 800;
-            color: var(--primary-dark);
+            color: var(--color-primary-dark);
         }
 
-        .price-period {
-            color: var(--text-light);
+        .premium-card__price-period {
+            color: var(--color-text-secondary);
         }
 
         .premium-features {
             text-align: left;
-            margin-bottom: 32px;
+            margin-bottom: var(--space-xl);
         }
 
         .premium-feature {
             display: flex;
             align-items: center;
-            gap: 12px;
-            padding: 12px 0;
+            gap: var(--space-sm);
+            padding: var(--space-sm) 0;
             border-bottom: 1px solid rgba(0, 0, 0, 0.05);
         }
 
-        .premium-feature-icon {
-            color: var(--primary-green);
+        .premium-feature:last-child {
+            border-bottom: none;
+        }
+
+        .premium-feature__icon {
+            color: var(--color-primary);
             font-weight: bold;
+            flex-shrink: 0;
         }
 
-        .cta-premium {
+        .btn--premium {
             width: 100%;
-            background: linear-gradient(135deg, var(--primary-green), var(--primary-dark));
-            color: var(--white);
-            padding: 18px;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+            color: var(--color-text-inverse);
+            padding: var(--space-md);
             border-radius: var(--radius-full);
-            font-size: 1.1rem;
+            font-size: var(--font-size-lg);
             font-weight: 700;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            transition: transform var(--transition-fast), box-shadow var(--transition-fast);
         }
 
-        .cta-premium:hover {
+        .btn--premium:hover {
             transform: scale(1.02);
-            box-shadow: 0 8px 30px rgba(16, 185, 129, 0.4);
+            box-shadow: var(--shadow-primary);
         }
 
         /* ========================================
            Footer
         ======================================== */
-        footer {
-            background: var(--bg-dark);
-            color: var(--white);
-            padding: 60px 20px 30px;
+        .footer {
+            background: var(--color-bg-dark);
+            color: var(--color-text-inverse);
+            padding: var(--space-3xl) var(--space-lg) var(--space-xl);
         }
 
-        .footer-content {
+        .footer__content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
+            grid-template-columns: 2fr repeat(3, 1fr);
+            gap: var(--space-xl);
+            margin-bottom: var(--space-2xl);
         }
 
-        .footer-brand {
+        .footer__brand {
             max-width: 300px;
         }
 
-        .footer-logo {
+        .footer__logo {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: var(--space-sm);
             font-weight: 700;
-            font-size: 1.25rem;
-            margin-bottom: 16px;
+            font-size: var(--font-size-xl);
+            margin-bottom: var(--space-md);
         }
 
-        .footer-description {
+        .footer__description {
             opacity: 0.8;
-            font-size: 0.95rem;
+            font-size: var(--font-size-sm);
             line-height: 1.7;
         }
 
-        .footer-links h4 {
-            font-size: 1rem;
+        .footer__links h4 {
+            font-size: var(--font-size-base);
             font-weight: 700;
-            margin-bottom: 20px;
+            margin-bottom: var(--space-lg);
         }
 
-        .footer-links ul {
+        .footer__links ul {
             list-style: none;
         }
 
-        .footer-links li {
-            margin-bottom: 12px;
+        .footer__links li {
+            margin-bottom: var(--space-sm);
         }
 
-        .footer-links a {
+        .footer__links a {
             color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            font-size: 0.95rem;
-            transition: color 0.3s ease;
+            font-size: var(--font-size-sm);
+            transition: color var(--transition-fast);
         }
 
-        .footer-links a:hover {
-            color: var(--white);
+        .footer__links a:hover {
+            color: var(--color-text-inverse);
         }
 
-        .footer-bottom {
+        .footer__bottom {
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 30px;
+            padding-top: var(--space-xl);
             text-align: center;
             opacity: 0.7;
-            font-size: 0.875rem;
+            font-size: var(--font-size-sm);
+        }
+
+        .footer__bottom-links {
+            margin-top: var(--space-sm);
+        }
+
+        .footer__bottom-links a {
+            color: rgba(255, 255, 255, 0.7);
+            margin: 0 var(--space-sm);
+        }
+
+        .footer__bottom-links a:hover {
+            color: var(--color-text-inverse);
+            text-decoration: underline;
         }
 
         /* ========================================
-           Modal Styles
+           Modal
         ======================================== */
         .modal-overlay {
             display: none;
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            inset: 0;
             background: rgba(0, 0, 0, 0.6);
             backdrop-filter: blur(8px);
-            z-index: 2000;
+            -webkit-backdrop-filter: blur(8px);
+            z-index: var(--z-modal-backdrop);
             justify-content: center;
             align-items: center;
-            padding: 20px;
+            padding: var(--space-lg);
         }
 
         .modal-overlay.active {
             display: flex;
-            animation: fadeIn 0.3s ease;
+            animation: fade-in 0.3s ease;
         }
 
-        @keyframes fadeIn {
+        @keyframes fade-in {
             from { opacity: 0; }
             to { opacity: 1; }
         }
 
         .modal {
-            background: var(--white);
-            border-radius: var(--radius-lg);
-            padding: 48px;
+            background: var(--color-bg-white);
+            border-radius: var(--radius-xl);
+            padding: var(--space-2xl);
             max-width: 480px;
             width: 100%;
             position: relative;
-            animation: slideUp 0.4s ease;
+            animation: slide-up 0.4s ease;
+            max-height: 90vh;
+            overflow-y: auto;
         }
 
-        @keyframes slideUp {
+        @keyframes slide-up {
             from {
                 opacity: 0;
                 transform: translateY(50px);
@@ -964,29 +1324,27 @@
             }
         }
 
-        .modal-close {
+        .modal__close {
             position: absolute;
-            top: 20px;
-            right: 20px;
+            top: var(--space-md);
+            right: var(--space-md);
             width: 40px;
             height: 40px;
-            background: var(--bg-light);
-            border: none;
+            background: var(--color-bg-light);
             border-radius: 50%;
-            cursor: pointer;
-            font-size: 1.2rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s ease;
+            font-size: var(--font-size-xl);
+            transition: background var(--transition-fast), color var(--transition-fast);
         }
 
-        .modal-close:hover {
-            background: #fee2e2;
-            color: #dc2626;
+        .modal__close:hover {
+            background: var(--color-error-light);
+            color: var(--color-error);
         }
 
-        .modal-icon {
+        .modal__icon {
             width: 80px;
             height: 80px;
             background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.1));
@@ -994,128 +1352,176 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2.5rem;
-            margin: 0 auto 24px;
+            font-size: var(--font-size-4xl);
+            margin: 0 auto var(--space-lg);
         }
 
-        .modal-title {
-            font-size: 1.75rem;
+        .modal__title {
+            font-size: var(--font-size-2xl);
             font-weight: 800;
             text-align: center;
-            margin-bottom: 12px;
+            margin-bottom: var(--space-sm);
         }
 
-        .modal-subtitle {
+        .modal__subtitle {
             text-align: center;
-            color: var(--text-light);
-            margin-bottom: 32px;
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-xl);
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: var(--space-md);
+        }
+
+        .form-label {
+            display: block;
+            font-size: var(--font-size-sm);
+            font-weight: 500;
+            margin-bottom: var(--space-xs);
+            color: var(--color-text-primary);
         }
 
         .form-input {
             width: 100%;
-            padding: 16px 20px;
-            border: 2px solid #e5e7eb;
+            padding: var(--space-md);
+            border: 2px solid var(--color-border);
             border-radius: var(--radius-md);
-            font-size: 1rem;
-            transition: all 0.3s ease;
+            font-size: var(--font-size-base);
+            transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+            background: var(--color-bg-white);
         }
 
         .form-input:focus {
             outline: none;
-            border-color: var(--primary-green);
+            border-color: var(--color-primary);
             box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
         }
 
-        .btn-submit {
+        .form-input.error {
+            border-color: var(--color-error);
+        }
+
+        .form-input.error:focus {
+            box-shadow: 0 0 0 4px rgba(220, 38, 38, 0.1);
+        }
+
+        .form-error {
+            display: none;
+            font-size: var(--font-size-sm);
+            color: var(--color-error);
+            margin-top: var(--space-xs);
+        }
+
+        .form-error.visible {
+            display: block;
+        }
+
+        .btn--submit {
             width: 100%;
-            background: linear-gradient(135deg, var(--primary-green), var(--primary-dark));
-            color: var(--white);
-            padding: 16px;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+            color: var(--color-text-inverse);
+            padding: var(--space-md);
             border-radius: var(--radius-md);
-            font-size: 1.1rem;
+            font-size: var(--font-size-lg);
             font-weight: 700;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-bottom: 16px;
-        }
-
-        .btn-submit:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
-        }
-
-        .btn-google {
-            width: 100%;
-            background: var(--white);
-            color: var(--text-dark);
-            padding: 16px;
-            border-radius: var(--radius-md);
-            font-size: 1rem;
-            font-weight: 600;
-            border: 2px solid #e5e7eb;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+            margin-bottom: var(--space-md);
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
+            gap: var(--space-sm);
         }
 
-        .btn-google:hover {
-            background: var(--bg-light);
-            border-color: var(--primary-green);
+        .btn--submit:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-primary);
         }
 
-        .modal-divider {
+        .btn--submit:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        .btn--google {
+            width: 100%;
+            background: var(--color-bg-white);
+            color: var(--color-text-primary);
+            padding: var(--space-md);
+            border-radius: var(--radius-md);
+            font-size: var(--font-size-base);
+            font-weight: 600;
+            border: 2px solid var(--color-border);
+            transition: background var(--transition-fast), border-color var(--transition-fast);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-sm);
+        }
+
+        .btn--google:hover {
+            background: var(--color-bg-light);
+            border-color: var(--color-primary);
+        }
+
+        .modal__divider {
             text-align: center;
-            margin: 20px 0;
-            color: var(--text-light);
+            margin: var(--space-md) 0;
+            color: var(--color-text-muted);
             position: relative;
+            font-size: var(--font-size-sm);
         }
 
-        .modal-divider::before,
-        .modal-divider::after {
+        .modal__divider::before,
+        .modal__divider::after {
             content: '';
             position: absolute;
             top: 50%;
             width: 40%;
             height: 1px;
-            background: #e5e7eb;
+            background: var(--color-border);
         }
 
-        .modal-divider::before { left: 0; }
-        .modal-divider::after { right: 0; }
+        .modal__divider::before { left: 0; }
+        .modal__divider::after { right: 0; }
 
-        /* Success Modal */
+        /* Success Modal Content */
         .success-content {
             text-align: center;
         }
 
-        .success-icon {
+        .success-content__icon {
             font-size: 4rem;
-            margin-bottom: 24px;
+            margin-bottom: var(--space-lg);
         }
 
         .impact-preview {
-            background: linear-gradient(135deg, var(--bg-light), #dcfce7);
-            padding: 24px;
+            background: linear-gradient(135deg, var(--color-bg-light), #dcfce7);
+            padding: var(--space-lg);
             border-radius: var(--radius-md);
-            margin: 24px 0;
+            margin: var(--space-lg) 0;
         }
 
-        .impact-value {
-            font-size: 2.5rem;
+        .impact-preview__value {
+            font-size: var(--font-size-4xl);
             font-weight: 800;
-            color: var(--primary-dark);
+            color: var(--color-primary-dark);
         }
 
-        .impact-label {
-            color: var(--text-light);
+        .impact-preview__label {
+            color: var(--color-text-secondary);
+            font-size: var(--font-size-sm);
+        }
+
+        .modal__privacy {
+            font-size: var(--font-size-xs);
+            color: var(--color-text-muted);
+            text-align: center;
+            margin-top: var(--space-md);
+        }
+
+        .modal__privacy a {
+            color: var(--color-primary);
+            text-decoration: underline;
         }
 
         /* ========================================
@@ -1123,18 +1529,20 @@
         ======================================== */
         .toast {
             position: fixed;
-            bottom: 30px;
+            bottom: var(--space-xl);
             left: 50%;
             transform: translateX(-50%) translateY(100px);
-            background: var(--bg-dark);
-            color: var(--white);
-            padding: 16px 32px;
+            background: var(--color-bg-dark);
+            color: var(--color-text-inverse);
+            padding: var(--space-md) var(--space-xl);
             border-radius: var(--radius-full);
             font-weight: 600;
-            z-index: 3000;
+            z-index: var(--z-toast);
             opacity: 0;
-            transition: all 0.4s ease;
-            box-shadow: var(--shadow-lg);
+            transition: transform var(--transition-base), opacity var(--transition-base);
+            box-shadow: var(--shadow-xl);
+            max-width: calc(100% - var(--space-xl));
+            text-align: center;
         }
 
         .toast.show {
@@ -1142,628 +1550,732 @@
             transform: translateX(-50%) translateY(0);
         }
 
+        .toast--success {
+            background: var(--color-success);
+        }
+
+        .toast--error {
+            background: var(--color-error);
+        }
+
+        /* ========================================
+           Cookie Consent Banner
+        ======================================== */
+        .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--color-bg-white);
+            padding: var(--space-lg);
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+            z-index: var(--z-cookie);
+            transform: translateY(100%);
+            transition: transform var(--transition-slow);
+        }
+
+        .cookie-banner.show {
+            transform: translateY(0);
+        }
+
+        .cookie-banner__content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: var(--space-lg);
+            flex-wrap: wrap;
+        }
+
+        .cookie-banner__text {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .cookie-banner__text h3 {
+            font-size: var(--font-size-base);
+            font-weight: 700;
+            margin-bottom: var(--space-xs);
+        }
+
+        .cookie-banner__text p {
+            font-size: var(--font-size-sm);
+            color: var(--color-text-secondary);
+        }
+
+        .cookie-banner__text a {
+            color: var(--color-primary);
+            text-decoration: underline;
+        }
+
+        .cookie-banner__actions {
+            display: flex;
+            gap: var(--space-sm);
+            flex-wrap: wrap;
+        }
+
+        .cookie-banner__btn {
+            padding: var(--space-sm) var(--space-lg);
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-size: var(--font-size-sm);
+            transition: transform var(--transition-fast);
+        }
+
+        .cookie-banner__btn--accept {
+            background: var(--color-primary);
+            color: var(--color-text-inverse);
+        }
+
+        .cookie-banner__btn--decline {
+            background: var(--color-bg-light);
+            color: var(--color-text-primary);
+        }
+
+        .cookie-banner__btn:hover {
+            transform: scale(1.02);
+        }
+
         /* ========================================
            Responsive Design
         ======================================== */
-        @media (max-width: 768px) {
-            .hero-stats {
-                flex-direction: column;
-                gap: 24px;
+        @media (max-width: 1024px) {
+            .viral__grid {
+                grid-template-columns: 1fr;
+                gap: var(--space-xl);
             }
 
-            .animation-container {
-                width: 240px;
-                height: 240px;
+            .footer__content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero__stats {
+                flex-direction: column;
+                gap: var(--space-lg);
+            }
+
+            .hero__animation {
+                width: 260px;
+                height: 260px;
+            }
+
+            .testimonials {
+                grid-template-columns: 1fr;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .footer__content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer__brand {
+                max-width: none;
+            }
+
+            .footer__logo {
+                justify-content: center;
             }
 
             .modal {
-                padding: 32px 24px;
-            }
-
-            .testimonials-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .premium-card {
-                padding: 32px 24px;
+                padding: var(--space-xl);
             }
         }
 
         @media (max-width: 480px) {
-            .nav-content {
+            :root {
+                --space-lg: 20px;
+                --space-xl: 28px;
+                --space-2xl: 40px;
+            }
+
+            .nav__content {
                 flex-direction: column;
-                gap: 16px;
+                gap: var(--space-sm);
             }
 
-            .hero-title {
-                font-size: 2rem;
+            .hero__title {
+                font-size: var(--font-size-2xl);
             }
 
-            .cta-primary {
-                padding: 16px 32px;
-                font-size: 1rem;
+            .hero__cta {
+                padding: var(--space-md) var(--space-xl);
+                font-size: var(--font-size-base);
+                width: 100%;
+                justify-content: center;
             }
 
-            .referral-link-box {
+            .referral-box__input-group {
                 flex-direction: column;
+            }
+
+            .cookie-banner__actions {
+                width: 100%;
+            }
+
+            .cookie-banner__btn {
+                flex: 1;
+            }
+        }
+
+        /* ========================================
+           Print Styles
+        ======================================== */
+        @media print {
+            .nav,
+            .modal-overlay,
+            .toast,
+            .cookie-banner,
+            .hero__cta,
+            .btn--white,
+            .btn--premium {
+                display: none !important;
+            }
+
+            body {
+                font-size: 12pt;
+                line-height: 1.5;
+                color: #000;
+                background: #fff;
+            }
+
+            .hero {
+                min-height: auto;
+                padding: 20pt;
+            }
+
+            .section {
+                padding: 20pt;
+                page-break-inside: avoid;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Skip Link for Accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
     <!-- Navigation -->
-    <nav>
-        <div class="container nav-content">
-            <div class="logo">
-                <div class="logo-icon">🌍</div>
+    <nav class="nav" role="navigation" aria-label="Main navigation">
+        <div class="container nav__content">
+            <a href="/" class="nav__logo" aria-label="Climate Guardian Home">
+                <span class="nav__logo-icon" aria-hidden="true">🌍</span>
                 <span>Climate Guardian</span>
-            </div>
-            <button class="nav-cta" onclick="openSignupModal()">Get Started Free</button>
+            </a>
+            <button class="nav__cta" onclick="openSignupModal()" aria-label="Get started with Climate Guardian for free">
+                Get Started Free
+            </button>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="hero">
-        <div class="hero-bg-circles"></div>
-        <div class="hero-content">
-            <div class="hero-badge">
-                <span class="hero-badge-dot"></span>
-                <span>Trusted by 1M+ Climate Heroes</span>
-            </div>
-            <h1 class="hero-title">
-                Become a <span class="gradient-text">Climate Hero</span> in 60 Seconds
-            </h1>
-            <p class="hero-subtitle">
-                Your free AI Guardian delivers one personalized daily micro-mission to minimize your carbon footprint. Small actions. Massive impact.
-            </p>
-            <div class="animation-container">
-                <lottie-player 
-                    src="https://lottie.host/39e7dd0b-72d2-4f96-9e03-0a1a52ed405c/r7BnlMGmGT.json" 
-                    background="transparent" 
-                    speed="1" 
-                    loop 
-                    autoplay>
-                </lottie-player>
-                <div class="co2-overlay">
-                    <span class="co2-value" id="co2Counter">0</span>kg CO₂ saved today
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section class="hero" aria-labelledby="hero-title">
+            <div class="hero__bg" aria-hidden="true"></div>
+            <div class="hero__content">
+                <div class="hero__badge">
+                    <span class="hero__badge-dot" aria-hidden="true"></span>
+                    <span>Trusted by 1M+ Climate Heroes</span>
+                </div>
+                <h1 id="hero-title" class="hero__title">
+                    Become a <span class="gradient-text">Climate Hero</span> in 60 Seconds
+                </h1>
+                <p class="hero__subtitle">
+                    Your free AI Guardian delivers one personalized daily micro-mission to minimize your carbon footprint. Small actions. Massive impact.
+                </p>
+                <div class="hero__animation" id="heroAnimation">
+                    <lottie-player 
+                        src="https://lottie.host/39e7dd0b-72d2-4f96-9e03-0a1a52ed405c/r7BnlMGmGT.json" 
+                        background="transparent" 
+                        speed="1" 
+                        loop 
+                        autoplay
+                        aria-label="Animated Earth visualization">
+                    </lottie-player>
+                    <div class="hero__animation-fallback" aria-hidden="true">🌍</div>
+                    <div class="hero__co2-overlay" aria-live="polite">
+                        <span class="hero__co2-value" id="co2Counter">0</span><span>kg CO₂ saved today</span>
+                    </div>
+                </div>
+                <button class="hero__cta" onclick="openSignupModal()" aria-label="Sign up to get your AI Climate Guardian for free">
+                    <span aria-hidden="true">🌱</span>
+                    <span>Get My Guardian Now — It's Free</span>
+                </button>
+                <div class="hero__stats" role="list" aria-label="Impact statistics">
+                    <div class="hero__stat" role="listitem">
+                        <div class="hero__stat-value">12M+</div>
+                        <div class="hero__stat-label">kg CO₂ Saved</div>
+                    </div>
+                    <div class="hero__stat" role="listitem">
+                        <div class="hero__stat-value">1M+</div>
+                        <div class="hero__stat-label">Active Users</div>
+                    </div>
+                    <div class="hero__stat" role="listitem">
+                        <div class="hero__stat-value">50K+</div>
+                        <div class="hero__stat-label">Trees Planted</div>
+                    </div>
                 </div>
             </div>
-            <button class="cta-primary" onclick="openSignupModal()">
-                🌱 Get My Guardian Now — It's Free
-            </button>
-            <div class="hero-stats">
-                <div class="stat-item">
-                    <div class="stat-value">12M+</div>
-                    <div class="stat-label">kg CO₂ Saved</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-value">1M+</div>
-                    <div class="stat-label">Active Users</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-value">50K+</div>
-                    <div class="stat-label">Trees Planted</div>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Social Proof Section -->
-    <section id="social-proof">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">💚 Real Impact Stories</span>
-                <h2 class="section-title">Join the Movement</h2>
-                <p class="section-subtitle">See what our community is achieving together</p>
-            </div>
-            
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <div class="impact-badge">-50kg CO₂/month</div>
-                    <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
-                    <p class="testimonial-text">"This AI completely transformed my daily habits. I never realized how much impact small changes could make. Saved 50kg of CO₂ in my first month!"</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">S</div>
-                        <div class="author-info">
-                            <div class="author-name">Sarah Chen</div>
-                            <div class="author-handle">@ecowarrior_sarah</div>
-                        </div>
-                    </div>
-                </div>
+        <!-- Social Proof Section -->
+        <section class="section section--white" id="testimonials" aria-labelledby="testimonials-title">
+            <div class="container">
+                <header class="section__header">
+                    <span class="section__tag">💚 Real Impact Stories</span>
+                    <h2 id="testimonials-title" class="section__title">Join the Movement</h2>
+                    <p class="section__subtitle">See what our community is achieving together</p>
+                </header>
                 
-                <div class="testimonial-card">
-                    <div class="impact-badge">42-day streak</div>
-                    <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
-                    <p class="testimonial-text">"The daily missions are addictive in the best way. I'm on a 42-day streak and my whole family is now competing for badges. Love it!"</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">M</div>
-                        <div class="author-info">
-                            <div class="author-name">Marcus Johnson</div>
-                            <div class="author-handle">@greendad_marcus</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="testimonial-card">
-                    <div class="impact-badge">Team of 15</div>
-                    <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
-                    <p class="testimonial-text">"Got my entire office team signed up. We've turned it into a friendly competition and collectively offset a flight's worth of emissions!"</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">A</div>
-                        <div class="author-info">
-                            <div class="author-name">Alex Rivera</div>
-                            <div class="author-handle">@sustainableAlex</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="win-cards-section">
-                <h3 class="win-cards-title">Share Your Climate Wins 🎉</h3>
-                <div class="win-cards-grid">
-                    <div class="win-card" onclick="shareWin('I saved 10kg CO₂ this week with my AI Climate Guardian! 🌍 Challenge your friends to do the same.')">
-                        <div class="win-card-text">🏆 I saved 10kg CO₂ this week!</div>
-                        <div class="win-card-cta">Click to share & challenge friends</div>
-                    </div>
-                    <div class="win-card" onclick="shareWin('Just completed my 7-day streak on Climate Guardian! 🔥 Join me in saving the planet one day at a time.')">
-                        <div class="win-card-text">🔥 7-Day Streak Achieved!</div>
-                        <div class="win-card-cta">Click to share & challenge friends</div>
-                    </div>
-                    <div class="win-card" onclick="shareWin('Offset a flight\'s worth of emissions with Climate Guardian! ✈️🌱 Start your journey today.')">
-                        <div class="win-card-text">✈️ Offset a flight's emissions!</div>
-                        <div class="win-card-cta">Click to share & challenge friends</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section id="features">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">✨ How It Works</span>
-                <h2 class="section-title">Your AI-Powered Path to Impact</h2>
-                <p class="section-subtitle">Simple, personalized, and scientifically optimized for maximum environmental benefit</p>
-            </div>
-            
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🎯</div>
-                    <h3 class="feature-title">Personalized Missions</h3>
-                    <p class="feature-description">AI analyzes your lifestyle, location, and habits to deliver one impactful daily action tailored just for you.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">📊</div>
-                    <h3 class="feature-title">Real-Time Tracking</h3>
-                    <p class="feature-description">Watch your impact grow with live CO₂ savings, equivalent trees planted, and global ranking updates.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">🏆</div>
-                    <h3 class="feature-title">Gamified Progress</h3>
-                    <p class="feature-description">Earn badges, maintain streaks, compete with friends, and unlock rewards as you level up your eco-warrior status.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">🤝</div>
-                    <h3 class="feature-title">Community Power</h3>
-                    <p class="feature-description">Join teams, challenge friends, and see collective impact. Every referral plants a real tree.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">🔔</div>
-                    <h3 class="feature-title">Smart Reminders</h3>
-                    <p class="feature-description">Gentle daily nudges at the perfect time ensure you never miss a mission. Build habits that stick.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">🌱</div>
-                    <h3 class="feature-title">Eco-Recipes & Tips</h3>
-                    <p class="feature-description">Get sustainable recipes, commute alternatives, and shopping swaps personalized to your area.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Viral/Gamification Section -->
-    <section id="viral">
-        <div class="container viral-content">
-            <div class="viral-grid">
-                <div class="viral-left">
-                    <h2>Go Viral for the Planet 🌍</h2>
-                    <p>Invite friends and unlock premium features while planting real trees. Every referral = one tree planted through our reforestation partners.</p>
+                <div class="testimonials" role="list" aria-label="User testimonials">
+                    <article class="testimonial" role="listitem">
+                        <span class="testimonial__badge">-50kg CO₂/month</span>
+                        <div class="testimonial__stars" role="img" aria-label="5 out of 5 stars">⭐⭐⭐⭐⭐</div>
+                        <blockquote class="testimonial__text">
+                            "This AI completely transformed my daily habits. I never realized how much impact small changes could make. Saved 50kg of CO₂ in my first month!"
+                        </blockquote>
+                        <footer class="testimonial__author">
+                            <div class="testimonial__avatar" aria-hidden="true">S</div>
+                            <div>
+                                <cite class="testimonial__name">Sarah Chen</cite>
+                                <div class="testimonial__handle">@ecowarrior_sarah</div>
+                            </div>
+                        </footer>
+                    </article>
                     
-                    <div class="referral-box">
-                        <div class="referral-label">Your Unique Referral Link</div>
-                        <div class="referral-link-box">
-                            <input type="text" class="referral-link" id="referralLink" value="climateguardian.ai/join/hero123" readonly>
-                            <button class="copy-btn" onclick="copyReferral()">Copy</button>
-                        </div>
-                    </div>
+                    <article class="testimonial" role="listitem">
+                        <span class="testimonial__badge">42-day streak</span>
+                        <div class="testimonial__stars" role="img" aria-label="5 out of 5 stars">⭐⭐⭐⭐⭐</div>
+                        <blockquote class="testimonial__text">
+                            "The daily missions are addictive in the best way. I'm on a 42-day streak and my whole family is now competing for badges. Love it!"
+                        </blockquote>
+                        <footer class="testimonial__author">
+                            <div class="testimonial__avatar" aria-hidden="true">M</div>
+                            <div>
+                                <cite class="testimonial__name">Marcus Johnson</cite>
+                                <div class="testimonial__handle">@greendad_marcus</div>
+                            </div>
+                        </footer>
+                    </article>
                     
-                    <button class="cta-white" onclick="shareReferral()">
-                        📤 Invite Friends & Plant Trees
-                    </button>
+                    <article class="testimonial" role="listitem">
+                        <span class="testimonial__badge">Team of 15</span>
+                        <div class="testimonial__stars" role="img" aria-label="5 out of 5 stars">⭐⭐⭐⭐⭐</div>
+                        <blockquote class="testimonial__text">
+                            "Got my entire office team signed up. We've turned it into a friendly competition and collectively offset a flight's worth of emissions!"
+                        </blockquote>
+                        <footer class="testimonial__author">
+                            <div class="testimonial__avatar" aria-hidden="true">A</div>
+                            <div>
+                                <cite class="testimonial__name">Alex Rivera</cite>
+                                <div class="testimonial__handle">@sustainableAlex</div>
+                            </div>
+                        </footer>
+                    </article>
                 </div>
+
+                <div class="win-cards">
+                    <h3 class="win-cards__title">Share Your Climate Wins 🎉</h3>
+                    <div class="win-cards__grid" role="list">
+                        <button 
+                            class="win-card" 
+                            data-icon="🌱"
+                            onclick="shareWin('I saved 10kg CO₂ this week with my AI Climate Guardian! 🌍 Challenge your friends to do the same.')"
+                            role="listitem"
+                            aria-label="Share: I saved 10kg CO2 this week">
+                            <div class="win-card__text">🏆 I saved 10kg CO₂ this week!</div>
+                            <div class="win-card__cta">Click to share & challenge friends</div>
+                        </button>
+                        <button 
+                            class="win-card" 
+                            data-icon="🔥"
+                            onclick="shareWin('Just completed my 7-day streak on Climate Guardian! 🔥 Join me in saving the planet one day at a time.')"
+                            role="listitem"
+                            aria-label="Share: 7-Day Streak Achieved">
+                            <div class="win-card__text">🔥 7-Day Streak Achieved!</div>
+                            <div class="win-card__cta">Click to share & challenge friends</div>
+                        </button>
+                        <button 
+                            class="win-card" 
+                            data-icon="✈️"
+                            onclick="shareWin('Offset a flight\'s worth of emissions with Climate Guardian! ✈️🌱 Start your journey today.')"
+                            role="listitem"
+                            aria-label="Share: Offset a flight's emissions">
+                            <div class="win-card__text">✈️ Offset a flight's emissions!</div>
+                            <div class="win-card__cta">Click to share & challenge friends</div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="section section--light" id="features" aria-labelledby="features-title">
+            <div class="container">
+                <header class="section__header">
+                    <span class="section__tag">✨ How It Works</span>
+                    <h2 id="features-title" class="section__title">Your AI-Powered Path to Impact</h2>
+                    <p class="section__subtitle">Simple, personalized, and scientifically optimized for maximum environmental benefit</p>
+                </header>
                 
-                <div class="viral-right">
-                    <div class="badges-showcase">
-                        <h3 class="badges-title">🏅 Your Achievement Badges</h3>
-                        <div class="badges-grid">
-                            <div class="badge" onclick="shareBadge('Eco Warrior Level 1')">
-                                🌱 Eco Warrior L1
+                <div class="features" role="list">
+                    <article class="feature" role="listitem">
+                        <div class="feature__icon" aria-hidden="true">🎯</div>
+                        <h3 class="feature__title">Personalized Missions</h3>
+                        <p class="feature__description">AI analyzes your lifestyle, location, and habits to deliver one impactful daily action tailored just for you.</p>
+                    </article>
+                    
+                    <article class="feature" role="listitem">
+                        <div class="feature__icon" aria-hidden="true">📊</div>
+                        <h3 class="feature__title">Real-Time Tracking</h3>
+                        <p class="feature__description">Watch your impact grow with live CO₂ savings, equivalent trees planted, and global ranking updates.</p>
+                    </article>
+                    
+                    <article class="feature" role="listitem">
+                        <div class="feature__icon" aria-hidden="true">🏆</div>
+                        <h3 class="feature__title">Gamified Progress</h3>
+                        <p class="feature__description">Earn badges, maintain streaks, compete with friends, and unlock rewards as you level up your eco-warrior status.</p>
+                    </article>
+                    
+                    <article class="feature" role="listitem">
+                        <div class="feature__icon" aria-hidden="true">🤝</div>
+                        <h3 class="feature__title">Community Power</h3>
+                        <p class="feature__description">Join teams, challenge friends, and see collective impact. Every referral plants a real tree.</p>
+                    </article>
+                    
+                    <article class="feature" role="listitem">
+                        <div class="feature__icon" aria-hidden="true">🔔</div>
+                        <h3 class="feature__title">Smart Reminders</h3>
+                        <p class="feature__description">Gentle daily nudges at the perfect time ensure you never miss a mission. Build habits that stick.</p>
+                    </article>
+                    
+                    <article class="feature" role="listitem">
+                        <div class="feature__icon" aria-hidden="true">🌱</div>
+                        <h3 class="feature__title">Eco-Recipes & Tips</h3>
+                        <p class="feature__description">Get sustainable recipes, commute alternatives, and shopping swaps personalized to your area.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Viral/Gamification Section -->
+        <section class="section section--dark" id="referrals" aria-labelledby="viral-title">
+            <div class="container">
+                <div class="viral__grid">
+                    <div class="viral__left">
+                        <h2 id="viral-title" class="viral__title">Go Viral for the Planet 🌍</h2>
+                        <p class="viral__description">
+                            Invite friends and unlock premium features while planting real trees. Every referral = one tree planted through our reforestation partners.
+                        </p>
+                        
+                        <div class="referral-box">
+                            <label for="referralLink" class="referral-box__label">Your Unique Referral Link</label>
+                            <div class="referral-box__input-group">
+                                <input 
+                                    type="text" 
+                                    class="referral-box__input" 
+                                    id="referralLink" 
+                                    value="climateguardian.ai/join/hero123" 
+                                    readonly
+                                    aria-describedby="referralHelp">
+                                <button class="referral-box__btn" onclick="copyReferral()" aria-label="Copy referral link to clipboard">
+                                    Copy
+                                </button>
                             </div>
-                            <div class="badge" onclick="shareBadge('Carbon Cutter')">
-                                ✂️ Carbon Cutter
-                            </div>
-                            <div class="badge" onclick="shareBadge('7-Day Streak')">
-                                🔥 7-Day Streak
-                            </div>
-                            <div class="badge badge-locked">
-                                🔒 Tree Planter
-                            </div>
-                            <div class="badge badge-locked">
-                                🔒 Climate Champion
-                            </div>
+                            <span id="referralHelp" class="sr-only">Share this link with friends to earn rewards</span>
                         </div>
                         
-                        <div class="streak-display">
-                            <div class="streak-value">7</div>
-                            <div class="streak-label">Day Streak 🔥 Keep it going!</div>
+                        <button class="btn--white" onclick="shareReferral()" aria-label="Share your referral link with friends">
+                            <span aria-hidden="true">📤</span>
+                            <span>Invite Friends & Plant Trees</span>
+                        </button>
+                    </div>
+                    
+                    <div class="viral__right">
+                        <div class="badges-showcase">
+                            <h3 class="badges-showcase__title">🏅 Your Achievement Badges</h3>
+                            <div class="badges-grid" role="list" aria-label="Achievement badges">
+                                <button class="badge" onclick="shareBadge('Eco Warrior Level 1')" role="listitem" aria-label="Share Eco Warrior Level 1 badge">
+                                    <span aria-hidden="true">🌱</span> Eco Warrior L1
+                                </button>
+                                <button class="badge" onclick="shareBadge('Carbon Cutter')" role="listitem" aria-label="Share Carbon Cutter badge">
+                                    <span aria-hidden="true">✂️</span> Carbon Cutter
+                                </button>
+                                <button class="badge" onclick="shareBadge('7-Day Streak')" role="listitem" aria-label="Share 7-Day Streak badge">
+                                    <span aria-hidden="true">🔥</span> 7-Day Streak
+                                </button>
+                                <span class="badge badge--locked" role="listitem" aria-label="Tree Planter badge - locked">
+                                    <span aria-hidden="true">🔒</span> Tree Planter
+                                </span>
+                                <span class="badge badge--locked" role="listitem" aria-label="Climate Champion badge - locked">
+                                    <span aria-hidden="true">🔒</span> Climate Champion
+                                </span>
+                            </div>
+                            
+                            <div class="streak-display" aria-label="Current streak">
+                                <div class="streak-display__value">7</div>
+                                <div class="streak-display__label">Day Streak 🔥 Keep it going!</div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Premium Section -->
-    <section id="premium">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">⭐ Go Premium</span>
-                <h2 class="section-title">Supercharge Your Impact</h2>
-                <p class="section-subtitle">Unlock advanced features and maximize your climate contribution</p>
-            </div>
-            
-            <div class="premium-card">
-                <div class="premium-badge">BEST VALUE</div>
-                <div class="premium-icon">👑</div>
-                <h3 class="premium-title">Guardian Premium</h3>
-                <div class="premium-price">
-                    <span class="price-value">$4.99</span>
-                    <span class="price-period">/month</span>
-                </div>
+        <!-- Premium Section -->
+        <section class="section section--white" id="premium" aria-labelledby="premium-title">
+            <div class="container">
+                <header class="section__header">
+                    <span class="section__tag">⭐ Go Premium</span>
+                    <h2 id="premium-title" class="section__title">Supercharge Your Impact</h2>
+                    <p class="section__subtitle">Unlock advanced features and maximize your climate contribution</p>
+                </header>
                 
-                <div class="premium-features">
-                    <div class="premium-feature">
-                        <span class="premium-feature-icon">✓</span>
-                        <span>Family syncing (up to 5 members)</span>
+                <article class="premium-card" aria-labelledby="premium-card-title">
+                    <span class="premium-card__badge" aria-label="Best value">BEST VALUE</span>
+                    <div class="premium-card__icon" aria-hidden="true">👑</div>
+                    <h3 id="premium-card-title" class="premium-card__title">Guardian Premium</h3>
+                    <div class="premium-card__price">
+                        <span class="premium-card__price-value">$4.99</span>
+                        <span class="premium-card__price-period">/month</span>
                     </div>
-                    <div class="premium-feature">
-                        <span class="premium-feature-icon">✓</span>
-                        <span>Advanced AI personalization</span>
-                    </div>
-                    <div class="premium-feature">
-                        <span class="premium-feature-icon">✓</span>
-                        <span>Carbon offset marketplace</span>
-                    </div>
-                    <div class="premium-feature">
-                        <span class="premium-feature-icon">✓</span>
-                        <span>Exclusive badges & rewards</span>
-                    </div>
-                    <div class="premium-feature">
-                        <span class="premium-feature-icon">✓</span>
-                        <span>Priority support & early features</span>
-                    </div>
-                    <div class="premium-feature">
-                        <span class="premium-feature-icon">✓</span>
-                        <span>Monthly tree planting certificate</span>
-                    </div>
-                </div>
-                
-                <button class="cta-premium" onclick="showToast('Premium coming soon! Join free to get notified.')">
-                    Start 7-Day Free Trial
-                </button>
+                    
+                    <ul class="premium-features" aria-label="Premium features">
+                        <li class="premium-feature">
+                            <span class="premium-feature__icon" aria-hidden="true">✓</span>
+                            <span>Family syncing (up to 5 members)</span>
+                        </li>
+                        <li class="premium-feature">
+                            <span class="premium-feature__icon" aria-hidden="true">✓</span>
+                            <span>Advanced AI personalization</span>
+                        </li>
+                        <li class="premium-feature">
+                            <span class="premium-feature__icon" aria-hidden="true">✓</span>
+                            <span>Carbon offset marketplace</span>
+                        </li>
+                        <li class="premium-feature">
+                            <span class="premium-feature__icon" aria-hidden="true">✓</span>
+                            <span>Exclusive badges & rewards</span>
+                        </li>
+                        <li class="premium-feature">
+                            <span class="premium-feature__icon" aria-hidden="true">✓</span>
+                            <span>Priority support & early features</span>
+                        </li>
+                        <li class="premium-feature">
+                            <span class="premium-feature__icon" aria-hidden="true">✓</span>
+                            <span>Monthly tree planting certificate</span>
+                        </li>
+                    </ul>
+                    
+                    <button class="btn--premium" onclick="handlePremiumClick()" aria-label="Start 7-day free trial of Guardian Premium">
+                        Start 7-Day Free Trial
+                    </button>
+                </article>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <!-- Footer -->
-    <footer>
+    <footer class="footer" role="contentinfo">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <div class="footer-logo">
-                        <div class="logo-icon">🌍</div>
+            <div class="footer__content">
+                <div class="footer__brand">
+                    <div class="footer__logo">
+                        <span class="nav__logo-icon" aria-hidden="true">🌍</span>
                         <span>Climate Guardian</span>
                     </div>
-                    <p class="footer-description">Your personal AI companion for sustainable living. Making climate action simple, fun, and impactful—one mission at a time.</p>
+                    <p class="footer__description">
+                        Your personal AI companion for sustainable living. Making climate action simple, fun, and impactful—one mission at a time.
+                    </p>
                 </div>
                 
-                <div class="footer-links">
+                <nav class="footer__links" aria-label="Product links">
                     <h4>Product</h4>
                     <ul>
                         <li><a href="#features">Features</a></li>
                         <li><a href="#premium">Pricing</a></li>
-                        <li><a href="#">Mobile App</a></li>
-                        <li><a href="#">API</a></li>
+                        <li><a href="/mobile">Mobile App</a></li>
+                        <li><a href="/api">API</a></li>
                     </ul>
-                </div>
+                </nav>
                 
-                <div class="footer-links">
+                <nav class="footer__links" aria-label="Company links">
                     <h4>Company</h4>
                     <ul>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Our Mission</a></li>
-                        <li><a href="#">Careers</a></li>
-                        <li><a href="#">Blog</a></li>
+                        <li><a href="/about">About Us</a></li>
+                        <li><a href="/mission">Our Mission</a></li>
+                        <li><a href="/careers">Careers</a></li>
+                        <li><a href="/blog">Blog</a></li>
                     </ul>
-                </div>
+                </nav>
                 
-                <div class="footer-links">
+                <nav class="footer__links" aria-label="Support links">
                     <h4>Support</h4>
                     <ul>
-                        <li><a href="#">Help Center</a></li>
-                        <li><a href="#">Contact</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="/help">Help Center</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                        <li><a href="/privacy">Privacy Policy</a></li>
+                        <li><a href="/terms">Terms of Service</a></li>
                     </ul>
-                </div>
+                </nav>
             </div>
             
-            <div class="footer-bottom">
-                <p>© 2026 AI Climate Guardian. All rights reserved. Privacy-first data. Affiliate links to eco-products may apply.</p>
+            <div class="footer__bottom">
+                <p>© <span id="currentYear">2026</span> AI Climate Guardian. All rights reserved.</p>
+                <div class="footer__bottom-links">
+                    <a href="/privacy">Privacy</a>
+                    <a href="/terms">Terms</a>
+                    <a href="/cookies">Cookies</a>
+                    <a href="/accessibility">Accessibility</a>
+                </div>
             </div>
         </div>
     </footer>
 
     <!-- Signup Modal -->
-    <div class="modal-overlay" id="signupModal">
+    <div class="modal-overlay" id="signupModal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
         <div class="modal" id="signupContent">
-            <button class="modal-close" onclick="closeSignupModal()">✕</button>
-            <div class="modal-icon">🌍</div>
-            <h2 class="modal-title">Join the Movement</h2>
-            <p class="modal-subtitle">Get your free AI Climate Guardian and start making an impact today</p>
+            <button class="modal__close" onclick="closeSignupModal()" aria-label="Close signup modal">
+                <span aria-hidden="true">✕</span>
+            </button>
+            <div class="modal__icon" aria-hidden="true">🌍</div>
+            <h2 id="modal-title" class="modal__title">Join the Movement</h2>
+            <p class="modal__subtitle">Get your free AI Climate Guardian and start making an impact today</p>
             
-            <form onsubmit="handleSignup(event)">
+            <form id="signupForm" onsubmit="handleSignup(event)" novalidate>
                 <div class="form-group">
-                    <input type="email" class="form-input" id="emailInput" placeholder="Enter your email" required>
+                    <label for="emailInput" class="form-label">Email address</label>
+                    <input 
+                        type="email" 
+                        class="form-input" 
+                        id="emailInput" 
+                        name="email"
+                        placeholder="you@example.com" 
+                        required
+                        autocomplete="email"
+                        aria-describedby="emailError"
+                        aria-invalid="false">
+                    <div id="emailError" class="form-error" role="alert">Please enter a valid email address</div>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-input" id="zipInput" placeholder="Your zip/postal code (optional)">
+                    <label for="zipInput" class="form-label">Zip/Postal code <span style="color: var(--color-text-muted);">(optional)</span></label>
+                    <input 
+                        type="text" 
+                        class="form-input" 
+                        id="zipInput" 
+                        name="zip"
+                        placeholder="12345"
+                        autocomplete="postal-code"
+                        pattern="[A-Za-z0-9\s\-]{3,10}"
+                        aria-describedby="zipHelp">
+                    <span id="zipHelp" class="sr-only">Your postal code helps us personalize your experience</span>
                 </div>
-                <button type="submit" class="btn-submit">🌱 Get My Guardian — Free</button>
+                <button type="submit" class="btn--submit" id="submitBtn">
+                    <span aria-hidden="true">🌱</span>
+                    <span>Get My Guardian — Free</span>
+                </button>
             </form>
             
-            <div class="modal-divider">or</div>
+            <div class="modal__divider">or</div>
             
-            <button class="btn-google" onclick="handleGoogleSignup()">
-                <svg width="20" height="20" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+            <button class="btn--google" onclick="handleGoogleSignup()" aria-label="Sign up with Google">
+                <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
                 Continue with Google
             </button>
+            
+            <p class="modal__privacy">
+                By signing up, you agree to our <a href="/terms">Terms</a> and <a href="/privacy">Privacy Policy</a>
+            </p>
         </div>
         
         <!-- Success State -->
-        <div class="modal" id="successContent" style="display: none;">
-            <button class="modal-close" onclick="closeSignupModal()">✕</button>
+        <div class="modal" id="successContent" style="display: none;" aria-labelledby="success-title">
+            <button class="modal__close" onclick="closeSignupModal()" aria-label="Close success modal">
+                <span aria-hidden="true">✕</span>
+            </button>
             <div class="success-content">
-                <div class="success-icon">🎉</div>
-                <h2 class="modal-title">Welcome, Climate Hero!</h2>
-                <p class="modal-subtitle">Your AI Guardian is ready to transform your impact</p>
+                <div class="success-content__icon" aria-hidden="true">🎉</div>
+                <h2 id="success-title" class="modal__title">Welcome, Climate Hero!</h2>
+                <p class="modal__subtitle">Your AI Guardian is ready to transform your impact</p>
                 
-                <div class="impact-preview">
-                    <div class="impact-value" id="impactPreview">~500kg</div>
-                    <div class="impact-label">Estimated CO₂ you could save this year</div>
+                <div class="impact-preview" aria-live="polite">
+                    <div class="impact-preview__value" id="impactPreview">~500kg</div>
+                    <div class="impact-preview__label">Estimated CO₂ you could save this year</div>
                 </div>
                 
-                <p style="color: var(--text-light); margin-bottom: 24px;">Check your email for your first personalized mission!</p>
+                <p style="color: var(--color-text-secondary); margin-bottom: var(--space-lg);">
+                    Check your email for your first personalized mission!
+                </p>
                 
-                <button class="btn-submit" onclick="shareReferral()">
-                    📤 Invite Friends & Plant Trees
+                <button class="btn--submit" onclick="shareReferral()" aria-label="Share referral link with friends">
+                    <span aria-hidden="true">📤</span>
+                    <span>Invite Friends & Plant Trees</span>
                 </button>
             </div>
         </div>
     </div>
 
     <!-- Toast Notification -->
-    <div class="toast" id="toast"></div>
+    <div class="toast" id="toast" role="alert" aria-live="polite" aria-atomic="true"></div>
+
+    <!-- Cookie Consent Banner -->
+    <aside class="cookie-banner" id="cookieBanner" role="dialog" aria-label="Cookie consent" aria-describedby="cookie-description">
+        <div class="cookie-banner__content">
+            <div class="cookie-banner__text">
+                <h3>🍪 We value your privacy</h3>
+                <p id="cookie-description">
+                    We use cookies to enhance your experience, analyze site traffic, and personalize content. 
+                    <a href="/privacy">Learn more</a>
+                </p>
+            </div>
+            <div class="cookie-banner__actions">
+                <button class="cookie-banner__btn cookie-banner__btn--decline" onclick="handleCookieChoice(false)">
+                    Decline
+                </button>
+                <button class="cookie-banner__btn cookie-banner__btn--accept" onclick="handleCookieChoice(true)">
+                    Accept All
+                </button>
+            </div>
+        </div>
+    </aside>
 
     <script>
         /* ========================================
-           CO2 Counter Animation
+           Application State
         ======================================== */
-        let co2Count = 0;
-        const targetCO2 = 12847;
-        const co2Counter = document.getElementById('co2Counter');
-        
-        function animateCO2Counter() {
-            const increment = Math.ceil(targetCO2 / 100);
-            const timer = setInterval(() => {
-                co2Count += increment;
-                if (co2Count >= targetCO2) {
-                    co2Count = targetCO2;
-                    clearInterval(timer);
-                }
-                co2Counter.textContent = co2Count.toLocaleString();
-            }, 30);
-        }
-        
-        // Start counter when page loads
-        setTimeout(animateCO2Counter, 1000);
+        const AppState = {
+            isModalOpen: false,
+            scrollPosition: 0,
+            cookiesAccepted: null,
+            analyticsEnabled: false,
+            referralCode: null
+        };
 
         /* ========================================
-           Modal Functions
+           Utility Functions
         ======================================== */
-        const signupModal = document.getElementById('signupModal');
-        const signupContent = document.getElementById('signupContent');
-        const successContent = document.getElementById('successContent');
         
-        function openSignupModal() {
-            signupModal.classList.add('active');
-            signupContent.style.display = 'block';
-            successContent.style.display = 'none';
-            document.body.style.overflow = 'hidden';
-        }
-        
-        function closeSignupModal() {
-            signupModal.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-        
-        function handleSignup(e) {
-            e.preventDefault();
-            const zip = document.getElementById('zipInput').value;
-            showSuccess(zip);
-        }
-        
-        function handleGoogleSignup() {
-            showSuccess('');
-        }
-        
-        function showSuccess(zip) {
-            signupContent.style.display = 'none';
-            successContent.style.display = 'block';
-            
-            // Personalize impact based on zip (simulated)
-            const impacts = ['~450kg', '~520kg', '~380kg', '~610kg', '~490kg'];
-            const randomImpact = impacts[Math.floor(Math.random() * impacts.length)];
-            document.getElementById('impactPreview').textContent = randomImpact;
-        }
-        
-        // Close modal on outside click
-        signupModal.addEventListener('click', (e) => {
-            if (e.target === signupModal) {
-                closeSignupModal();
-            }
-        });
-        
-        // Close modal on Escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                closeSignupModal();
-            }
-        });
-
-        /* ========================================
-           Sharing Functions
-        ======================================== */
-        function shareWin(text) {
-            const url = window.location.href;
-            const fullText = `${text}\n\nJoin me: ${url}`;
-            
-            if (navigator.share) {
-                navigator.share({
-                    title: 'My Climate Win',
-                    text: text,
-                    url: url
-                }).catch(() => {
-                    copyToClipboard(fullText);
-                    showToast('Copied to clipboard! Share with friends 🌱');
-                });
-            } else {
-                copyToClipboard(fullText);
-                showToast('Copied to clipboard! Share with friends 🌱');
-            }
-        }
-        
-        function shareReferral() {
-            const link = document.getElementById('referralLink').value;
-            const text = `Join my Climate Guardian squad and plant a tree! 🌳 Together we can save the planet.\n\nSign up free: https://${link}`;
-            
-            if (navigator.share) {
-                navigator.share({
-                    title: 'Join Climate Guardian',
-                    text: 'Join my Climate Guardian squad and plant a tree! 🌳',
-                    url: `https://${link}`
-                }).catch(() => {
-                    copyToClipboard(text);
-                    showToast('Referral link copied! Share to plant trees 🌳');
-                });
-            } else {
-                copyToClipboard(text);
-                showToast('Referral link copied! Share to plant trees 🌳');
-            }
-        }
-        
-        function shareBadge(badgeName) {
-            const text = `I just earned the "${badgeName}" badge on Climate Guardian! 🏆🌍 Join me in saving the planet.`;
-            
-            if (navigator.share) {
-                navigator.share({
-                    title: 'My Climate Badge',
-                    text: text,
-                    url: window.location.href
-                }).catch(() => {
-                    copyToClipboard(text + '\n\n' + window.location.href);
-                    showToast('Badge copied! Show off your achievement 🏆');
-                });
-            } else {
-                copyToClipboard(text + '\n\n' + window.location.href);
-                showToast('Badge copied! Show off your achievement 🏆');
-            }
-        }
-        
-        function copyReferral() {
-            const link = document.getElementById('referralLink').value;
-            copyToClipboard(`https://${link}`);
-            showToast('Referral link copied! 🌳');
-        }
-        
-        function copyToClipboard(text) {
-            if (navigator.clipboard) {
-                navigator.clipboard.writeText(text);
-            } else {
-                // Fallback for older browsers
-                const textarea = document.createElement('textarea');
-                textarea.value = text;
-                textarea.style.position = 'fixed';
-                textarea.style.opacity = '0';
-                document.body.appendChild(textarea);
-                textarea.select();
-                document.execCommand('copy');
-                document.body.removeChild(textarea);
-            }
+        // Sanitize user input to prevent XSS
+        function sanitizeInput(input) {
+            const div = document.createElement('div');
+            div.textContent = input;
+            return div.innerHTML;
         }
 
-        /* ========================================
-           Toast Notification
-        ======================================== */
-        function showToast(message) {
-            const toast = document.getElementById('toast');
-            toast.textContent = message;
-            toast.classList.add('show');
-            
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 3000);
+        // Validate email with comprehensive regex
+        function isValidEmail(email) {
+            const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+            return emailRegex.test(email) && email.length <= 254;
         }
 
-        /* ========================================
-           Smooth Scroll for Navigation
-        ======================================== */
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        /* ========================================
-           Generate Unique Referral Code
-        ======================================== */
+        // Generate unique referral code
         function generateReferralCode() {
             const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
             let code = 'hero';
@@ -1772,34 +2284,723 @@
             }
             return code;
         }
+
+        // Copy text to clipboard with fallback
+        async function copyToClipboard(text) {
+            try {
+                if (navigator.clipboard && window.isSecureContext) {
+                    await navigator.clipboard.writeText(text);
+                    return true;
+                } else {
+                    // Fallback for older browsers
+                    const textarea = document.createElement('textarea');
+                    textarea.value = text;
+                    textarea.style.position = 'fixed';
+                    textarea.style.left = '-9999px';
+                    textarea.style.top = '-9999px';
+                    textarea.setAttribute('readonly', '');
+                    document.body.appendChild(textarea);
+                    textarea.select();
+                    textarea.setSelectionRange(0, 99999);
+                    const success = document.execCommand('copy');
+                    document.body.removeChild(textarea);
+                    return success;
+                }
+            } catch (err) {
+                console.error('Copy failed:', err);
+                return false;
+            }
+        }
+
+        // Debounce function for performance
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        /* ========================================
+           Analytics & Tracking
+        ======================================== */
         
-        // Set unique referral code on page load
-        document.getElementById('referralLink').value = `climateguardian.ai/join/${generateReferralCode()}`;
+        // Track events (placeholder - replace with real analytics)
+        function trackEvent(category, action, label = null, value = null) {
+            if (!AppState.analyticsEnabled) return;
+            
+            // Google Analytics 4
+            if (typeof gtag !== 'undefined') {
+                gtag('event', action, {
+                    event_category: category,
+                    event_label: label,
+                    value: value
+                });
+            }
+            
+            // Console log for debugging (remove in production)
+            console.log('Analytics Event:', { category, action, label, value });
+        }
+
+        // Track page view
+        function trackPageView(path = window.location.pathname) {
+            if (!AppState.analyticsEnabled) return;
+            
+            if (typeof gtag !== 'undefined') {
+                gtag('config', 'GA_MEASUREMENT_ID', {
+                    page_path: path
+                });
+            }
+        }
+
+        /* ========================================
+           Cookie Consent
+        ======================================== */
+        
+        function checkCookieConsent() {
+            const consent = localStorage.getItem('cookieConsent');
+            if (consent === null) {
+                setTimeout(() => {
+                    document.getElementById('cookieBanner').classList.add('show');
+                }, 2000);
+            } else {
+                AppState.cookiesAccepted = consent === 'true';
+                AppState.analyticsEnabled = AppState.cookiesAccepted;
+                if (AppState.analyticsEnabled) {
+                    initializeAnalytics();
+                }
+            }
+        }
+
+        function handleCookieChoice(accepted) {
+            localStorage.setItem('cookieConsent', accepted.toString());
+            AppState.cookiesAccepted = accepted;
+            AppState.analyticsEnabled = accepted;
+            document.getElementById('cookieBanner').classList.remove('show');
+            
+            if (accepted) {
+                initializeAnalytics();
+                trackEvent('Consent', 'cookies_accepted');
+            }
+        }
+
+        function initializeAnalytics() {
+            // Placeholder for Google Analytics initialization
+            // In production, load the actual GA script here
+            console.log('Analytics initialized');
+        }
+
+        /* ========================================
+           CO2 Counter Animation
+        ======================================== */
+        
+        function animateCO2Counter() {
+            const counter = document.getElementById('co2Counter');
+            const target = 12847;
+            const duration = 2000;
+            const startTime = performance.now();
+            
+            function updateCounter(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                
+                // Easing function for smooth animation
+                const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+                const current = Math.floor(easeOutQuart * target);
+                
+                counter.textContent = current.toLocaleString();
+                
+                if (progress < 1) {
+                    requestAnimationFrame(updateCounter);
+                }
+            }
+            
+            requestAnimationFrame(updateCounter);
+        }
+
+        /* ========================================
+           Lottie Animation Error Handling
+        ======================================== */
+        
+        function setupLottieErrorHandling() {
+            const animationContainer = document.getElementById('heroAnimation');
+            const lottiePlayer = animationContainer.querySelector('lottie-player');
+            
+            if (lottiePlayer) {
+                lottiePlayer.addEventListener('error', () => {
+                    animationContainer.classList.add('lottie-error');
+                    console.warn('Lottie animation failed to load, showing fallback');
+                });
+                
+                // Timeout fallback if animation doesn't load
+                setTimeout(() => {
+                    if (!lottiePlayer.shadowRoot?.querySelector('svg')) {
+                        animationContainer.classList.add('lottie-error');
+                    }
+                }, 5000);
+            }
+        }
+
+        /* ========================================
+           Modal Functions
+        ======================================== */
+        
+        const signupModal = document.getElementById('signupModal');
+        const signupContent = document.getElementById('signupContent');
+        const successContent = document.getElementById('successContent');
+        let focusableElements = [];
+        let firstFocusable = null;
+        let lastFocusable = null;
+        let previousActiveElement = null;
+
+        function openSignupModal() {
+            previousActiveElement = document.activeElement;
+            AppState.scrollPosition = window.scrollY;
+            
+            signupModal.classList.add('active');
+            signupContent.style.display = 'block';
+            successContent.style.display = 'none';
+            document.body.classList.add('modal-open');
+            document.body.style.top = `-${AppState.scrollPosition}px`;
+            
+            AppState.isModalOpen = true;
+            
+            // Setup focus trap
+            setupFocusTrap(signupContent);
+            
+            // Focus first input
+            setTimeout(() => {
+                document.getElementById('emailInput').focus();
+            }, 100);
+            
+            trackEvent('Modal', 'opened', 'signup');
+        }
+
+        function closeSignupModal() {
+            signupModal.classList.remove('active');
+            document.body.classList.remove('modal-open');
+            document.body.style.top = '';
+            window.scrollTo(0, AppState.scrollPosition);
+            
+            AppState.isModalOpen = false;
+            
+            // Reset form
+            document.getElementById('signupForm').reset();
+            clearFormErrors();
+            
+            // Restore focus
+            if (previousActiveElement) {
+                previousActiveElement.focus();
+            }
+            
+            trackEvent('Modal', 'closed', 'signup');
+        }
+
+        function setupFocusTrap(container) {
+            focusableElements = container.querySelectorAll(
+                'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+            );
+            firstFocusable = focusableElements[0];
+            lastFocusable = focusableElements[focusableElements.length - 1];
+        }
+
+        function handleModalKeydown(e) {
+            if (!AppState.isModalOpen) return;
+            
+            if (e.key === 'Escape') {
+                closeSignupModal();
+                return;
+            }
+            
+            if (e.key === 'Tab') {
+                if (e.shiftKey) {
+                    if (document.activeElement === firstFocusable) {
+                        e.preventDefault();
+                        lastFocusable.focus();
+                    }
+                } else {
+                    if (document.activeElement === lastFocusable) {
+                        e.preventDefault();
+                        firstFocusable.focus();
+                    }
+                }
+            }
+        }
+
+        // Close modal on backdrop click
+        signupModal.addEventListener('click', (e) => {
+            if (e.target === signupModal) {
+                closeSignupModal();
+            }
+        });
+
+        document.addEventListener('keydown', handleModalKeydown);
+
+        /* ========================================
+           Form Handling
+        ======================================== */
+        
+        function clearFormErrors() {
+            document.querySelectorAll('.form-input.error').forEach(input => {
+                input.classList.remove('error');
+                input.setAttribute('aria-invalid', 'false');
+            });
+            document.querySelectorAll('.form-error').forEach(error => {
+                error.classList.remove('visible');
+            });
+        }
+
+        function showFormError(inputId, message) {
+            const input = document.getElementById(inputId);
+            const error = document.getElementById(inputId.replace('Input', 'Error'));
+            
+            input.classList.add('error');
+            input.setAttribute('aria-invalid', 'true');
+            
+            if (error) {
+                error.textContent = message;
+                error.classList.add('visible');
+            }
+        }
+
+        function handleSignup(e) {
+            e.preventDefault();
+            clearFormErrors();
+            
+            const emailInput = document.getElementById('emailInput');
+            const email = sanitizeInput(emailInput.value.trim());
+            const zipInput = document.getElementById('zipInput');
+            const zip = sanitizeInput(zipInput.value.trim());
+            const submitBtn = document.getElementById('submitBtn');
+            
+            // Validate email
+            if (!email) {
+                showFormError('emailInput', 'Email address is required');
+                emailInput.focus();
+                return;
+            }
+            
+            if (!isValidEmail(email)) {
+                showFormError('emailInput', 'Please enter a valid email address');
+                emailInput.focus();
+                return;
+            }
+            
+            // Show loading state
+            submitBtn.classList.add('btn-loading');
+            submitBtn.disabled = true;
+            
+            // Simulate API call
+            setTimeout(() => {
+                submitBtn.classList.remove('btn-loading');
+                submitBtn.disabled = false;
+                
+                // Track successful signup
+                trackEvent('Signup', 'completed', 'email');
+                
+                // Show success
+                showSuccess(zip);
+            }, 1500);
+        }
+
+        function handleGoogleSignup() {
+            trackEvent('Signup', 'initiated', 'google');
+            
+            // In production, implement actual Google OAuth
+            // For now, simulate the flow
+            setTimeout(() => {
+                showSuccess('');
+            }, 500);
+        }
+
+        function showSuccess(zip) {
+            signupContent.style.display = 'none';
+            successContent.style.display = 'block';
+            
+            // Setup focus trap for success content
+            setupFocusTrap(successContent);
+            
+            // Personalize impact based on zip (simulated)
+            const impacts = ['~450kg', '~520kg', '~380kg', '~610kg', '~490kg'];
+            const randomImpact = impacts[Math.floor(Math.random() * impacts.length)];
+            document.getElementById('impactPreview').textContent = randomImpact;
+            
+            // Focus on success message for screen readers
+            document.getElementById('success-title').focus();
+            
+            trackEvent('Signup', 'success_shown');
+        }
+
+        function handlePremiumClick() {
+            showToast('Premium coming soon! Join free to get notified.', 'success');
+            trackEvent('Premium', 'trial_clicked');
+        }
+
+        /* ========================================
+           Sharing Functions
+        ======================================== */
+        
+        async function shareWin(text) {
+            const url = window.location.href;
+            
+            trackEvent('Share', 'win_card_clicked');
+            
+            if (navigator.share) {
+                try {
+                    await navigator.share({
+                        title: 'My Climate Win',
+                        text: text,
+                        url: url
+                    });
+                    trackEvent('Share', 'native_share_completed');
+                } catch (err) {
+                    if (err.name !== 'AbortError') {
+                        await fallbackShare(text, url);
+                    }
+                }
+            } else {
+                await fallbackShare(text, url);
+            }
+        }
+
+        async function fallbackShare(text, url) {
+            const fullText = `${text}\n\nJoin me: ${url}`;
+            const success = await copyToClipboard(fullText);
+            if (success) {
+                showToast('Copied to clipboard! Share with friends 🌱', 'success');
+                trackEvent('Share', 'clipboard_copy');
+            } else {
+                showToast('Unable to copy. Please try again.', 'error');
+            }
+        }
+
+        async function shareReferral() {
+            const link = document.getElementById('referralLink').value;
+            const fullUrl = `https://${link}`;
+            const text = 'Join my Climate Guardian squad and plant a tree! 🌳';
+            
+            trackEvent('Referral', 'share_initiated');
+            
+            if (navigator.share) {
+                try {
+                    await navigator.share({
+                        title: 'Join Climate Guardian',
+                        text: text,
+                        url: fullUrl
+                    });
+                    trackEvent('Referral', 'native_share_completed');
+                } catch (err) {
+                    if (err.name !== 'AbortError') {
+                        await copyReferralFallback();
+                    }
+                }
+            } else {
+                await copyReferralFallback();
+            }
+        }
+
+        async function copyReferral() {
+            const link = document.getElementById('referralLink').value;
+            const success = await copyToClipboard(`https://${link}`);
+            
+            if (success) {
+                showToast('Referral link copied! 🌳', 'success');
+                trackEvent('Referral', 'link_copied');
+            } else {
+                showToast('Unable to copy. Please try again.', 'error');
+            }
+        }
+
+        async function copyReferralFallback() {
+            const link = document.getElementById('referralLink').value;
+            const fullText = `Join my Climate Guardian squad and plant a tree! 🌳\n\nSign up free: https://${link}`;
+            const success = await copyToClipboard(fullText);
+            
+            if (success) {
+                showToast('Referral link copied! Share to plant trees 🌳', 'success');
+            }
+        }
+
+        async function shareBadge(badgeName) {
+            const text = `I just earned the "${badgeName}" badge on Climate Guardian! 🏆🌍 Join me in saving the planet.`;
+            
+            trackEvent('Share', 'badge_shared', badgeName);
+            
+            if (navigator.share) {
+                try {
+                    await navigator.share({
+                        title: 'My Climate Badge',
+                        text: text,
+                        url: window.location.href
+                    });
+                } catch (err) {
+                    if (err.name !== 'AbortError') {
+                        await fallbackShare(text, window.location.href);
+                    }
+                }
+            } else {
+                await fallbackShare(text, window.location.href);
+            }
+        }
+
+        /* ========================================
+           Toast Notifications
+        ======================================== */
+        
+        let toastTimeout;
+
+        function showToast(message, type = 'default') {
+            const toast = document.getElementById('toast');
+            
+            // Clear any existing timeout
+            if (toastTimeout) {
+                clearTimeout(toastTimeout);
+            }
+            
+            // Remove existing classes
+            toast.classList.remove('show', 'toast--success', 'toast--error');
+            
+            // Set message and type
+            toast.textContent = message;
+            if (type === 'success') {
+                toast.classList.add('toast--success');
+            } else if (type === 'error') {
+                toast.classList.add('toast--error');
+            }
+            
+            // Show toast
+            requestAnimationFrame(() => {
+                toast.classList.add('show');
+            });
+            
+            // Hide after delay
+            toastTimeout = setTimeout(() => {
+                toast.classList.remove('show');
+            }, 4000);
+        }
+
+        /* ========================================
+           Navigation Behavior
+        ======================================== */
+        
+        let lastScrollY = 0;
+        let ticking = false;
+
+        function handleScroll() {
+            const currentScrollY = window.scrollY;
+            const nav = document.querySelector('.nav');
+            
+            // Add/remove scrolled class
+            if (currentScrollY > 50) {
+                nav.classList.add('nav--scrolled');
+            } else {
+                nav.classList.remove('nav--scrolled');
+            }
+            
+            // Hide/show nav on scroll (only after 200px)
+            if (currentScrollY > 200) {
+                if (currentScrollY > lastScrollY) {
+                    nav.classList.add('nav--hidden');
+                } else {
+                    nav.classList.remove('nav--hidden');
+                }
+            } else {
+                nav.classList.remove('nav--hidden');
+            }
+            
+            lastScrollY = currentScrollY;
+            ticking = false;
+        }
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(handleScroll);
+                ticking = true;
+            }
+        }, { passive: true });
 
         /* ========================================
            Intersection Observer for Animations
         ======================================== */
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
         
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+        function setupScrollAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        // Unobserve after animation triggered
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe testimonials and features
+            document.querySelectorAll('.testimonial, .feature').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        /* ========================================
+           Smooth Scroll for Navigation
+        ======================================== */
+        
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const target = document.querySelector(targetId);
+                if (target) {
+                    e.preventDefault();
+                    const navHeight = document.querySelector('.nav').offsetHeight;
+                    const targetPosition = target.getBoundingClientRect().top + window.scrollY - navHeight - 20;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Update focus for accessibility
+                    target.setAttribute('tabindex', '-1');
+                    target.focus({ preventScroll: true });
+                    
+                    trackEvent('Navigation', 'smooth_scroll', targetId);
                 }
             });
-        }, observerOptions);
-        
-        // Observe elements for scroll animations
-        document.querySelectorAll('.testimonial-card, .feature-card, .win-card').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'all 0.6s ease';
-            observer.observe(el);
         });
+
+        /* ========================================
+           Form Input Real-time Validation
+        ======================================== */
+        
+        const emailInput = document.getElementById('emailInput');
+        
+        emailInput.addEventListener('blur', function() {
+            clearFormErrors();
+            const email = this.value.trim();
+            
+            if (email && !isValidEmail(email)) {
+                showFormError('emailInput', 'Please enter a valid email address');
+            }
+        });
+
+        emailInput.addEventListener('input', debounce(function() {
+            if (this.classList.contains('error')) {
+                clearFormErrors();
+            }
+        }, 300));
+
+        /* ========================================
+           UTM Parameter Handling
+        ======================================== */
+        
+        function getUTMParams() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                source: params.get('utm_source'),
+                medium: params.get('utm_medium'),
+                campaign: params.get('utm_campaign'),
+                content: params.get('utm_content'),
+                term: params.get('utm_term')
+            };
+        }
+
+        function storeUTMParams() {
+            const utm = getUTMParams();
+            if (Object.values(utm).some(v => v)) {
+                sessionStorage.setItem('utm_params', JSON.stringify(utm));
+            }
+        }
+
+        /* ========================================
+           Initialization
+        ======================================== */
+        
+        function init() {
+            // Generate unique referral code
+            AppState.referralCode = generateReferralCode();
+            document.getElementById('referralLink').value = `climateguardian.ai/join/${AppState.referralCode}`;
+            
+            // Set current year in footer
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+            
+            // Check cookie consent
+            checkCookieConsent();
+            
+            // Store UTM parameters
+            storeUTMParams();
+            
+            // Setup Lottie error handling
+            setupLottieErrorHandling();
+            
+            // Setup scroll animations
+            setupScrollAnimations();
+            
+            // Start CO2 counter after a delay
+            setTimeout(animateCO2Counter, 1000);
+            
+            // Handle referral from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const ref = urlParams.get('ref');
+            if (ref) {
+                sessionStorage.setItem('referrer', ref);
+                trackEvent('Referral', 'visit', ref);
+            }
+            
+            console.log('🌍 Climate Guardian initialized');
+        }
+
+        // Run initialization when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
+
+        /* ========================================
+           Service Worker Registration (PWA)
+        ======================================== */
+        
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('SW registered:', registration.scope);
+                    })
+                    .catch(error => {
+                        console.log('SW registration failed:', error);
+                    });
+            });
+        }
+
+        /* ========================================
+           Performance Monitoring
+        ======================================== */
+        
+        // Report Web Vitals (placeholder - integrate with analytics)
+        function reportWebVitals() {
+            if ('performance' in window) {
+                window.addEventListener('load', () => {
+                    setTimeout(() => {
+                        const perfData = performance.getEntriesByType('navigation')[0];
+                        if (perfData) {
+                            console.log('Page Load Time:', perfData.loadEventEnd - perfData.startTime, 'ms');
+                        }
+                    }, 0);
+                });
+            }
+        }
+        
+        reportWebVitals();
     </script>
 </body>
 </html>
