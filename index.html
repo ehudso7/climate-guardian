@@ -1,0 +1,1805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Your Personal AI Climate Guardian: Optimize your life to minimize carbon footprint with daily micro-missions. Free AI agent for sustainable living.">
+    <meta name="keywords" content="AI climate app, sustainable living, carbon footprint tracker, eco-friendly lifestyle, climate action">
+    <meta name="author" content="AI Climate Guardian">
+    <meta property="og:title" content="Your Personal AI Climate Guardian">
+    <meta property="og:description" content="Become a Climate Hero in 60 Seconds. One daily action. Massive impact.">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Your Personal AI Climate Guardian">
+    <meta name="twitter:description" content="Join 1M+ saving the planet with AI-powered micro-missions.">
+    <title>Your Personal AI Climate Guardian | AI-Powered Sustainable Living</title>
+    
+    <!-- Lottie CDN for animations -->
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ========================================
+           CSS Variables & Reset
+        ======================================== */
+        :root {
+            --primary-green: #10b981;
+            --primary-dark: #059669;
+            --accent-gold: #fbbf24;
+            --bg-light: #f0fdf4;
+            --bg-dark: #064e3b;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --white: #ffffff;
+            --glass-bg: rgba(255, 255, 255, 0.85);
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.12);
+            --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.15);
+            --radius-sm: 8px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --radius-full: 9999px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ========================================
+           Utility Classes
+        ======================================== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary-green), var(--primary-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* ========================================
+           Navigation
+        ======================================== */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(16, 185, 129, 0.1);
+            padding: 16px 0;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--primary-dark);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--primary-green), var(--primary-dark));
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, var(--primary-green), var(--primary-dark));
+            color: var(--white);
+            padding: 10px 24px;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(16, 185, 129, 0.4);
+        }
+
+        /* ========================================
+           Hero Section
+        ======================================== */
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 20px 80px;
+            background: linear-gradient(180deg, var(--bg-light) 0%, #dcfce7 50%, var(--bg-light) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg-circles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .hero-bg-circles::before,
+        .hero-bg-circles::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.1;
+        }
+
+        .hero-bg-circles::before {
+            width: 600px;
+            height: 600px;
+            background: var(--primary-green);
+            top: -200px;
+            right: -100px;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .hero-bg-circles::after {
+            width: 400px;
+            height: 400px;
+            background: var(--accent-gold);
+            bottom: -100px;
+            left: -100px;
+            animation: float 6s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(5deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 800px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--white);
+            padding: 8px 16px;
+            border-radius: var(--radius-full);
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--primary-dark);
+            margin-bottom: 24px;
+            box-shadow: var(--shadow-sm);
+            animation: fadeInUp 0.6s ease;
+        }
+
+        .hero-badge-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--primary-green);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            animation: fadeInUp 0.6s ease 0.1s both;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+            color: var(--text-light);
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 0.6s ease 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animation-container {
+            width: 320px;
+            height: 320px;
+            margin: 0 auto 40px;
+            position: relative;
+            animation: fadeInUp 0.6s ease 0.3s both;
+        }
+
+        .animation-container lottie-player {
+            width: 100%;
+            height: 100%;
+        }
+
+        .co2-overlay {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            padding: 12px 24px;
+            border-radius: var(--radius-full);
+            box-shadow: var(--shadow-md);
+            font-weight: 600;
+            color: var(--primary-dark);
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-8px); }
+        }
+
+        .co2-value {
+            font-size: 1.5rem;
+            color: var(--primary-green);
+        }
+
+        .cta-primary {
+            background: linear-gradient(135deg, var(--primary-green), var(--primary-dark));
+            color: var(--white);
+            padding: 18px 48px;
+            border-radius: var(--radius-full);
+            font-size: 1.1rem;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 30px rgba(16, 185, 129, 0.4);
+            animation: fadeInUp 0.6s ease 0.4s both;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .cta-primary:hover::before {
+            left: 100%;
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 12px 40px rgba(16, 185, 129, 0.5);
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 60px;
+            animation: fadeInUp 0.6s ease 0.5s both;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--text-light);
+        }
+
+        /* ========================================
+           Social Proof Section
+        ======================================== */
+        #social-proof {
+            padding: 100px 20px;
+            background: var(--white);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.1));
+            color: var(--primary-dark);
+            padding: 8px 20px;
+            border-radius: var(--radius-full);
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 2.75rem);
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-bottom: 60px;
+        }
+
+        .testimonial-card {
+            background: var(--bg-light);
+            padding: 32px;
+            border-radius: var(--radius-lg);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .testimonial-stars {
+            color: var(--accent-gold);
+            font-size: 1.2rem;
+            margin-bottom: 16px;
+        }
+
+        .testimonial-text {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .author-avatar {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--primary-green), var(--primary-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .author-info {
+            text-align: left;
+        }
+
+        .author-name {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .author-handle {
+            font-size: 0.875rem;
+            color: var(--text-light);
+        }
+
+        .impact-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, var(--primary-green), var(--primary-dark));
+            color: var(--white);
+            padding: 6px 12px;
+            border-radius: var(--radius-full);
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        /* Win Cards */
+        .win-cards-section {
+            text-align: center;
+        }
+
+        .win-cards-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .win-cards-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .win-card {
+            background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+            padding: 20px 28px;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .win-card::before {
+            content: '🌱';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.2rem;
+        }
+
+        .win-card:hover {
+            transform: scale(1.05);
+            border-color: var(--primary-green);
+            box-shadow: var(--shadow-md);
+        }
+
+        .win-card-text {
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+
+        .win-card-cta {
+            font-size: 0.875rem;
+            color: var(--text-light);
+            margin-top: 8px;
+        }
+
+        /* ========================================
+           Features Section
+        ======================================== */
+        #features {
+            padding: 100px 20px;
+            background: linear-gradient(180deg, var(--bg-light) 0%, var(--white) 100%);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+        }
+
+        .feature-card {
+            background: var(--white);
+            padding: 40px 32px;
+            border-radius: var(--radius-lg);
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .feature-icon {
+            width: 72px;
+            height: 72px;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.1));
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 24px;
+        }
+
+        .feature-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .feature-description {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* ========================================
+           Viral/Gamification Section
+        ======================================== */
+        #viral {
+            padding: 100px 20px;
+            background: linear-gradient(135deg, var(--bg-dark), #065f46);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        #viral::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.2), transparent);
+            border-radius: 50%;
+        }
+
+        .viral-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .viral-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .viral-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
+        .viral-left h2 {
+            font-size: clamp(2rem, 4vw, 2.75rem);
+            font-weight: 800;
+            margin-bottom: 24px;
+        }
+
+        .viral-left p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 32px;
+            line-height: 1.7;
+        }
+
+        .referral-box {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 24px;
+            border-radius: var(--radius-md);
+            margin-bottom: 24px;
+        }
+
+        .referral-label {
+            font-size: 0.875rem;
+            opacity: 0.8;
+            margin-bottom: 12px;
+        }
+
+        .referral-link-box {
+            display: flex;
+            gap: 12px;
+        }
+
+        .referral-link {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            padding: 14px 18px;
+            border-radius: var(--radius-sm);
+            color: var(--white);
+            font-size: 0.95rem;
+        }
+
+        .copy-btn {
+            background: var(--accent-gold);
+            color: var(--bg-dark);
+            border: none;
+            padding: 14px 24px;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .cta-white {
+            background: var(--white);
+            color: var(--primary-dark);
+            padding: 16px 36px;
+            border-radius: var(--radius-full);
+            font-size: 1rem;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .cta-white:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Badges Section */
+        .badges-showcase {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: var(--radius-lg);
+            text-align: center;
+        }
+
+        .badges-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .badges-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .badge {
+            background: linear-gradient(135deg, var(--accent-gold), #f59e0b);
+            color: var(--bg-dark);
+            padding: 12px 20px;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .badge:hover {
+            transform: scale(1.1);
+        }
+
+        .badge-locked {
+            background: rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .streak-display {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: var(--radius-md);
+            margin-top: 24px;
+        }
+
+        .streak-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--accent-gold);
+        }
+
+        .streak-label {
+            font-size: 0.875rem;
+            opacity: 0.8;
+        }
+
+        /* ========================================
+           Premium Section
+        ======================================== */
+        #premium {
+            padding: 100px 20px;
+            background: var(--white);
+        }
+
+        .premium-card {
+            max-width: 600px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, var(--bg-light), #dcfce7);
+            padding: 48px;
+            border-radius: var(--radius-lg);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .premium-badge {
+            position: absolute;
+            top: 20px;
+            right: -35px;
+            background: var(--accent-gold);
+            color: var(--bg-dark);
+            padding: 8px 40px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            transform: rotate(45deg);
+        }
+
+        .premium-icon {
+            font-size: 3rem;
+            margin-bottom: 24px;
+        }
+
+        .premium-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .premium-price {
+            margin-bottom: 32px;
+        }
+
+        .price-value {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+        }
+
+        .price-period {
+            color: var(--text-light);
+        }
+
+        .premium-features {
+            text-align: left;
+            margin-bottom: 32px;
+        }
+
+        .premium-feature {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .premium-feature-icon {
+            color: var(--primary-green);
+            font-weight: bold;
+        }
+
+        .cta-premium {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary-green), var(--primary-dark));
+            color: var(--white);
+            padding: 18px;
+            border-radius: var(--radius-full);
+            font-size: 1.1rem;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cta-premium:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 30px rgba(16, 185, 129, 0.4);
+        }
+
+        /* ========================================
+           Footer
+        ======================================== */
+        footer {
+            background: var(--bg-dark);
+            color: var(--white);
+            padding: 60px 20px 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand {
+            max-width: 300px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1.25rem;
+            margin-bottom: 16px;
+        }
+
+        .footer-description {
+            opacity: 0.8;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .footer-links h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 30px;
+            text-align: center;
+            opacity: 0.7;
+            font-size: 0.875rem;
+        }
+
+        /* ========================================
+           Modal Styles
+        ======================================== */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 48px;
+            max-width: 480px;
+            width: 100%;
+            position: relative;
+            animation: slideUp 0.4s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: var(--bg-light);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        .modal-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.1));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin: 0 auto 24px;
+        }
+
+        .modal-title {
+            font-size: 1.75rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 12px;
+        }
+
+        .modal-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            margin-bottom: 32px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid #e5e7eb;
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-green);
+            box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
+        }
+
+        .btn-submit {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary-green), var(--primary-dark));
+            color: var(--white);
+            padding: 16px;
+            border-radius: var(--radius-md);
+            font-size: 1.1rem;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 16px;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+        }
+
+        .btn-google {
+            width: 100%;
+            background: var(--white);
+            color: var(--text-dark);
+            padding: 16px;
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+            font-weight: 600;
+            border: 2px solid #e5e7eb;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .btn-google:hover {
+            background: var(--bg-light);
+            border-color: var(--primary-green);
+        }
+
+        .modal-divider {
+            text-align: center;
+            margin: 20px 0;
+            color: var(--text-light);
+            position: relative;
+        }
+
+        .modal-divider::before,
+        .modal-divider::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 40%;
+            height: 1px;
+            background: #e5e7eb;
+        }
+
+        .modal-divider::before { left: 0; }
+        .modal-divider::after { right: 0; }
+
+        /* Success Modal */
+        .success-content {
+            text-align: center;
+        }
+
+        .success-icon {
+            font-size: 4rem;
+            margin-bottom: 24px;
+        }
+
+        .impact-preview {
+            background: linear-gradient(135deg, var(--bg-light), #dcfce7);
+            padding: 24px;
+            border-radius: var(--radius-md);
+            margin: 24px 0;
+        }
+
+        .impact-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+        }
+
+        .impact-label {
+            color: var(--text-light);
+        }
+
+        /* ========================================
+           Toast Notification
+        ======================================== */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--bg-dark);
+            color: var(--white);
+            padding: 16px 32px;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            z-index: 3000;
+            opacity: 0;
+            transition: all 0.4s ease;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* ========================================
+           Responsive Design
+        ======================================== */
+        @media (max-width: 768px) {
+            .hero-stats {
+                flex-direction: column;
+                gap: 24px;
+            }
+
+            .animation-container {
+                width: 240px;
+                height: 240px;
+            }
+
+            .modal {
+                padding: 32px 24px;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .premium-card {
+                padding: 32px 24px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-content {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .cta-primary {
+                padding: 16px 32px;
+                font-size: 1rem;
+            }
+
+            .referral-link-box {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container nav-content">
+            <div class="logo">
+                <div class="logo-icon">🌍</div>
+                <span>Climate Guardian</span>
+            </div>
+            <button class="nav-cta" onclick="openSignupModal()">Get Started Free</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="hero-bg-circles"></div>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="hero-badge-dot"></span>
+                <span>Trusted by 1M+ Climate Heroes</span>
+            </div>
+            <h1 class="hero-title">
+                Become a <span class="gradient-text">Climate Hero</span> in 60 Seconds
+            </h1>
+            <p class="hero-subtitle">
+                Your free AI Guardian delivers one personalized daily micro-mission to minimize your carbon footprint. Small actions. Massive impact.
+            </p>
+            <div class="animation-container">
+                <lottie-player 
+                    src="https://lottie.host/39e7dd0b-72d2-4f96-9e03-0a1a52ed405c/r7BnlMGmGT.json" 
+                    background="transparent" 
+                    speed="1" 
+                    loop 
+                    autoplay>
+                </lottie-player>
+                <div class="co2-overlay">
+                    <span class="co2-value" id="co2Counter">0</span>kg CO₂ saved today
+                </div>
+            </div>
+            <button class="cta-primary" onclick="openSignupModal()">
+                🌱 Get My Guardian Now — It's Free
+            </button>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-value">12M+</div>
+                    <div class="stat-label">kg CO₂ Saved</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">1M+</div>
+                    <div class="stat-label">Active Users</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">50K+</div>
+                    <div class="stat-label">Trees Planted</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof Section -->
+    <section id="social-proof">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">💚 Real Impact Stories</span>
+                <h2 class="section-title">Join the Movement</h2>
+                <p class="section-subtitle">See what our community is achieving together</p>
+            </div>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="impact-badge">-50kg CO₂/month</div>
+                    <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"This AI completely transformed my daily habits. I never realized how much impact small changes could make. Saved 50kg of CO₂ in my first month!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">S</div>
+                        <div class="author-info">
+                            <div class="author-name">Sarah Chen</div>
+                            <div class="author-handle">@ecowarrior_sarah</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="impact-badge">42-day streak</div>
+                    <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"The daily missions are addictive in the best way. I'm on a 42-day streak and my whole family is now competing for badges. Love it!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">M</div>
+                        <div class="author-info">
+                            <div class="author-name">Marcus Johnson</div>
+                            <div class="author-handle">@greendad_marcus</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="impact-badge">Team of 15</div>
+                    <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"Got my entire office team signed up. We've turned it into a friendly competition and collectively offset a flight's worth of emissions!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">A</div>
+                        <div class="author-info">
+                            <div class="author-name">Alex Rivera</div>
+                            <div class="author-handle">@sustainableAlex</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="win-cards-section">
+                <h3 class="win-cards-title">Share Your Climate Wins 🎉</h3>
+                <div class="win-cards-grid">
+                    <div class="win-card" onclick="shareWin('I saved 10kg CO₂ this week with my AI Climate Guardian! 🌍 Challenge your friends to do the same.')">
+                        <div class="win-card-text">🏆 I saved 10kg CO₂ this week!</div>
+                        <div class="win-card-cta">Click to share & challenge friends</div>
+                    </div>
+                    <div class="win-card" onclick="shareWin('Just completed my 7-day streak on Climate Guardian! 🔥 Join me in saving the planet one day at a time.')">
+                        <div class="win-card-text">🔥 7-Day Streak Achieved!</div>
+                        <div class="win-card-cta">Click to share & challenge friends</div>
+                    </div>
+                    <div class="win-card" onclick="shareWin('Offset a flight\'s worth of emissions with Climate Guardian! ✈️🌱 Start your journey today.')">
+                        <div class="win-card-text">✈️ Offset a flight's emissions!</div>
+                        <div class="win-card-cta">Click to share & challenge friends</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">✨ How It Works</span>
+                <h2 class="section-title">Your AI-Powered Path to Impact</h2>
+                <p class="section-subtitle">Simple, personalized, and scientifically optimized for maximum environmental benefit</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3 class="feature-title">Personalized Missions</h3>
+                    <p class="feature-description">AI analyzes your lifestyle, location, and habits to deliver one impactful daily action tailored just for you.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3 class="feature-title">Real-Time Tracking</h3>
+                    <p class="feature-description">Watch your impact grow with live CO₂ savings, equivalent trees planted, and global ranking updates.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🏆</div>
+                    <h3 class="feature-title">Gamified Progress</h3>
+                    <p class="feature-description">Earn badges, maintain streaks, compete with friends, and unlock rewards as you level up your eco-warrior status.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🤝</div>
+                    <h3 class="feature-title">Community Power</h3>
+                    <p class="feature-description">Join teams, challenge friends, and see collective impact. Every referral plants a real tree.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🔔</div>
+                    <h3 class="feature-title">Smart Reminders</h3>
+                    <p class="feature-description">Gentle daily nudges at the perfect time ensure you never miss a mission. Build habits that stick.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🌱</div>
+                    <h3 class="feature-title">Eco-Recipes & Tips</h3>
+                    <p class="feature-description">Get sustainable recipes, commute alternatives, and shopping swaps personalized to your area.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Viral/Gamification Section -->
+    <section id="viral">
+        <div class="container viral-content">
+            <div class="viral-grid">
+                <div class="viral-left">
+                    <h2>Go Viral for the Planet 🌍</h2>
+                    <p>Invite friends and unlock premium features while planting real trees. Every referral = one tree planted through our reforestation partners.</p>
+                    
+                    <div class="referral-box">
+                        <div class="referral-label">Your Unique Referral Link</div>
+                        <div class="referral-link-box">
+                            <input type="text" class="referral-link" id="referralLink" value="climateguardian.ai/join/hero123" readonly>
+                            <button class="copy-btn" onclick="copyReferral()">Copy</button>
+                        </div>
+                    </div>
+                    
+                    <button class="cta-white" onclick="shareReferral()">
+                        📤 Invite Friends & Plant Trees
+                    </button>
+                </div>
+                
+                <div class="viral-right">
+                    <div class="badges-showcase">
+                        <h3 class="badges-title">🏅 Your Achievement Badges</h3>
+                        <div class="badges-grid">
+                            <div class="badge" onclick="shareBadge('Eco Warrior Level 1')">
+                                🌱 Eco Warrior L1
+                            </div>
+                            <div class="badge" onclick="shareBadge('Carbon Cutter')">
+                                ✂️ Carbon Cutter
+                            </div>
+                            <div class="badge" onclick="shareBadge('7-Day Streak')">
+                                🔥 7-Day Streak
+                            </div>
+                            <div class="badge badge-locked">
+                                🔒 Tree Planter
+                            </div>
+                            <div class="badge badge-locked">
+                                🔒 Climate Champion
+                            </div>
+                        </div>
+                        
+                        <div class="streak-display">
+                            <div class="streak-value">7</div>
+                            <div class="streak-label">Day Streak 🔥 Keep it going!</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Premium Section -->
+    <section id="premium">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">⭐ Go Premium</span>
+                <h2 class="section-title">Supercharge Your Impact</h2>
+                <p class="section-subtitle">Unlock advanced features and maximize your climate contribution</p>
+            </div>
+            
+            <div class="premium-card">
+                <div class="premium-badge">BEST VALUE</div>
+                <div class="premium-icon">👑</div>
+                <h3 class="premium-title">Guardian Premium</h3>
+                <div class="premium-price">
+                    <span class="price-value">$4.99</span>
+                    <span class="price-period">/month</span>
+                </div>
+                
+                <div class="premium-features">
+                    <div class="premium-feature">
+                        <span class="premium-feature-icon">✓</span>
+                        <span>Family syncing (up to 5 members)</span>
+                    </div>
+                    <div class="premium-feature">
+                        <span class="premium-feature-icon">✓</span>
+                        <span>Advanced AI personalization</span>
+                    </div>
+                    <div class="premium-feature">
+                        <span class="premium-feature-icon">✓</span>
+                        <span>Carbon offset marketplace</span>
+                    </div>
+                    <div class="premium-feature">
+                        <span class="premium-feature-icon">✓</span>
+                        <span>Exclusive badges & rewards</span>
+                    </div>
+                    <div class="premium-feature">
+                        <span class="premium-feature-icon">✓</span>
+                        <span>Priority support & early features</span>
+                    </div>
+                    <div class="premium-feature">
+                        <span class="premium-feature-icon">✓</span>
+                        <span>Monthly tree planting certificate</span>
+                    </div>
+                </div>
+                
+                <button class="cta-premium" onclick="showToast('Premium coming soon! Join free to get notified.')">
+                    Start 7-Day Free Trial
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <div class="logo-icon">🌍</div>
+                        <span>Climate Guardian</span>
+                    </div>
+                    <p class="footer-description">Your personal AI companion for sustainable living. Making climate action simple, fun, and impactful—one mission at a time.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#premium">Pricing</a></li>
+                        <li><a href="#">Mobile App</a></li>
+                        <li><a href="#">API</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Our Mission</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2026 AI Climate Guardian. All rights reserved. Privacy-first data. Affiliate links to eco-products may apply.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Signup Modal -->
+    <div class="modal-overlay" id="signupModal">
+        <div class="modal" id="signupContent">
+            <button class="modal-close" onclick="closeSignupModal()">✕</button>
+            <div class="modal-icon">🌍</div>
+            <h2 class="modal-title">Join the Movement</h2>
+            <p class="modal-subtitle">Get your free AI Climate Guardian and start making an impact today</p>
+            
+            <form onsubmit="handleSignup(event)">
+                <div class="form-group">
+                    <input type="email" class="form-input" id="emailInput" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-input" id="zipInput" placeholder="Your zip/postal code (optional)">
+                </div>
+                <button type="submit" class="btn-submit">🌱 Get My Guardian — Free</button>
+            </form>
+            
+            <div class="modal-divider">or</div>
+            
+            <button class="btn-google" onclick="handleGoogleSignup()">
+                <svg width="20" height="20" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+                Continue with Google
+            </button>
+        </div>
+        
+        <!-- Success State -->
+        <div class="modal" id="successContent" style="display: none;">
+            <button class="modal-close" onclick="closeSignupModal()">✕</button>
+            <div class="success-content">
+                <div class="success-icon">🎉</div>
+                <h2 class="modal-title">Welcome, Climate Hero!</h2>
+                <p class="modal-subtitle">Your AI Guardian is ready to transform your impact</p>
+                
+                <div class="impact-preview">
+                    <div class="impact-value" id="impactPreview">~500kg</div>
+                    <div class="impact-label">Estimated CO₂ you could save this year</div>
+                </div>
+                
+                <p style="color: var(--text-light); margin-bottom: 24px;">Check your email for your first personalized mission!</p>
+                
+                <button class="btn-submit" onclick="shareReferral()">
+                    📤 Invite Friends & Plant Trees
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+
+    <script>
+        /* ========================================
+           CO2 Counter Animation
+        ======================================== */
+        let co2Count = 0;
+        const targetCO2 = 12847;
+        const co2Counter = document.getElementById('co2Counter');
+        
+        function animateCO2Counter() {
+            const increment = Math.ceil(targetCO2 / 100);
+            const timer = setInterval(() => {
+                co2Count += increment;
+                if (co2Count >= targetCO2) {
+                    co2Count = targetCO2;
+                    clearInterval(timer);
+                }
+                co2Counter.textContent = co2Count.toLocaleString();
+            }, 30);
+        }
+        
+        // Start counter when page loads
+        setTimeout(animateCO2Counter, 1000);
+
+        /* ========================================
+           Modal Functions
+        ======================================== */
+        const signupModal = document.getElementById('signupModal');
+        const signupContent = document.getElementById('signupContent');
+        const successContent = document.getElementById('successContent');
+        
+        function openSignupModal() {
+            signupModal.classList.add('active');
+            signupContent.style.display = 'block';
+            successContent.style.display = 'none';
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeSignupModal() {
+            signupModal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        function handleSignup(e) {
+            e.preventDefault();
+            const zip = document.getElementById('zipInput').value;
+            showSuccess(zip);
+        }
+        
+        function handleGoogleSignup() {
+            showSuccess('');
+        }
+        
+        function showSuccess(zip) {
+            signupContent.style.display = 'none';
+            successContent.style.display = 'block';
+            
+            // Personalize impact based on zip (simulated)
+            const impacts = ['~450kg', '~520kg', '~380kg', '~610kg', '~490kg'];
+            const randomImpact = impacts[Math.floor(Math.random() * impacts.length)];
+            document.getElementById('impactPreview').textContent = randomImpact;
+        }
+        
+        // Close modal on outside click
+        signupModal.addEventListener('click', (e) => {
+            if (e.target === signupModal) {
+                closeSignupModal();
+            }
+        });
+        
+        // Close modal on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeSignupModal();
+            }
+        });
+
+        /* ========================================
+           Sharing Functions
+        ======================================== */
+        function shareWin(text) {
+            const url = window.location.href;
+            const fullText = `${text}\n\nJoin me: ${url}`;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: 'My Climate Win',
+                    text: text,
+                    url: url
+                }).catch(() => {
+                    copyToClipboard(fullText);
+                    showToast('Copied to clipboard! Share with friends 🌱');
+                });
+            } else {
+                copyToClipboard(fullText);
+                showToast('Copied to clipboard! Share with friends 🌱');
+            }
+        }
+        
+        function shareReferral() {
+            const link = document.getElementById('referralLink').value;
+            const text = `Join my Climate Guardian squad and plant a tree! 🌳 Together we can save the planet.\n\nSign up free: https://${link}`;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Join Climate Guardian',
+                    text: 'Join my Climate Guardian squad and plant a tree! 🌳',
+                    url: `https://${link}`
+                }).catch(() => {
+                    copyToClipboard(text);
+                    showToast('Referral link copied! Share to plant trees 🌳');
+                });
+            } else {
+                copyToClipboard(text);
+                showToast('Referral link copied! Share to plant trees 🌳');
+            }
+        }
+        
+        function shareBadge(badgeName) {
+            const text = `I just earned the "${badgeName}" badge on Climate Guardian! 🏆🌍 Join me in saving the planet.`;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: 'My Climate Badge',
+                    text: text,
+                    url: window.location.href
+                }).catch(() => {
+                    copyToClipboard(text + '\n\n' + window.location.href);
+                    showToast('Badge copied! Show off your achievement 🏆');
+                });
+            } else {
+                copyToClipboard(text + '\n\n' + window.location.href);
+                showToast('Badge copied! Show off your achievement 🏆');
+            }
+        }
+        
+        function copyReferral() {
+            const link = document.getElementById('referralLink').value;
+            copyToClipboard(`https://${link}`);
+            showToast('Referral link copied! 🌳');
+        }
+        
+        function copyToClipboard(text) {
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(text);
+            } else {
+                // Fallback for older browsers
+                const textarea = document.createElement('textarea');
+                textarea.value = text;
+                textarea.style.position = 'fixed';
+                textarea.style.opacity = '0';
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+            }
+        }
+
+        /* ========================================
+           Toast Notification
+        ======================================== */
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        /* ========================================
+           Smooth Scroll for Navigation
+        ======================================== */
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        /* ========================================
+           Generate Unique Referral Code
+        ======================================== */
+        function generateReferralCode() {
+            const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
+            let code = 'hero';
+            for (let i = 0; i < 6; i++) {
+                code += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            return code;
+        }
+        
+        // Set unique referral code on page load
+        document.getElementById('referralLink').value = `climateguardian.ai/join/${generateReferralCode()}`;
+
+        /* ========================================
+           Intersection Observer for Animations
+        ======================================== */
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe elements for scroll animations
+        document.querySelectorAll('.testimonial-card, .feature-card, .win-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
