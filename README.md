@@ -1,307 +1,270 @@
 # AI Climate Guardian
 
-Your Personal AI Climate Guardian - A production-ready, viral landing page for an AI-powered sustainable living application.
+A full-stack web application for sustainable living with AI-powered daily micro-missions.
 
 ## Overview
 
-This landing page promotes a free AI agent that helps users minimize their carbon footprint through personalized daily "micro-missions" (eco-recipes, commute swaps, sustainable shopping tips).
+Climate Guardian helps users minimize their carbon footprint through personalized daily missions, gamification, and social features. Users earn points, badges, and plant real trees by completing missions and referring friends.
 
-## Production Features
+## Features
 
-### Accessibility (WCAG 2.1 AA Compliant)
-- Full keyboard navigation support
-- ARIA labels and roles throughout
-- Screen reader optimized
-- Skip link for main content
-- Focus trap in modals
-- `prefers-reduced-motion` support
-- High contrast color ratios
+### Core Functionality
+- **Daily Missions**: AI-assigned personalized eco-tasks
+- **Progress Tracking**: CO₂ saved, streaks, levels
+- **Gamification**: Badges, achievements, leaderboards
+- **Referral System**: Invite friends, plant trees
+- **Premium Tier**: Family accounts, advanced features
 
-### Security
-- Content Security Policy (CSP) meta tags
-- Input sanitization (XSS prevention)
-- Secure referrer policy
-- HTTPS-only external resources
+### Technical Stack
+- **Backend**: Node.js + Express.js
+- **Database**: SQLite with better-sqlite3
+- **Authentication**: JWT with bcrypt password hashing
+- **Frontend**: Vanilla JS SPA with modern CSS
 
-### Performance
-- Preconnect/DNS prefetch for external resources
-- Deferred script loading
-- Optimized animations with `requestAnimationFrame`
-- Debounced scroll handlers
-- Lazy loading via Intersection Observer
-- Service Worker for offline support
+## Quick Start
 
-### SEO
-- Schema.org structured data (SoftwareApplication, Organization)
-- Complete Open Graph and Twitter Card meta tags
-- Canonical URL
-- XML Sitemap
-- robots.txt
-- Semantic HTML structure
+### Prerequisites
+- Node.js 18+
+- npm or yarn
 
-### PWA Support
-- Web App Manifest
-- Service Worker with caching strategies
-- Offline fallback page
-- Push notification support (ready for backend)
-- Add to home screen capability
+### Installation
 
-### Analytics Ready
-- Event tracking placeholders (Google Analytics 4 compatible)
-- UTM parameter handling
-- Conversion tracking hooks
-- Web Vitals monitoring
+```bash
+# Clone the repository
+git clone https://github.com/your-repo/climate-guardian.git
+cd climate-guardian
 
-### GDPR Compliance
-- Cookie consent banner
-- Privacy-first data collection
-- User consent tracking
+# Install dependencies
+npm install
 
-## File Structure
+# Set up environment
+cp .env.example .env
+
+# Start the server
+npm start
+```
+
+The app will be available at `http://localhost:3000`
+
+### Development
+
+```bash
+# Run in development mode
+npm run dev
+
+# Initialize database with seed data
+npm run db:init
+```
+
+## Project Structure
 
 ```
-/
-├── index.html          # Main landing page (production-ready)
-├── manifest.json       # PWA manifest
-├── sw.js              # Service worker
-├── offline.html       # Offline fallback page
-├── favicon.svg        # SVG favicon
-├── browserconfig.xml  # Windows tile configuration
-├── robots.txt         # Search engine directives
-├── sitemap.xml        # XML sitemap
-├── icons/             # PWA icons directory
-│   └── icon-192x192.svg
-└── README.md          # This file
+climate-guardian/
+├── server.js              # Express server entry point
+├── package.json           # Dependencies and scripts
+├── .env                   # Environment configuration
+├── index.html             # Landing page
+├── public/                # Frontend application
+│   ├── app.html           # Authenticated app shell
+│   ├── login.html         # Login page
+│   └── signup.html        # Signup page
+├── src/
+│   ├── routes/            # API route handlers
+│   │   ├── auth.js        # Authentication endpoints
+│   │   ├── users.js       # User management
+│   │   ├── missions.js    # Mission system
+│   │   ├── progress.js    # Progress tracking
+│   │   ├── referrals.js   # Referral system
+│   │   └── badges.js      # Badge system
+│   ├── middleware/        # Express middleware
+│   │   ├── auth.js        # JWT authentication
+│   │   ├── errorHandler.js # Error handling
+│   │   └── validate.js    # Input validation
+│   ├── database/          # Database setup
+│   │   └── init.js        # Schema and seeds
+│   └── utils/             # Helper functions
+│       └── helpers.js     # Utilities
+├── database/              # SQLite database files
+├── manifest.json          # PWA manifest
+├── sw.js                  # Service worker
+└── icons/                 # App icons
+```
+
+## API Endpoints
+
+### Authentication
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/api/auth/signup` | Create account |
+| POST | `/api/auth/login` | Login |
+| POST | `/api/auth/logout` | Logout |
+| GET | `/api/auth/me` | Get current user |
+| POST | `/api/auth/refresh` | Refresh token |
+| POST | `/api/auth/google` | Google OAuth |
+
+### Users
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/users/profile` | Get profile |
+| PUT | `/api/users/profile` | Update profile |
+| PUT | `/api/users/settings` | Update settings |
+| PUT | `/api/users/password` | Change password |
+| DELETE | `/api/users/account` | Delete account |
+
+### Missions
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/missions/today` | Get today's mission |
+| GET | `/api/missions/history` | Mission history |
+| GET | `/api/missions/all` | All available missions |
+| POST | `/api/missions/:id/complete` | Complete mission |
+| POST | `/api/missions/:id/skip` | Skip mission |
+
+### Progress
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/progress` | Get progress summary |
+| GET | `/api/progress/stats` | Detailed statistics |
+| GET | `/api/progress/leaderboard` | Global leaderboard |
+| GET | `/api/progress/achievements` | Achievements |
+
+### Referrals
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/referrals` | Get referral info |
+| GET | `/api/referrals/stats` | Referral statistics |
+| POST | `/api/referrals/validate` | Validate code |
+
+### Badges
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/badges` | All badges |
+| GET | `/api/badges/earned` | Earned badges |
+| GET | `/api/badges/:id` | Badge details |
+
+## Database Schema
+
+### Users
+- id, email, password_hash, name, referral_code
+- Settings: notifications, theme, units
+- Subscription: is_premium, premium_expires_at
+
+### Missions
+- 20 pre-seeded eco-missions
+- Categories: transportation, energy, food, water, consumption
+- Each with CO₂ impact and point values
+
+### Progress
+- Total CO₂ saved, missions completed
+- Streak tracking (current, longest)
+- Level and points system
+
+### Badges
+- 17 achievement badges
+- Categories: streak, impact, milestone, social, special
+
+## Security Features
+
+- JWT authentication with refresh tokens
+- Password hashing with bcrypt (12 rounds)
+- Rate limiting (100 req/15min, 10 auth/15min)
+- Input validation and sanitization
+- CORS configuration
+- Helmet security headers
+- CSP policy
+
+## Environment Variables
+
+```env
+# Server
+NODE_ENV=development
+PORT=3000
+HOST=localhost
+
+# JWT
+JWT_SECRET=your-secret-key
+JWT_EXPIRES_IN=7d
+
+# Database
+DATABASE_PATH=./database/climate_guardian.db
+
+# Frontend URL
+FRONTEND_URL=http://localhost:3000
+
+# Rate Limiting
+RATE_LIMIT_WINDOW_MS=900000
+RATE_LIMIT_MAX_REQUESTS=100
+
+# Google OAuth (optional)
+GOOGLE_CLIENT_ID=your-client-id
+GOOGLE_CLIENT_SECRET=your-secret
 ```
 
 ## Deployment
 
-### Prerequisites
-- Web server with HTTPS support
-- Domain configured (e.g., climateguardian.ai)
-
-### Quick Deploy Options
-
-#### Netlify (Recommended)
-```bash
-# Install Netlify CLI
-npm install -g netlify-cli
-
-# Deploy
-netlify deploy --prod --dir=.
-```
-
-#### Vercel
-```bash
-# Install Vercel CLI
-npm install -g vercel
-
-# Deploy
-vercel --prod
-```
-
-#### GitHub Pages
-1. Push to a `gh-pages` branch
-2. Enable GitHub Pages in repository settings
-3. Set custom domain if needed
-
-#### AWS S3 + CloudFront
-```bash
-# Sync to S3 bucket
-aws s3 sync . s3://your-bucket-name --exclude ".git/*"
-
-# Invalidate CloudFront cache
-aws cloudfront create-invalidation --distribution-id YOUR_DIST_ID --paths "/*"
-```
-
-### Server Configuration
-
-#### Nginx
-```nginx
-server {
-    listen 443 ssl http2;
-    server_name climateguardian.ai;
-    root /var/www/climateguardian;
-    
-    # Security headers
-    add_header X-Frame-Options "SAMEORIGIN" always;
-    add_header X-Content-Type-Options "nosniff" always;
-    add_header X-XSS-Protection "1; mode=block" always;
-    add_header Referrer-Policy "strict-origin-when-cross-origin" always;
-    add_header Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://lottie.host https://www.google-analytics.com;" always;
-    
-    # Caching
-    location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2)$ {
-        expires 1y;
-        add_header Cache-Control "public, immutable";
-    }
-    
-    # Service worker
-    location /sw.js {
-        add_header Cache-Control "no-cache";
-        expires 0;
-    }
-    
-    # SPA fallback
-    location / {
-        try_files $uri $uri/ /index.html;
-    }
-}
-```
-
-#### Apache (.htaccess)
-```apache
-<IfModule mod_headers.c>
-    Header set X-Frame-Options "SAMEORIGIN"
-    Header set X-Content-Type-Options "nosniff"
-    Header set X-XSS-Protection "1; mode=block"
-    Header set Referrer-Policy "strict-origin-when-cross-origin"
-</IfModule>
-
-<IfModule mod_expires.c>
-    ExpiresActive On
-    ExpiresByType image/png "access plus 1 year"
-    ExpiresByType image/svg+xml "access plus 1 year"
-    ExpiresByType application/javascript "access plus 1 year"
-    ExpiresByType text/css "access plus 1 year"
-</IfModule>
-
-<IfModule mod_rewrite.c>
-    RewriteEngine On
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^ index.html [L]
-</IfModule>
-```
-
-## Customization
-
-### Domain Configuration
-Update these files with your domain:
-- `index.html` - Update canonical URL and OG tags
-- `sitemap.xml` - Update all URLs
-- `manifest.json` - Update start_url if needed
-
-### Analytics Integration
-
-#### Google Analytics 4
-Add to `<head>`:
-```html
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-XXXXXXXXXX');
-</script>
-```
-
-### Backend Integration
-
-Replace placeholder API calls in the JavaScript:
-
-```javascript
-// Example: Real signup API
-async function handleSignup(e) {
-    e.preventDefault();
-    const email = document.getElementById('emailInput').value;
-    
-    try {
-        const response = await fetch('/api/signup', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email, referrer: sessionStorage.getItem('referrer') })
-        });
-        
-        if (response.ok) {
-            showSuccess();
-        } else {
-            showToast('Signup failed. Please try again.', 'error');
-        }
-    } catch (error) {
-        showToast('Network error. Please try again.', 'error');
-    }
-}
-```
-
-### Colors & Branding
-Edit CSS variables in `index.html`:
-```css
-:root {
-    --color-primary: #10b981;      /* Main green */
-    --color-primary-dark: #059669;  /* Dark green */
-    --color-accent: #fbbf24;        /* Gold accent */
-    /* ... other variables */
-}
-```
-
-## Pre-Launch Checklist
-
-### Required
-- [ ] Update domain in all meta tags and URLs
-- [ ] Generate PNG icons from SVG (72, 96, 128, 144, 152, 192, 384, 512px)
-- [ ] Create Open Graph image (1200x630px)
-- [ ] Create Twitter image (1200x600px)
-- [ ] Set up SSL certificate
-- [ ] Configure analytics (replace GA_MEASUREMENT_ID)
-- [ ] Set up error monitoring (e.g., Sentry)
-- [ ] Test on multiple browsers and devices
-- [ ] Run Lighthouse audit (target 90+ all categories)
-- [ ] Validate HTML (W3C Validator)
-- [ ] Test accessibility (axe DevTools)
-
-### Recommended
-- [ ] Set up CDN (CloudFlare, Fastly)
+### Production Checklist
+- [ ] Set strong JWT_SECRET
+- [ ] Configure HTTPS
+- [ ] Set NODE_ENV=production
+- [ ] Set up database backups
 - [ ] Configure rate limiting
-- [ ] Set up uptime monitoring
-- [ ] Create backup deployment
-- [ ] Set up CI/CD pipeline
-- [ ] Configure A/B testing tools
-- [ ] Set up heatmap tracking (Hotjar, FullStory)
+- [ ] Set up monitoring
+- [ ] Configure CDN
 
-## Performance Targets
+### Docker Deployment
 
-| Metric | Target | Tool |
-|--------|--------|------|
-| Lighthouse Performance | 90+ | Chrome DevTools |
-| First Contentful Paint | <1.8s | WebPageTest |
-| Largest Contentful Paint | <2.5s | WebPageTest |
-| Cumulative Layout Shift | <0.1 | Chrome DevTools |
-| Time to Interactive | <3.8s | Lighthouse |
+```dockerfile
+FROM node:18-alpine
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci --production
+COPY . .
+EXPOSE 3000
+CMD ["npm", "start"]
+```
 
-## Browser Support
+### Platform Deployment
 
-- Chrome 90+
-- Firefox 88+
-- Safari 14+
-- Edge 90+
-- iOS Safari 14+
-- Chrome for Android 90+
+**Render/Railway:**
+```bash
+# Set build command
+npm install
 
-## Security Considerations
+# Set start command
+npm start
+```
 
-1. **CSP**: Content Security Policy is configured to only allow trusted sources
-2. **Input Validation**: All user inputs are sanitized before use
-3. **HTTPS**: Always serve over HTTPS
-4. **Rate Limiting**: Implement on the server for API endpoints
-5. **CORS**: Configure properly for API endpoints
+**Vercel (serverless - requires adaptation):**
+- Convert to serverless functions
+- Use external database
 
-## Legal Pages Needed
+## Testing
 
-Before launch, create these pages:
-- `/privacy` - Privacy Policy
-- `/terms` - Terms of Service  
-- `/cookies` - Cookie Policy
-- `/accessibility` - Accessibility Statement
+```bash
+# Run tests
+npm test
 
-## Support & Contributing
+# API testing with curl
+curl http://localhost:3000/api/health
 
-For issues or contributions, please open a GitHub issue or pull request.
+# Create test user
+curl -X POST http://localhost:3000/api/auth/signup \
+  -H "Content-Type: application/json" \
+  -d '{"email":"test@example.com","password":"Test1234!"}'
+```
+
+## Contributing
+
+1. Fork the repository
+2. Create feature branch
+3. Make changes
+4. Run tests
+5. Submit PR
 
 ## License
 
-MIT License - See LICENSE file for details.
+MIT License
 
 ---
 
-Built with ❤️ for a sustainable future.
+Built with 💚 for a sustainable future.

@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <title>Dashboard - Climate Guardian</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <style>
+        :root {
+            --color-primary: #10b981;
+            --color-primary-dark: #059669;
+            --color-primary-light: #34d399;
+            --color-accent: #fbbf24;
+            --color-bg: #f0fdf4;
+            --color-bg-white: #ffffff;
+            --color-bg-dark: #064e3b;
+            --color-text: #1f2937;
+            --color-text-secondary: #6b7280;
+            --color-border: #e5e7eb;
+            --color-error: #dc2626;
+            --color-success: #16a34a;
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+            --shadow-lg: 0 8px 30px rgba(0,0,0,0.12);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--color-bg);
+            color: var(--color-text);
+            min-height: 100vh;
+        }
+
+        /* Layout */
+        .app-layout {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 260px;
+            background: var(--color-bg-white);
+            border-right: 1px solid var(--color-border);
+            padding: 24px 16px;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 100;
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--color-primary-dark);
+            padding: 0 8px 24px;
+            border-bottom: 1px solid var(--color-border);
+            margin-bottom: 24px;
+        }
+
+        .sidebar-logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .nav-section {
+            margin-bottom: 24px;
+        }
+
+        .nav-section-title {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: var(--color-text-secondary);
+            padding: 0 12px;
+            margin-bottom: 8px;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            border-radius: var(--radius-md);
+            color: var(--color-text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            margin-bottom: 4px;
+        }
+
+        .nav-link:hover {
+            background: var(--color-bg);
+        }
+
+        .nav-link.active {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.1));
+            color: var(--color-primary-dark);
+        }
+
+        .nav-link-icon {
+            font-size: 1.25rem;
+        }
+
+        .nav-link-badge {
+            margin-left: auto;
+            background: var(--color-primary);
+            color: white;
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 9999px;
+            font-weight: 600;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: 260px;
+            padding: 24px;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+        }
+
+        .page-title {
+            font-size: 1.75rem;
+            font-weight: 800;
+        }
+
+        .page-subtitle {
+            color: var(--color-text-secondary);
+            margin-top: 4px;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--color-bg-white);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 24px;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background: var(--color-bg-white);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .stat-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.1));
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--color-primary-dark);
+        }
+
+        .stat-label {
+            color: var(--color-text-secondary);
+            font-size: 0.875rem;
+        }
+
+        /* Mission Card */
+        .mission-card {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+            color: white;
+            border-radius: var(--radius-xl);
+            padding: 32px;
+            margin-bottom: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mission-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 300px;
+            height: 300px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+        }
+
+        .mission-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 6px 12px;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .mission-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .mission-description {
+            opacity: 0.9;
+            margin-bottom: 24px;
+            max-width: 500px;
+        }
+
+        .mission-stats {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        .mission-stat {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .mission-stat-value {
+            font-weight: 700;
+        }
+
+        .mission-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 12px 24px;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--color-bg-white);
+            color: var(--color-primary-dark);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.2);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        .btn-green {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+            color: white;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--color-border);
+            color: var(--color-text);
+        }
+
+        .btn-sm {
+            padding: 8px 16px;
+            font-size: 0.875rem;
+        }
+
+        /* Streak Display */
+        .streak-display {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--color-bg);
+            padding: 12px 20px;
+            border-radius: var(--radius-lg);
+        }
+
+        .streak-icon {
+            font-size: 1.5rem;
+        }
+
+        .streak-value {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--color-accent);
+        }
+
+        .streak-label {
+            color: var(--color-text-secondary);
+            font-size: 0.875rem;
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            height: 8px;
+            background: var(--color-border);
+            border-radius: 9999px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-primary-light));
+            border-radius: 9999px;
+            transition: width 0.5s ease;
+        }
+
+        /* Badges Grid */
+        .badges-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .badge-item {
+            background: linear-gradient(135deg, var(--color-accent), #f59e0b);
+            color: var(--color-bg-dark);
+            padding: 10px 16px;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .badge-item.locked {
+            background: var(--color-border);
+            color: var(--color-text-secondary);
+        }
+
+        /* Activity List */
+        .activity-list {
+            list-style: none;
+        }
+
+        .activity-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--color-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .activity-content {
+            flex: 1;
+        }
+
+        .activity-title {
+            font-weight: 600;
+        }
+
+        .activity-time {
+            font-size: 0.875rem;
+            color: var(--color-text-secondary);
+        }
+
+        .activity-value {
+            font-weight: 700;
+            color: var(--color-primary-dark);
+        }
+
+        /* User Menu */
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            margin-top: auto;
+            border-top: 1px solid var(--color-border);
+            cursor: pointer;
+            border-radius: var(--radius-md);
+        }
+
+        .user-menu:hover {
+            background: var(--color-bg);
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+        }
+
+        .user-info {
+            flex: 1;
+        }
+
+        .user-name {
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+
+        .user-email {
+            font-size: 0.75rem;
+            color: var(--color-text-secondary);
+        }
+
+        /* Loading State */
+        .loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 400px;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--color-border);
+            border-top-color: var(--color-primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: var(--color-bg-dark);
+            color: white;
+            padding: 16px 24px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            z-index: 1000;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .toast.success { background: var(--color-success); }
+        .toast.error { background: var(--color-error); }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .mission-actions {
+                flex-direction: column;
+            }
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 48px 24px;
+            color: var(--color-text-secondary);
+        }
+
+        .empty-state-icon {
+            font-size: 3rem;
+            margin-bottom: 16px;
+        }
+
+        /* Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 200;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: var(--color-bg-white);
+            border-radius: var(--radius-xl);
+            padding: 32px;
+            max-width: 480px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .modal-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        .modal-close {
+            background: var(--color-bg);
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.25rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-logo">
+                <span class="sidebar-logo-icon">🌍</span>
+                <span>Climate Guardian</span>
+            </div>
+
+            <nav>
+                <div class="nav-section">
+                    <div class="nav-section-title">Main</div>
+                    <a href="/dashboard" class="nav-link" data-page="dashboard">
+                        <span class="nav-link-icon">📊</span>
+                        <span>Dashboard</span>
+                    </a>
+                    <a href="/missions" class="nav-link" data-page="missions">
+                        <span class="nav-link-icon">🎯</span>
+                        <span>Today's Mission</span>
+                        <span class="nav-link-badge" id="missionBadge">1</span>
+                    </a>
+                    <a href="/progress" class="nav-link" data-page="progress">
+                        <span class="nav-link-icon">📈</span>
+                        <span>My Progress</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Social</div>
+                    <a href="/badges" class="nav-link" data-page="badges">
+                        <span class="nav-link-icon">🏆</span>
+                        <span>Badges</span>
+                    </a>
+                    <a href="/referrals" class="nav-link" data-page="referrals">
+                        <span class="nav-link-icon">👥</span>
+                        <span>Invite Friends</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Account</div>
+                    <a href="/profile" class="nav-link" data-page="profile">
+                        <span class="nav-link-icon">👤</span>
+                        <span>Profile</span>
+                    </a>
+                    <a href="/settings" class="nav-link" data-page="settings">
+                        <span class="nav-link-icon">⚙️</span>
+                        <span>Settings</span>
+                    </a>
+                    <a href="/premium" class="nav-link" data-page="premium">
+                        <span class="nav-link-icon">👑</span>
+                        <span>Premium</span>
+                    </a>
+                </div>
+            </nav>
+
+            <div class="user-menu" id="userMenu">
+                <div class="user-avatar" id="userAvatar">?</div>
+                <div class="user-info">
+                    <div class="user-name" id="userName">Loading...</div>
+                    <div class="user-email" id="userEmail">...</div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div id="pageContent">
+                <div class="loading">
+                    <div class="spinner"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="modal">
+        <div class="modal" id="modalContent"></div>
+    </div>
+
+    <script>
+        // App State
+        const state = {
+            user: null,
+            progress: null,
+            currentPage: 'dashboard',
+            todayMission: null,
+        };
+
+        // API Client
+        const api = {
+            async request(endpoint, options = {}) {
+                const response = await fetch(`/api${endpoint}`, {
+                    ...options,
+                    headers: {
+                        'Content-Type': 'application/json',
+                        ...options.headers,
+                    },
+                    credentials: 'include',
+                });
+
+                if (response.status === 401) {
+                    // Try to refresh token
+                    const refreshed = await this.refreshToken();
+                    if (!refreshed) {
+                        window.location.href = '/login';
+                        return;
+                    }
+                    // Retry request
+                    return this.request(endpoint, options);
+                }
+
+                const data = await response.json();
+                if (!response.ok) {
+                    throw new Error(data.error || 'Request failed');
+                }
+                return data;
+            },
+
+            async refreshToken() {
+                try {
+                    await fetch('/api/auth/refresh', {
+                        method: 'POST',
+                        credentials: 'include',
+                    });
+                    return true;
+                } catch {
+                    return false;
+                }
+            },
+
+            get: (endpoint) => api.request(endpoint),
+            post: (endpoint, body) => api.request(endpoint, { method: 'POST', body: JSON.stringify(body) }),
+            put: (endpoint, body) => api.request(endpoint, { method: 'PUT', body: JSON.stringify(body) }),
+            delete: (endpoint) => api.request(endpoint, { method: 'DELETE' }),
+        };
+
+        // Initialize App
+        async function init() {
+            try {
+                // Get current user
+                const data = await api.get('/auth/me');
+                state.user = data.user;
+                state.progress = data.progress;
+
+                // Update UI
+                updateUserInfo();
+                
+                // Determine current page from URL
+                const path = window.location.pathname;
+                state.currentPage = path.replace('/', '') || 'dashboard';
+                
+                // Update nav active state
+                updateNavActive();
+                
+                // Load page content
+                await loadPage(state.currentPage);
+            } catch (error) {
+                console.error('Init error:', error);
+                window.location.href = '/login';
+            }
+        }
+
+        // Update user info in sidebar
+        function updateUserInfo() {
+            document.getElementById('userName').textContent = state.user.name || 'Climate Hero';
+            document.getElementById('userEmail').textContent = state.user.email;
+            document.getElementById('userAvatar').textContent = (state.user.name || state.user.email)[0].toUpperCase();
+        }
+
+        // Update nav active state
+        function updateNavActive() {
+            document.querySelectorAll('.nav-link').forEach(link => {
+                const page = link.dataset.page;
+                link.classList.toggle('active', page === state.currentPage);
+            });
+        }
+
+        // Load page content
+        async function loadPage(page) {
+            const content = document.getElementById('pageContent');
+            content.innerHTML = '<div class="loading"><div class="spinner"></div></div>';
+
+            try {
+                switch (page) {
+                    case 'dashboard':
+                        await loadDashboard();
+                        break;
+                    case 'missions':
+                        await loadMissions();
+                        break;
+                    case 'progress':
+                        await loadProgress();
+                        break;
+                    case 'badges':
+                        await loadBadges();
+                        break;
+                    case 'referrals':
+                        await loadReferrals();
+                        break;
+                    case 'profile':
+                        await loadProfile();
+                        break;
+                    case 'settings':
+                        await loadSettings();
+                        break;
+                    case 'premium':
+                        await loadPremium();
+                        break;
+                    default:
+                        await loadDashboard();
+                }
+            } catch (error) {
+                content.innerHTML = `<div class="empty-state"><div class="empty-state-icon">❌</div><p>Error loading page: ${error.message}</p></div>`;
+            }
+        }
+
+        // Dashboard Page
+        async function loadDashboard() {
+            const [missionData, progressData] = await Promise.all([
+                api.get('/missions/today'),
+                api.get('/progress'),
+            ]);
+
+            state.todayMission = missionData.mission;
+            
+            document.getElementById('pageContent').innerHTML = `
+                <header class="page-header">
+                    <div>
+                        <h1 class="page-title">Welcome back, ${state.user.name || 'Hero'}! 🌱</h1>
+                        <p class="page-subtitle">Ready to make a difference today?</p>
+                    </div>
+                    <div class="streak-display">
+                        <span class="streak-icon">🔥</span>
+                        <span class="streak-value">${missionData.streak}</span>
+                        <span class="streak-label">day streak</span>
+                    </div>
+                </header>
+
+                <!-- Today's Mission -->
+                <div class="mission-card">
+                    <span class="mission-badge">${state.todayMission.icon} Today's Mission</span>
+                    <h2 class="mission-title">${state.todayMission.title}</h2>
+                    <p class="mission-description">${state.todayMission.description}</p>
+                    <div class="mission-stats">
+                        <div class="mission-stat">
+                            <span>🌍</span>
+                            <span class="mission-stat-value">${state.todayMission.co2Impact}kg</span>
+                            <span>CO₂ saved</span>
+                        </div>
+                        <div class="mission-stat">
+                            <span>⭐</span>
+                            <span class="mission-stat-value">${state.todayMission.points}</span>
+                            <span>points</span>
+                        </div>
+                        <div class="mission-stat">
+                            <span>📊</span>
+                            <span class="mission-stat-value">${state.todayMission.difficulty}</span>
+                            <span>difficulty</span>
+                        </div>
+                    </div>
+                    <div class="mission-actions">
+                        ${state.todayMission.status === 'completed' 
+                            ? '<button class="btn btn-primary" disabled>✓ Completed!</button>'
+                            : `<button class="btn btn-primary" onclick="completeMission('${state.todayMission.id}')">✓ Complete Mission</button>
+                               <button class="btn btn-secondary" onclick="skipMission('${state.todayMission.id}')">Skip</button>`
+                        }
+                    </div>
+                </div>
+
+                <!-- Stats Grid -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">🌍</div>
+                        <div class="stat-value">${progressData.progress.totalCO2SavedFormatted}</div>
+                        <div class="stat-label">CO₂ Saved</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🎯</div>
+                        <div class="stat-value">${progressData.progress.totalMissionsCompleted}</div>
+                        <div class="stat-label">Missions Completed</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">⚡</div>
+                        <div class="stat-value">${progressData.progress.longestStreak}</div>
+                        <div class="stat-label">Longest Streak</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🌲</div>
+                        <div class="stat-value">${progressData.progress.treesPlanted}</div>
+                        <div class="stat-label">Trees Planted</div>
+                    </div>
+                </div>
+
+                <!-- Level Progress -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Level ${progressData.progress.level} Progress</h3>
+                        <span>${progressData.progress.totalPoints} points</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: ${progressData.progress.levelProgress.percentage}%"></div>
+                    </div>
+                    <p style="margin-top: 8px; color: var(--color-text-secondary); font-size: 0.875rem;">
+                        ${progressData.progress.levelProgress.current} / ${progressData.progress.levelProgress.needed} points to Level ${progressData.progress.levelProgress.nextLevel}
+                    </p>
+                </div>
+            `;
+        }
+
+        // Missions Page
+        async function loadMissions() {
+            const [todayData, historyData] = await Promise.all([
+                api.get('/missions/today'),
+                api.get('/missions/history?limit=10'),
+            ]);
+
+            state.todayMission = todayData.mission;
+
+            document.getElementById('pageContent').innerHTML = `
+                <header class="page-header">
+                    <div>
+                        <h1 class="page-title">Your Missions 🎯</h1>
+                        <p class="page-subtitle">Complete daily missions to save the planet</p>
+                    </div>
+                </header>
+
+                <div class="mission-card">
+                    <span class="mission-badge">${state.todayMission.icon} Today's Mission</span>
+                    <h2 class="mission-title">${state.todayMission.title}</h2>
+                    <p class="mission-description">${state.todayMission.description}</p>
+                    ${state.todayMission.tips ? `<p style="opacity: 0.8; font-size: 0.9rem; margin-bottom: 16px;">💡 Tip: ${state.todayMission.tips}</p>` : ''}
+                    <div class="mission-stats">
+                        <div class="mission-stat">
+                            <span>🌍</span>
+                            <span class="mission-stat-value">${state.todayMission.co2Impact}kg</span>
+                            <span>CO₂ saved</span>
+                        </div>
+                        <div class="mission-stat">
+                            <span>⭐</span>
+                            <span class="mission-stat-value">${state.todayMission.points}</span>
+                            <span>points</span>
+                        </div>
+                    </div>
+                    <div class="mission-actions">
+                        ${state.todayMission.status === 'completed' 
+                            ? '<button class="btn btn-primary" disabled>✓ Completed!</button>'
+                            : state.todayMission.status === 'skipped'
+                            ? '<button class="btn btn-secondary" disabled>Skipped</button>'
+                            : `<button class="btn btn-primary" onclick="completeMission('${state.todayMission.id}')">✓ Complete Mission</button>
+                               <button class="btn btn-secondary" onclick="skipMission('${state.todayMission.id}')">Skip</button>`
+                        }
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3 class="card-title" style="margin-bottom: 16px;">Recent History</h3>
+                    <ul class="activity-list">
+                        ${historyData.missions.map(m => `
+                            <li class="activity-item">
+                                <div class="activity-icon">${m.icon}</div>
+                                <div class="activity-content">
+                                    <div class="activity-title">${m.title}</div>
+                                    <div class="activity-time">${m.assignedDate} • ${m.status}</div>
+                                </div>
+                                <div class="activity-value">${m.status === 'completed' ? `+${m.co2Impact}kg` : '-'}</div>
+                            </li>
+                        `).join('')}
+                    </ul>
+                </div>
+            `;
+        }
+
+        // Progress Page
+        async function loadProgress() {
+            const [progressData, statsData] = await Promise.all([
+                api.get('/progress'),
+                api.get('/progress/stats?period=month'),
+            ]);
+
+            document.getElementById('pageContent').innerHTML = `
+                <header class="page-header">
+                    <div>
+                        <h1 class="page-title">Your Impact 📈</h1>
+                        <p class="page-subtitle">Track your environmental contributions</p>
+                    </div>
+                </header>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">🌍</div>
+                        <div class="stat-value">${progressData.progress.totalCO2SavedFormatted}</div>
+                        <div class="stat-label">Total CO₂ Saved</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🎯</div>
+                        <div class="stat-value">${progressData.progress.totalMissionsCompleted}</div>
+                        <div class="stat-label">Missions Completed</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">📊</div>
+                        <div class="stat-value">${progressData.progress.completionRate}%</div>
+                        <div class="stat-label">Completion Rate</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🔥</div>
+                        <div class="stat-value">${progressData.progress.currentStreak}</div>
+                        <div class="stat-label">Current Streak</div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3 class="card-title" style="margin-bottom: 16px;">Environmental Equivalents</h3>
+                    <p style="margin-bottom: 16px; color: var(--color-text-secondary);">Your ${statsData.summary.totalCO2SavedFormatted} CO₂ saved this month is equivalent to:</p>
+                    <div class="stats-grid">
+                        <div style="text-align: center; padding: 16px;">
+                            <div style="font-size: 2rem; margin-bottom: 8px;">🌳</div>
+                            <div style="font-size: 1.5rem; font-weight: 700;">${statsData.equivalents.treesAbsorbed}</div>
+                            <div style="color: var(--color-text-secondary); font-size: 0.875rem;">Trees for a year</div>
+                        </div>
+                        <div style="text-align: center; padding: 16px;">
+                            <div style="font-size: 2rem; margin-bottom: 8px;">🚗</div>
+                            <div style="font-size: 1.5rem; font-weight: 700;">${statsData.equivalents.carMiles}</div>
+                            <div style="color: var(--color-text-secondary); font-size: 0.875rem;">Car miles avoided</div>
+                        </div>
+                        <div style="text-align: center; padding: 16px;">
+                            <div style="font-size: 2rem; margin-bottom: 8px;">📱</div>
+                            <div style="font-size: 1.5rem; font-weight: 700;">${statsData.equivalents.smartphoneCharges}</div>
+                            <div style="color: var(--color-text-secondary); font-size: 0.875rem;">Phone charges</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3 class="card-title" style="margin-bottom: 16px;">Category Breakdown</h3>
+                    ${statsData.categoryBreakdown.map(c => `
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--color-border);">
+                            <span style="font-weight: 600; text-transform: capitalize;">${c.category}</span>
+                            <span style="color: var(--color-primary-dark); font-weight: 700;">${c.co2Saved.toFixed(1)}kg CO₂</span>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        // Badges Page
+        async function loadBadges() {
+            const badgesData = await api.get('/badges');
+
+            document.getElementById('pageContent').innerHTML = `
+                <header class="page-header">
+                    <div>
+                        <h1 class="page-title">Badges 🏆</h1>
+                        <p class="page-subtitle">${badgesData.summary.earned} of ${badgesData.summary.total} badges earned</p>
+                    </div>
+                </header>
+
+                <div class="progress-bar" style="margin-bottom: 32px;">
+                    <div class="progress-fill" style="width: ${badgesData.summary.percentage}%"></div>
+                </div>
+
+                ${Object.entries(badgesData.byCategory).map(([category, badges]) => `
+                    <div class="card">
+                        <h3 class="card-title" style="margin-bottom: 16px; text-transform: capitalize;">${category}</h3>
+                        <div class="badges-grid">
+                            ${badges.map(b => `
+                                <div class="badge-item ${b.earned ? '' : 'locked'}" title="${b.description}">
+                                    ${b.icon} ${b.name}
+                                    ${!b.earned ? `(${b.progress.percentage}%)` : ''}
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `).join('')}
+            `;
+        }
+
+        // Referrals Page
+        async function loadReferrals() {
+            const referralData = await api.get('/referrals');
+
+            document.getElementById('pageContent').innerHTML = `
+                <header class="page-header">
+                    <div>
+                        <h1 class="page-title">Invite Friends 👥</h1>
+                        <p class="page-subtitle">Plant trees by inviting friends</p>
+                    </div>
+                </header>
+
+                <div class="mission-card">
+                    <span class="mission-badge">🌲 Your Referral Link</span>
+                    <p style="margin-bottom: 16px; opacity: 0.9;">Share this link and plant a tree for each friend who joins!</p>
+                    <div style="display: flex; gap: 12px; margin-bottom: 24px;">
+                        <input type="text" value="${referralData.referralLink}" readonly 
+                            style="flex: 1; background: rgba(255,255,255,0.2); border: none; padding: 14px; border-radius: 8px; color: white; font-size: 0.9rem;">
+                        <button class="btn btn-primary" onclick="copyReferral('${referralData.referralLink}')">Copy</button>
+                    </div>
+                    <button class="btn btn-primary" onclick="shareReferral('${referralData.referralLink}')">📤 Share</button>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">👥</div>
+                        <div class="stat-value">${referralData.stats.completedReferrals}</div>
+                        <div class="stat-label">Friends Joined</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🌲</div>
+                        <div class="stat-value">${referralData.stats.treesPlanted}</div>
+                        <div class="stat-label">Trees Planted</div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3 class="card-title" style="margin-bottom: 16px;">Referral Rewards</h3>
+                    ${referralData.rewards.milestones.map(m => `
+                        <div style="display: flex; align-items: center; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--color-border);">
+                            <span style="font-size: 1.5rem;">${m.icon}</span>
+                            <div style="flex: 1;">
+                                <div style="font-weight: 600;">${m.reward}</div>
+                                <div style="color: var(--color-text-secondary); font-size: 0.875rem;">${m.referrals} referral${m.referrals > 1 ? 's' : ''}</div>
+                            </div>
+                            ${referralData.stats.completedReferrals >= m.referrals 
+                                ? '<span style="color: var(--color-success);">✓</span>' 
+                                : ''}
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        // Profile Page
+        async function loadProfile() {
+            const profileData = await api.get('/users/profile');
+
+            document.getElementById('pageContent').innerHTML = `
+                <header class="page-header">
+                    <div>
+                        <h1 class="page-title">Profile 👤</h1>
+                        <p class="page-subtitle">Manage your account</p>
+                    </div>
+                </header>
+
+                <div class="card">
+                    <h3 class="card-title" style="margin-bottom: 24px;">Personal Information</h3>
+                    <form id="profileForm">
+                        <div style="margin-bottom: 16px;">
+                            <label style="display: block; font-weight: 500; margin-bottom: 8px;">Name</label>
+                            <input type="text" name="name" value="${profileData.user.name || ''}" 
+                                style="width: 100%; padding: 12px; border: 2px solid var(--color-border); border-radius: 8px;">
+                        </div>
+                        <div style="margin-bottom: 16px;">
+                            <label style="display: block; font-weight: 500; margin-bottom: 8px;">Email</label>
+                            <input type="email" value="${profileData.user.email}" disabled
+                                style="width: 100%; padding: 12px; border: 2px solid var(--color-border); border-radius: 8px; background: var(--color-bg);">
+                        </div>
+                        <div style="margin-bottom: 16px;">
+                            <label style="display: block; font-weight: 500; margin-bottom: 8px;">Zip Code</label>
+                            <input type="text" name="zipCode" value="${profileData.user.zipCode || ''}" 
+                                style="width: 100%; padding: 12px; border: 2px solid var(--color-border); border-radius: 8px;">
+                        </div>
+                        <button type="submit" class="btn btn-green">Save Changes</button>
+                    </form>
+                </div>
+
+                <div class="card">
+                    <h3 class="card-title" style="margin-bottom: 16px;">Account Stats</h3>
+                    <p style="color: var(--color-text-secondary);">Member since: ${new Date(profileData.user.createdAt).toLocaleDateString()}</p>
+                    <p style="color: var(--color-text-secondary);">Level: ${profileData.progress.level}</p>
+                    <p style="color: var(--color-text-secondary);">Badges earned: ${profileData.stats.badgesEarned}</p>
+                </div>
+            `;
+
+            document.getElementById('profileForm').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const formData = new FormData(e.target);
+                try {
+                    await api.put('/users/profile', {
+                        name: formData.get('name'),
+                        zipCode: formData.get('zipCode'),
+                    });
+                    showToast('Profile updated!', 'success');
+                    state.user.name = formData.get('name');
+                    updateUserInfo();
+                } catch (error) {
+                    showToast(error.message, 'error');
+                }
+            });
+        }
+
+        // Settings Page
+        async function loadSettings() {
+            const profileData = await api.get('/users/profile');
+
+            document.getElementById('pageContent').innerHTML = `
+                <header class="page-header">
+                    <div>
+                        <h1 class="page-title">Settings ⚙️</h1>
+                        <p class="page-subtitle">Customize your experience</p>
+                    </div>
+                </header>
+
+                <div class="card">
+                    <h3 class="card-title" style="margin-bottom: 24px;">Notifications</h3>
+                    <form id="settingsForm">
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--color-border);">
+                            <div>
+                                <div style="font-weight: 600;">Email Notifications</div>
+                                <div style="color: var(--color-text-secondary); font-size: 0.875rem;">Receive daily mission reminders</div>
+                            </div>
+                            <input type="checkbox" name="notificationEmail" ${profileData.user.settings.notificationEmail ? 'checked' : ''}>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--color-border);">
+                            <div>
+                                <div style="font-weight: 600;">Push Notifications</div>
+                                <div style="color: var(--color-text-secondary); font-size: 0.875rem;">Get notified on your device</div>
+                            </div>
+                            <input type="checkbox" name="notificationPush" ${profileData.user.settings.notificationPush ? 'checked' : ''}>
+                        </div>
+                        <div style="margin-top: 16px; margin-bottom: 16px;">
+                            <label style="display: block; font-weight: 500; margin-bottom: 8px;">Reminder Time</label>
+                            <input type="time" name="notificationTime" value="${profileData.user.settings.notificationTime}"
+                                style="padding: 12px; border: 2px solid var(--color-border); border-radius: 8px;">
+                        </div>
+                        <button type="submit" class="btn btn-green">Save Settings</button>
+                    </form>
+                </div>
+
+                <div class="card" style="border: 2px solid var(--color-error);">
+                    <h3 class="card-title" style="color: var(--color-error); margin-bottom: 16px;">Danger Zone</h3>
+                    <p style="color: var(--color-text-secondary); margin-bottom: 16px;">Once you delete your account, there is no going back.</p>
+                    <button class="btn btn-outline" onclick="logout()" style="margin-right: 12px;">Logout</button>
+                    <button class="btn" style="background: var(--color-error); color: white;">Delete Account</button>
+                </div>
+            `;
+
+            document.getElementById('settingsForm').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const formData = new FormData(e.target);
+                try {
+                    await api.put('/users/settings', {
+                        notificationEmail: formData.has('notificationEmail'),
+                        notificationPush: formData.has('notificationPush'),
+                        notificationTime: formData.get('notificationTime'),
+                    });
+                    showToast('Settings saved!', 'success');
+                } catch (error) {
+                    showToast(error.message, 'error');
+                }
+            });
+        }
+
+        // Premium Page
+        async function loadPremium() {
+            document.getElementById('pageContent').innerHTML = `
+                <header class="page-header">
+                    <div>
+                        <h1 class="page-title">Go Premium 👑</h1>
+                        <p class="page-subtitle">Unlock advanced features</p>
+                    </div>
+                </header>
+
+                <div class="card" style="text-align: center; max-width: 500px; margin: 0 auto;">
+                    <div style="font-size: 4rem; margin-bottom: 24px;">👑</div>
+                    <h2 style="font-size: 1.5rem; margin-bottom: 8px;">Guardian Premium</h2>
+                    <div style="margin-bottom: 24px;">
+                        <span style="font-size: 3rem; font-weight: 800; color: var(--color-primary-dark);">$4.99</span>
+                        <span style="color: var(--color-text-secondary);">/month</span>
+                    </div>
+                    <ul style="text-align: left; margin-bottom: 24px; list-style: none;">
+                        <li style="padding: 12px 0; border-bottom: 1px solid var(--color-border);">✓ Family syncing (up to 5 members)</li>
+                        <li style="padding: 12px 0; border-bottom: 1px solid var(--color-border);">✓ Advanced AI personalization</li>
+                        <li style="padding: 12px 0; border-bottom: 1px solid var(--color-border);">✓ Carbon offset marketplace</li>
+                        <li style="padding: 12px 0; border-bottom: 1px solid var(--color-border);">✓ Exclusive badges & rewards</li>
+                        <li style="padding: 12px 0; border-bottom: 1px solid var(--color-border);">✓ Priority support</li>
+                        <li style="padding: 12px 0;">✓ Monthly tree planting certificate</li>
+                    </ul>
+                    <button class="btn btn-green" style="width: 100%;" onclick="showToast('Premium coming soon!', 'success')">
+                        Start 7-Day Free Trial
+                    </button>
+                </div>
+            `;
+        }
+
+        // Mission Actions
+        async function completeMission(id) {
+            try {
+                const result = await api.post(`/missions/${id}/complete`);
+                showToast(`🎉 ${result.message} +${result.co2Saved}kg CO₂ saved!`, 'success');
+                
+                // Show new badges if any
+                if (result.newBadges && result.newBadges.length > 0) {
+                    setTimeout(() => {
+                        showToast(`🏆 New badge: ${result.newBadges[0].name}!`, 'success');
+                    }, 2000);
+                }
+                
+                // Reload page
+                await loadPage(state.currentPage);
+            } catch (error) {
+                showToast(error.message, 'error');
+            }
+        }
+
+        async function skipMission(id) {
+            if (!confirm('Are you sure? Skipping will reset your streak.')) return;
+            
+            try {
+                await api.post(`/missions/${id}/skip`);
+                showToast('Mission skipped. Streak reset.', 'error');
+                await loadPage(state.currentPage);
+            } catch (error) {
+                showToast(error.message, 'error');
+            }
+        }
+
+        // Utility Functions
+        function copyReferral(link) {
+            navigator.clipboard.writeText(link);
+            showToast('Link copied!', 'success');
+        }
+
+        async function shareReferral(link) {
+            if (navigator.share) {
+                try {
+                    await navigator.share({
+                        title: 'Join Climate Guardian',
+                        text: 'Join me in saving the planet! 🌍',
+                        url: link,
+                    });
+                } catch {}
+            } else {
+                copyReferral(link);
+            }
+        }
+
+        async function logout() {
+            try {
+                await api.post('/auth/logout');
+                window.location.href = '/';
+            } catch {
+                window.location.href = '/';
+            }
+        }
+
+        function showToast(message, type = '') {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.className = `toast show ${type}`;
+            setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+
+        // Navigation
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', async (e) => {
+                e.preventDefault();
+                const page = link.dataset.page;
+                state.currentPage = page;
+                history.pushState(null, '', link.href);
+                updateNavActive();
+                await loadPage(page);
+            });
+        });
+
+        // Handle browser back/forward
+        window.addEventListener('popstate', async () => {
+            const path = window.location.pathname;
+            state.currentPage = path.replace('/', '') || 'dashboard';
+            updateNavActive();
+            await loadPage(state.currentPage);
+        });
+
+        // Initialize
+        init();
+    </script>
+</body>
+</html>
