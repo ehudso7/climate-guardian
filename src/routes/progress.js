@@ -1,25 +1,21 @@
 /**
  * Progress Routes
- * User progress, stats, and leaderboard
  */
 
 const express = require('express');
 const router = express.Router();
 
-const { getDatabase } = require('../database/init');
+const { query, queryOne, USE_POSTGRES } = require('../database/init');
 const { requireAuth } = require('../middleware/auth');
 const { asyncHandler } = require('../middleware/errorHandler');
-const { validate, rules, query } = require('../middleware/validate');
+const { validate, rules } = require('../middleware/validate');
 const { pointsForNextLevel, formatCO2 } = require('../utils/helpers');
 
 /**
  * GET /api/progress
- * Get user's progress summary
  */
 router.get('/', requireAuth, asyncHandler(async (req, res) => {
-    const db = getDatabase();
-    
-    const progress = db.prepare('SELECT * FROM user_progress WHERE user_id = ?').get(req.user.id);
+    const progress = await queryOne('SELECT * FROM user_progress WHERE user_id = ?', [req.user.id]);
     
     if (!progress) {
         return res.status(404).json({ error: 'Progress not found' });
@@ -57,81 +53,88 @@ router.get('/', requireAuth, asyncHandler(async (req, res) => {
 
 /**
  * GET /api/progress/stats
- * Get detailed statistics
  */
-router.get('/stats', requireAuth, [
-    query('period').optional().isIn(['week', 'month', 'year', 'all']),
-    validate,
-], asyncHandler(async (req, res) => {
+router.get('/stats', requireAuth, asyncHandler(async (req, res) => {
     const { period = 'month' } = req.query;
-    const db = getDatabase();
     
-    // Calculate date range
-    let dateCondition = '';
+    let dateFilter;
+    const now = new Date();
     switch (period) {
         case 'week':
-            dateCondition = "AND date >= date('now', '-7 days')";
+            dateFilter = new Date(now - 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
             break;
         case 'month':
-            dateCondition = "AND date >= date('now', '-30 days')";
+            dateFilter = new Date(now - 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
             break;
         case 'year':
-            dateCondition = "AND date >= date('now', '-365 days')";
+            dateFilter = new Date(now - 365 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
             break;
         default:
-            dateCondition = '';
+            dateFilter = null;
     }
     
-    // Get daily stats
-    const dailyStats = db.prepare(`
+    let dailyQuery = `
         SELECT date, co2_saved, missions_completed, points_earned
-        FROM progress_log
-        WHERE user_id = ? ${dateCondition}
-        ORDER BY date DESC
-    `).all(req.user.id);
+        FROM progress_log WHERE user_id = ?
+    `;
+    const dailyParams = [req.user.id];
+    if (dateFilter) {
+        dailyQuery += ' AND date >= ?';
+        dailyParams.push(dateFilter);
+    }
+    dailyQuery += ' ORDER BY date DESC';
     
-    // Get category breakdown
-    const categoryStats = db.prepare(`
+    const dailyStats = await query(dailyQuery, dailyParams);
+    
+    let categoryQuery = `
         SELECT m.category, 
             COUNT(*) as count,
             SUM(m.co2_impact) as co2_saved,
             SUM(m.points) as points
         FROM user_missions um
         JOIN missions m ON um.mission_id = m.id
-        WHERE um.user_id = ? AND um.status = 'completed' ${dateCondition.replace('date', 'um.assigned_date')}
-        GROUP BY m.category
-        ORDER BY co2_saved DESC
-    `).all(req.user.id);
+        WHERE um.user_id = ? AND um.status = 'completed'
+    `;
+    const categoryParams = [req.user.id];
+    if (dateFilter) {
+        categoryQuery += ' AND um.assigned_date >= ?';
+        categoryParams.push(dateFilter);
+    }
+    categoryQuery += ' GROUP BY m.category ORDER BY co2_saved DESC';
     
-    // Calculate totals for period
-    const periodTotals = db.prepare(`
+    const categoryStats = await query(categoryQuery, categoryParams);
+    
+    let totalsQuery = `
         SELECT 
             COALESCE(SUM(co2_saved), 0) as total_co2,
             COALESCE(SUM(missions_completed), 0) as total_missions,
             COALESCE(SUM(points_earned), 0) as total_points
-        FROM progress_log
-        WHERE user_id = ? ${dateCondition}
-    `).get(req.user.id);
+        FROM progress_log WHERE user_id = ?
+    `;
+    const totalsParams = [req.user.id];
+    if (dateFilter) {
+        totalsQuery += ' AND date >= ?';
+        totalsParams.push(dateFilter);
+    }
     
-    // Get streaks info
-    const progress = db.prepare('SELECT * FROM user_progress WHERE user_id = ?').get(req.user.id);
+    const periodTotals = await queryOne(totalsQuery, totalsParams);
+    const progress = await queryOne('SELECT * FROM user_progress WHERE user_id = ?', [req.user.id]);
     
-    // Calculate equivalents
-    const co2Saved = periodTotals.total_co2;
+    const co2Saved = parseFloat(periodTotals.total_co2) || 0;
     const equivalents = {
-        treesAbsorbed: Math.round(co2Saved / 21), // Average tree absorbs 21kg CO2/year
-        carMiles: Math.round(co2Saved / 0.411), // Average car emits 411g CO2/mile
-        flightMiles: Math.round(co2Saved / 0.255), // Average flight emits 255g CO2/mile
-        smartphoneCharges: Math.round(co2Saved / 0.008), // ~8g CO2 per charge
+        treesAbsorbed: Math.round(co2Saved / 21),
+        carMiles: Math.round(co2Saved / 0.411),
+        flightMiles: Math.round(co2Saved / 0.255),
+        smartphoneCharges: Math.round(co2Saved / 0.008),
     };
     
     res.json({
         period,
         summary: {
-            totalCO2Saved: periodTotals.total_co2,
-            totalCO2SavedFormatted: formatCO2(periodTotals.total_co2),
-            totalMissionsCompleted: periodTotals.total_missions,
-            totalPointsEarned: periodTotals.total_points,
+            totalCO2Saved: co2Saved,
+            totalCO2SavedFormatted: formatCO2(co2Saved),
+            totalMissionsCompleted: parseInt(periodTotals.total_missions) || 0,
+            totalPointsEarned: parseInt(periodTotals.total_points) || 0,
         },
         equivalents,
         dailyStats: dailyStats.map(d => ({
@@ -142,52 +145,37 @@ router.get('/stats', requireAuth, [
         })),
         categoryBreakdown: categoryStats.map(c => ({
             category: c.category,
-            count: c.count,
-            co2Saved: c.co2_saved,
-            points: c.points,
+            count: parseInt(c.count),
+            co2Saved: parseFloat(c.co2_saved) || 0,
+            points: parseInt(c.points) || 0,
         })),
         streaks: {
-            current: progress.current_streak,
-            longest: progress.longest_streak,
-            lastDate: progress.streak_last_date,
+            current: progress?.current_streak || 0,
+            longest: progress?.longest_streak || 0,
+            lastDate: progress?.streak_last_date,
         },
     });
 }));
 
 /**
  * GET /api/progress/leaderboard
- * Get global leaderboard
  */
-router.get('/leaderboard', requireAuth, [
-    query('type').optional().isIn(['co2', 'points', 'streak', 'missions']),
-    query('period').optional().isIn(['week', 'month', 'all']),
-    rules.limit,
-    validate,
-], asyncHandler(async (req, res) => {
-    const { type = 'co2', period = 'all', limit = 20 } = req.query;
-    const db = getDatabase();
+router.get('/leaderboard', requireAuth, asyncHandler(async (req, res) => {
+    const { type = 'co2', limit = 20 } = req.query;
     
     let orderBy;
     switch (type) {
-        case 'points':
-            orderBy = 'p.total_points DESC';
-            break;
-        case 'streak':
-            orderBy = 'p.longest_streak DESC';
-            break;
-        case 'missions':
-            orderBy = 'p.total_missions_completed DESC';
-            break;
-        default:
-            orderBy = 'p.total_co2_saved DESC';
+        case 'points': orderBy = 'p.total_points DESC'; break;
+        case 'streak': orderBy = 'p.longest_streak DESC'; break;
+        case 'missions': orderBy = 'p.total_missions_completed DESC'; break;
+        default: orderBy = 'p.total_co2_saved DESC';
     }
     
-    // Get top users
-    const leaderboard = db.prepare(`
+    const leaderboard = await query(`
         SELECT 
             u.id,
             u.name,
-            SUBSTR(u.email, 1, 1) || '***' || SUBSTR(u.email, INSTR(u.email, '@')) as email_masked,
+            u.email,
             p.total_co2_saved,
             p.total_points,
             p.longest_streak,
@@ -197,28 +185,19 @@ router.get('/leaderboard', requireAuth, [
         JOIN users u ON p.user_id = u.id
         ORDER BY ${orderBy}
         LIMIT ?
-    `).all(limit);
+    `, [parseInt(limit)]);
     
-    // Get current user's rank
-    const userRank = db.prepare(`
-        SELECT COUNT(*) + 1 as rank
-        FROM user_progress
-        WHERE ${type === 'points' ? 'total_points' : type === 'streak' ? 'longest_streak' : type === 'missions' ? 'total_missions_completed' : 'total_co2_saved'} > (
-            SELECT ${type === 'points' ? 'total_points' : type === 'streak' ? 'longest_streak' : type === 'missions' ? 'total_missions_completed' : 'total_co2_saved'}
-            FROM user_progress WHERE user_id = ?
-        )
-    `).get(req.user.id);
-    
-    // Get total users
-    const totalUsers = db.prepare('SELECT COUNT(*) as count FROM users').get();
+    const field = type === 'points' ? 'total_points' : type === 'streak' ? 'longest_streak' : type === 'missions' ? 'total_missions_completed' : 'total_co2_saved';
+    const userProgress = await queryOne(`SELECT ${field} as value FROM user_progress WHERE user_id = ?`, [req.user.id]);
+    const rankResult = await queryOne(`SELECT COUNT(*) + 1 as rank FROM user_progress WHERE ${field} > ?`, [userProgress?.value || 0]);
+    const totalUsers = await queryOne('SELECT COUNT(*) as count FROM users');
     
     res.json({
         type,
-        period,
         leaderboard: leaderboard.map((user, index) => ({
             rank: index + 1,
             name: user.name || 'Climate Hero',
-            email: user.email_masked,
+            email: user.email.substring(0, 2) + '***' + user.email.substring(user.email.indexOf('@')),
             co2Saved: user.total_co2_saved,
             co2SavedFormatted: formatCO2(user.total_co2_saved),
             points: user.total_points,
@@ -228,44 +207,40 @@ router.get('/leaderboard', requireAuth, [
             isCurrentUser: user.id === req.user.id,
         })),
         currentUser: {
-            rank: userRank.rank,
-            totalUsers: totalUsers.count,
-            percentile: Math.round((1 - (userRank.rank / totalUsers.count)) * 100),
+            rank: parseInt(rankResult.rank),
+            totalUsers: parseInt(totalUsers.count),
+            percentile: Math.round((1 - (rankResult.rank / totalUsers.count)) * 100),
         },
     });
 }));
 
 /**
  * GET /api/progress/achievements
- * Get achievement summary
  */
 router.get('/achievements', requireAuth, asyncHandler(async (req, res) => {
-    const db = getDatabase();
-    
-    const progress = db.prepare('SELECT * FROM user_progress WHERE user_id = ?').get(req.user.id);
-    const earnedBadges = db.prepare(`
+    const progress = await queryOne('SELECT * FROM user_progress WHERE user_id = ?', [req.user.id]);
+    const earnedBadges = await query(`
         SELECT b.*, ub.earned_at
         FROM user_badges ub
         JOIN badges b ON ub.badge_id = b.id
         WHERE ub.user_id = ?
         ORDER BY ub.earned_at DESC
-    `).all(req.user.id);
+    `, [req.user.id]);
     
-    const totalBadges = db.prepare('SELECT COUNT(*) as count FROM badges WHERE is_active = 1').get();
+    const totalBadges = await queryOne('SELECT COUNT(*) as count FROM badges WHERE is_active = 1');
     
-    // Calculate milestones
     const milestones = [
-        { name: 'First Mission', target: 1, current: progress.total_missions_completed, type: 'missions', icon: '🌱' },
-        { name: '10 Missions', target: 10, current: progress.total_missions_completed, type: 'missions', icon: '📋' },
-        { name: '50 Missions', target: 50, current: progress.total_missions_completed, type: 'missions', icon: '🎯' },
-        { name: '100 Missions', target: 100, current: progress.total_missions_completed, type: 'missions', icon: '⭐' },
-        { name: '10kg CO2 Saved', target: 10, current: progress.total_co2_saved, type: 'co2', icon: '✂️' },
-        { name: '100kg CO2 Saved', target: 100, current: progress.total_co2_saved, type: 'co2', icon: '🌳' },
-        { name: '500kg CO2 Saved', target: 500, current: progress.total_co2_saved, type: 'co2', icon: '🏆' },
-        { name: '7-Day Streak', target: 7, current: progress.longest_streak, type: 'streak', icon: '🔥' },
-        { name: '30-Day Streak', target: 30, current: progress.longest_streak, type: 'streak', icon: '⚡' },
-        { name: 'Level 5', target: 5, current: progress.level, type: 'level', icon: '🎖️' },
-        { name: 'Level 10', target: 10, current: progress.level, type: 'level', icon: '👑' },
+        { name: 'First Mission', target: 1, current: progress?.total_missions_completed || 0, type: 'missions', icon: '🌱' },
+        { name: '10 Missions', target: 10, current: progress?.total_missions_completed || 0, type: 'missions', icon: '📋' },
+        { name: '50 Missions', target: 50, current: progress?.total_missions_completed || 0, type: 'missions', icon: '🎯' },
+        { name: '100 Missions', target: 100, current: progress?.total_missions_completed || 0, type: 'missions', icon: '⭐' },
+        { name: '10kg CO2 Saved', target: 10, current: progress?.total_co2_saved || 0, type: 'co2', icon: '✂️' },
+        { name: '100kg CO2 Saved', target: 100, current: progress?.total_co2_saved || 0, type: 'co2', icon: '🌳' },
+        { name: '500kg CO2 Saved', target: 500, current: progress?.total_co2_saved || 0, type: 'co2', icon: '🏆' },
+        { name: '7-Day Streak', target: 7, current: progress?.longest_streak || 0, type: 'streak', icon: '🔥' },
+        { name: '30-Day Streak', target: 30, current: progress?.longest_streak || 0, type: 'streak', icon: '⚡' },
+        { name: 'Level 5', target: 5, current: progress?.level || 1, type: 'level', icon: '🎖️' },
+        { name: 'Level 10', target: 10, current: progress?.level || 1, type: 'level', icon: '👑' },
     ];
     
     res.json({
@@ -279,7 +254,7 @@ router.get('/achievements', requireAuth, asyncHandler(async (req, res) => {
                 points: b.points,
                 earnedAt: b.earned_at,
             })),
-            total: totalBadges.count,
+            total: parseInt(totalBadges.count),
             percentage: Math.round((earnedBadges.length / totalBadges.count) * 100),
         },
         milestones: milestones.map(m => ({
@@ -288,9 +263,9 @@ router.get('/achievements', requireAuth, asyncHandler(async (req, res) => {
             progress: Math.min(100, Math.round((m.current / m.target) * 100)),
         })),
         level: {
-            current: progress.level,
-            points: progress.total_points,
-            nextLevelAt: pointsForNextLevel(progress.level),
+            current: progress?.level || 1,
+            points: progress?.total_points || 0,
+            nextLevelAt: pointsForNextLevel(progress?.level || 1),
         },
     });
 }));

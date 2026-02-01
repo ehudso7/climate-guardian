@@ -1,18 +1,16 @@
 /**
  * Authentication Middleware
- * JWT verification and user extraction
  */
 
 const jwt = require('jsonwebtoken');
-const { getDatabase } = require('../database/init');
+const { queryOne } = require('../database/init');
 
 const JWT_SECRET = process.env.JWT_SECRET || 'default-secret-change-me';
 
 /**
  * Required authentication middleware
- * Returns 401 if no valid token
  */
-function requireAuth(req, res, next) {
+async function requireAuth(req, res, next) {
     try {
         const token = extractToken(req);
         
@@ -22,15 +20,12 @@ function requireAuth(req, res, next) {
         
         const decoded = jwt.verify(token, JWT_SECRET);
         
-        // Get user from database
-        const db = getDatabase();
-        const user = db.prepare('SELECT * FROM users WHERE id = ?').get(decoded.userId);
+        const user = await queryOne('SELECT * FROM users WHERE id = ?', [decoded.userId]);
         
         if (!user) {
             return res.status(401).json({ error: 'User not found' });
         }
         
-        // Attach user to request
         req.user = {
             id: user.id,
             email: user.email,
@@ -54,16 +49,14 @@ function requireAuth(req, res, next) {
 
 /**
  * Optional authentication middleware
- * Attaches user if valid token, continues anyway if not
  */
-function optionalAuth(req, res, next) {
+async function optionalAuth(req, res, next) {
     try {
         const token = extractToken(req);
         
         if (token) {
             const decoded = jwt.verify(token, JWT_SECRET);
-            const db = getDatabase();
-            const user = db.prepare('SELECT * FROM users WHERE id = ?').get(decoded.userId);
+            const user = await queryOne('SELECT * FROM users WHERE id = ?', [decoded.userId]);
             
             if (user) {
                 req.user = {
@@ -84,7 +77,6 @@ function optionalAuth(req, res, next) {
 
 /**
  * Premium-only middleware
- * Requires user to have premium subscription
  */
 function requirePremium(req, res, next) {
     if (!req.user) {
@@ -92,10 +84,7 @@ function requirePremium(req, res, next) {
     }
     
     if (!req.user.isPremium) {
-        return res.status(403).json({ 
-            error: 'Premium subscription required',
-            code: 'PREMIUM_REQUIRED',
-        });
+        return res.status(403).json({ error: 'Premium subscription required', code: 'PREMIUM_REQUIRED' });
     }
     
     next();
@@ -103,16 +92,13 @@ function requirePremium(req, res, next) {
 
 /**
  * Extract JWT from request
- * Checks Authorization header and cookies
  */
 function extractToken(req) {
-    // Check Authorization header
     const authHeader = req.headers.authorization;
     if (authHeader && authHeader.startsWith('Bearer ')) {
         return authHeader.substring(7);
     }
     
-    // Check cookie
     if (req.cookies && req.cookies.token) {
         return req.cookies.token;
     }
@@ -140,9 +126,7 @@ function generateRefreshToken(userId) {
 function verifyRefreshToken(token) {
     try {
         const decoded = jwt.verify(token, JWT_SECRET);
-        if (decoded.type !== 'refresh') {
-            return null;
-        }
+        if (decoded.type !== 'refresh') return null;
         return decoded;
     } catch (error) {
         return null;
