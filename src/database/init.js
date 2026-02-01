@@ -7,19 +7,28 @@ const Database = require('better-sqlite3');
 const path = require('path');
 const fs = require('fs');
 
-const DB_PATH = process.env.DATABASE_PATH || './database/climate_guardian.db';
+// Use in-memory database on Vercel (serverless), file-based otherwise
+const IS_VERCEL = process.env.VERCEL === '1';
+const DB_PATH = IS_VERCEL ? ':memory:' : (process.env.DATABASE_PATH || './database/climate_guardian.db');
 
 let db = null;
+let isInitialized = false;
 
 function getDatabase() {
     if (!db) {
-        // Ensure database directory exists
-        const dbDir = path.dirname(DB_PATH);
-        if (!fs.existsSync(dbDir)) {
-            fs.mkdirSync(dbDir, { recursive: true });
+        if (IS_VERCEL) {
+            // In-memory database for serverless
+            db = new Database(':memory:');
+            console.log('📦 Using in-memory database (Vercel serverless)');
+        } else {
+            // File-based database for traditional deployment
+            const dbDir = path.dirname(DB_PATH);
+            if (!fs.existsSync(dbDir)) {
+                fs.mkdirSync(dbDir, { recursive: true });
+            }
+            db = new Database(DB_PATH);
+            console.log('📦 Using file-based database');
         }
-
-        db = new Database(DB_PATH);
         db.pragma('journal_mode = WAL');
         db.pragma('foreign_keys = ON');
     }
@@ -27,6 +36,10 @@ function getDatabase() {
 }
 
 async function initializeDatabase() {
+    if (isInitialized && !IS_VERCEL) {
+        return getDatabase();
+    }
+    
     const db = getDatabase();
 
     // Users table
@@ -206,6 +219,7 @@ async function initializeDatabase() {
     // Seed default data
     await seedDefaultData(db);
     
+    isInitialized = true;
     return db;
 }
 

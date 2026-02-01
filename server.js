@@ -260,6 +260,13 @@ process.on('SIGTERM', () => {
     process.exit(0);
 });
 
-startServer();
+// Start server only if not in serverless environment
+if (process.env.VERCEL !== '1') {
+    startServer();
+} else {
+    // Initialize database for serverless
+    initializeDatabase().catch(console.error);
+}
 
+// Export for Vercel serverless
 module.exports = app;
