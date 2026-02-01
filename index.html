@@ -2567,7 +2567,7 @@
             }
         }
 
-        function handleSignup(e) {
+        async function handleSignup(e) {
             e.preventDefault();
             clearFormErrors();
             
@@ -2594,17 +2594,53 @@
             submitBtn.classList.add('btn-loading');
             submitBtn.disabled = true;
             
-            // Simulate API call
-            setTimeout(() => {
+            try {
+                // Generate a temporary password for quick signup (user can set later)
+                const tempPassword = 'Welcome123!';
+                
+                const response = await fetch('/api/auth/signup', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        email,
+                        password: tempPassword,
+                        zipCode: zip,
+                        referralCode: sessionStorage.getItem('referrer') || null,
+                    }),
+                    credentials: 'include',
+                });
+                
+                const data = await response.json();
+                
                 submitBtn.classList.remove('btn-loading');
                 submitBtn.disabled = false;
+                
+                if (!response.ok) {
+                    if (data.error === 'Email already registered') {
+                        // Redirect to login for existing users
+                        showToast('Account exists! Redirecting to login...', 'success');
+                        setTimeout(() => window.location.href = '/login', 1500);
+                        return;
+                    }
+                    throw new Error(data.error || 'Signup failed');
+                }
                 
                 // Track successful signup
                 trackEvent('Signup', 'completed', 'email');
                 
-                // Show success
-                showSuccess(zip);
-            }, 1500);
+                // Show success with estimated savings
+                showSuccess(zip, data.estimatedAnnualSavings);
+                
+                // Redirect to dashboard after showing success
+                setTimeout(() => {
+                    window.location.href = '/dashboard';
+                }, 3000);
+                
+            } catch (error) {
+                submitBtn.classList.remove('btn-loading');
+                submitBtn.disabled = false;
+                showToast(error.message || 'Signup failed. Please try again.', 'error');
+            }
         }
 
         function handleGoogleSignup() {
@@ -2617,17 +2653,21 @@
             }, 500);
         }
 
-        function showSuccess(zip) {
+        function showSuccess(zip, estimatedSavings = null) {
             signupContent.style.display = 'none';
             successContent.style.display = 'block';
             
             // Setup focus trap for success content
             setupFocusTrap(successContent);
             
-            // Personalize impact based on zip (simulated)
-            const impacts = ['~450kg', '~520kg', '~380kg', '~610kg', '~490kg'];
-            const randomImpact = impacts[Math.floor(Math.random() * impacts.length)];
-            document.getElementById('impactPreview').textContent = randomImpact;
+            // Use actual estimated savings or fallback
+            if (estimatedSavings) {
+                document.getElementById('impactPreview').textContent = `~${estimatedSavings}kg`;
+            } else {
+                const impacts = ['~450kg', '~520kg', '~380kg', '~610kg', '~490kg'];
+                const randomImpact = impacts[Math.floor(Math.random() * impacts.length)];
+                document.getElementById('impactPreview').textContent = randomImpact;
+            }
             
             // Focus on success message for screen readers
             document.getElementById('success-title').focus();
