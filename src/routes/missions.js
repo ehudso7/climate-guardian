@@ -1,27 +1,23 @@
 /**
  * Mission Routes
- * Daily missions and completion tracking
  */
 
 const express = require('express');
 const router = express.Router();
 
-const { getDatabase } = require('../database/init');
+const { query, queryOne, execute } = require('../database/init');
 const { requireAuth } = require('../middleware/auth');
 const { asyncHandler } = require('../middleware/errorHandler');
-const { validate, rules, query } = require('../middleware/validate');
+const { validate, rules } = require('../middleware/validate');
 const { generateId, getTodayDate, isYesterday, isToday, calculateLevel } = require('../utils/helpers');
 
 /**
  * GET /api/missions/today
- * Get today's mission for the user
  */
 router.get('/today', requireAuth, asyncHandler(async (req, res) => {
-    const db = getDatabase();
     const today = getTodayDate();
     
-    // Check if user has a mission assigned for today
-    let userMission = db.prepare(`
+    let userMission = await queryOne(`
         SELECT um.*, m.*,
             um.id as user_mission_id,
             um.status as mission_status,
@@ -30,45 +26,39 @@ router.get('/today', requireAuth, asyncHandler(async (req, res) => {
         FROM user_missions um
         JOIN missions m ON um.mission_id = m.id
         WHERE um.user_id = ? AND um.assigned_date = ?
-    `).get(req.user.id, today);
+    `, [req.user.id, today]);
     
-    // If no mission for today, assign one
     if (!userMission) {
-        // Get missions user hasn't done recently (last 7 days)
-        const recentMissions = db.prepare(`
+        const recentMissions = await query(`
             SELECT mission_id FROM user_missions 
-            WHERE user_id = ? AND assigned_date >= date('now', '-7 days')
-        `).all(req.user.id).map(m => m.mission_id);
+            WHERE user_id = ? AND assigned_date >= ?
+        `, [req.user.id, new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]]);
         
-        // Get a random mission not in recent list
-        let query = 'SELECT * FROM missions WHERE is_active = 1';
-        if (recentMissions.length > 0) {
-            query += ` AND id NOT IN (${recentMissions.map(() => '?').join(',')})`;
+        const recentIds = recentMissions.map(m => m.mission_id);
+        
+        let newMission;
+        if (recentIds.length > 0) {
+            const placeholders = recentIds.map(() => '?').join(',');
+            newMission = await queryOne(
+                `SELECT * FROM missions WHERE is_active = 1 AND id NOT IN (${placeholders}) ORDER BY RANDOM() LIMIT 1`,
+                recentIds
+            );
         }
-        query += ' ORDER BY RANDOM() LIMIT 1';
-        
-        const newMission = db.prepare(query).get(...recentMissions);
         
         if (!newMission) {
-            // If all missions were done recently, just pick a random one
-            const anyMission = db.prepare('SELECT * FROM missions WHERE is_active = 1 ORDER BY RANDOM() LIMIT 1').get();
-            if (!anyMission) {
-                return res.status(404).json({ error: 'No missions available' });
-            }
-            
-            db.prepare(`
-                INSERT INTO user_missions (id, user_id, mission_id, assigned_date)
-                VALUES (?, ?, ?, ?)
-            `).run(generateId(), req.user.id, anyMission.id, today);
-        } else {
-            db.prepare(`
-                INSERT INTO user_missions (id, user_id, mission_id, assigned_date)
-                VALUES (?, ?, ?, ?)
-            `).run(generateId(), req.user.id, newMission.id, today);
+            newMission = await queryOne('SELECT * FROM missions WHERE is_active = 1 ORDER BY RANDOM() LIMIT 1');
         }
         
-        // Fetch the assigned mission
-        userMission = db.prepare(`
+        if (!newMission) {
+            return res.status(404).json({ error: 'No missions available' });
+        }
+        
+        await execute(
+            `INSERT INTO user_missions (id, user_id, mission_id, assigned_date) VALUES (?, ?, ?, ?)`,
+            [generateId(), req.user.id, newMission.id, today]
+        );
+        
+        userMission = await queryOne(`
             SELECT um.*, m.*,
                 um.id as user_mission_id,
                 um.status as mission_status,
@@ -77,11 +67,10 @@ router.get('/today', requireAuth, asyncHandler(async (req, res) => {
             FROM user_missions um
             JOIN missions m ON um.mission_id = m.id
             WHERE um.user_id = ? AND um.assigned_date = ?
-        `).get(req.user.id, today);
+        `, [req.user.id, today]);
     }
     
-    // Get user's current streak
-    const progress = db.prepare('SELECT current_streak FROM user_progress WHERE user_id = ?').get(req.user.id);
+    const progress = await queryOne('SELECT current_streak FROM user_progress WHERE user_id = ?', [req.user.id]);
     
     res.json({
         mission: {
@@ -106,23 +95,17 @@ router.get('/today', requireAuth, asyncHandler(async (req, res) => {
 
 /**
  * POST /api/missions/:id/complete
- * Mark a mission as complete
  */
-router.post('/:id/complete', requireAuth, [
-    rules.missionId,
-    validate,
-], asyncHandler(async (req, res) => {
+router.post('/:id/complete', requireAuth, [rules.missionId, validate], asyncHandler(async (req, res) => {
     const { id } = req.params;
-    const db = getDatabase();
     const today = getTodayDate();
     
-    // Get the user mission
-    const userMission = db.prepare(`
+    const userMission = await queryOne(`
         SELECT um.*, m.co2_impact, m.points
         FROM user_missions um
         JOIN missions m ON um.mission_id = m.id
         WHERE um.id = ? AND um.user_id = ?
-    `).get(id, req.user.id);
+    `, [id, req.user.id]);
     
     if (!userMission) {
         return res.status(404).json({ error: 'Mission not found' });
@@ -132,17 +115,13 @@ router.post('/:id/complete', requireAuth, [
         return res.status(400).json({ error: 'Mission already completed' });
     }
     
-    // Update mission status
-    db.prepare(`
-        UPDATE user_missions 
-        SET status = 'completed', completed_at = CURRENT_TIMESTAMP
-        WHERE id = ?
-    `).run(id);
+    await execute(
+        `UPDATE user_missions SET status = 'completed', completed_at = CURRENT_TIMESTAMP WHERE id = ?`,
+        [id]
+    );
     
-    // Get current progress
-    const progress = db.prepare('SELECT * FROM user_progress WHERE user_id = ?').get(req.user.id);
+    const progress = await queryOne('SELECT * FROM user_progress WHERE user_id = ?', [req.user.id]);
     
-    // Calculate new streak
     let newStreak = 1;
     if (progress.streak_last_date) {
         if (isYesterday(progress.streak_last_date)) {
@@ -156,8 +135,7 @@ router.post('/:id/complete', requireAuth, [
     const newTotalPoints = progress.total_points + userMission.points;
     const newLevel = calculateLevel(newTotalPoints);
     
-    // Update progress
-    db.prepare(`
+    await execute(`
         UPDATE user_progress SET
             total_co2_saved = total_co2_saved + ?,
             total_missions_completed = total_missions_completed + 1,
@@ -168,35 +146,37 @@ router.post('/:id/complete', requireAuth, [
             level = ?,
             updated_at = CURRENT_TIMESTAMP
         WHERE user_id = ?
-    `).run(
-        userMission.co2_impact,
-        newStreak,
-        newLongestStreak,
-        today,
-        newTotalPoints,
-        newLevel,
-        req.user.id
+    `, [userMission.co2_impact, newStreak, newLongestStreak, today, newTotalPoints, newLevel, req.user.id]);
+    
+    // Upsert progress log
+    const existingLog = await queryOne(
+        'SELECT id FROM progress_log WHERE user_id = ? AND date = ?',
+        [req.user.id, today]
     );
     
-    // Update or create daily progress log
-    db.prepare(`
-        INSERT INTO progress_log (id, user_id, date, co2_saved, missions_completed, points_earned)
-        VALUES (?, ?, ?, ?, 1, ?)
-        ON CONFLICT(user_id, date) DO UPDATE SET
-            co2_saved = co2_saved + excluded.co2_saved,
-            missions_completed = missions_completed + 1,
-            points_earned = points_earned + excluded.points_earned
-    `).run(generateId(), req.user.id, today, userMission.co2_impact, userMission.points);
+    if (existingLog) {
+        await execute(`
+            UPDATE progress_log SET
+                co2_saved = co2_saved + ?,
+                missions_completed = missions_completed + 1,
+                points_earned = points_earned + ?
+            WHERE id = ?
+        `, [userMission.co2_impact, userMission.points, existingLog.id]);
+    } else {
+        await execute(`
+            INSERT INTO progress_log (id, user_id, date, co2_saved, missions_completed, points_earned)
+            VALUES (?, ?, ?, ?, 1, ?)
+        `, [generateId(), req.user.id, today, userMission.co2_impact, userMission.points]);
+    }
     
-    // Check for badge achievements
-    const earnedBadges = checkBadges(db, req.user.id, {
+    // Check badges
+    const earnedBadges = await checkBadges(req.user.id, {
         co2Saved: progress.total_co2_saved + userMission.co2_impact,
         missionsCompleted: progress.total_missions_completed + 1,
         streak: newStreak,
     });
     
-    // Get updated progress
-    const updatedProgress = db.prepare('SELECT * FROM user_progress WHERE user_id = ?').get(req.user.id);
+    const updatedProgress = await queryOne('SELECT * FROM user_progress WHERE user_id = ?', [req.user.id]);
     
     res.json({
         message: 'Mission completed! 🎉',
@@ -217,18 +197,14 @@ router.post('/:id/complete', requireAuth, [
 
 /**
  * POST /api/missions/:id/skip
- * Skip a mission
  */
-router.post('/:id/skip', requireAuth, [
-    rules.missionId,
-    validate,
-], asyncHandler(async (req, res) => {
+router.post('/:id/skip', requireAuth, [rules.missionId, validate], asyncHandler(async (req, res) => {
     const { id } = req.params;
-    const db = getDatabase();
     
-    const userMission = db.prepare(`
-        SELECT * FROM user_missions WHERE id = ? AND user_id = ?
-    `).get(id, req.user.id);
+    const userMission = await queryOne(
+        'SELECT * FROM user_missions WHERE id = ? AND user_id = ?',
+        [id, req.user.id]
+    );
     
     if (!userMission) {
         return res.status(404).json({ error: 'Mission not found' });
@@ -238,43 +214,30 @@ router.post('/:id/skip', requireAuth, [
         return res.status(400).json({ error: 'Can only skip pending missions' });
     }
     
-    // Update mission status
-    db.prepare(`
-        UPDATE user_missions 
-        SET status = 'skipped', skipped_at = CURRENT_TIMESTAMP
-        WHERE id = ?
-    `).run(id);
+    await execute(
+        `UPDATE user_missions SET status = 'skipped', skipped_at = CURRENT_TIMESTAMP WHERE id = ?`,
+        [id]
+    );
     
-    // Update progress (streak breaks)
-    db.prepare(`
+    await execute(`
         UPDATE user_progress SET
             total_missions_skipped = total_missions_skipped + 1,
             current_streak = 0,
             updated_at = CURRENT_TIMESTAMP
         WHERE user_id = ?
-    `).run(req.user.id);
+    `, [req.user.id]);
     
-    res.json({
-        message: 'Mission skipped. Your streak has been reset.',
-        streakLost: true,
-    });
+    res.json({ message: 'Mission skipped. Your streak has been reset.', streakLost: true });
 }));
 
 /**
  * GET /api/missions/history
- * Get mission history
  */
-router.get('/history', requireAuth, [
-    rules.page,
-    rules.limit,
-    query('status').optional().isIn(['completed', 'skipped', 'pending']),
-    validate,
-], asyncHandler(async (req, res) => {
+router.get('/history', requireAuth, [rules.page, rules.limit, validate], asyncHandler(async (req, res) => {
     const { page = 1, limit = 20, status } = req.query;
     const offset = (page - 1) * limit;
-    const db = getDatabase();
     
-    let query = `
+    let sql = `
         SELECT um.*, m.title, m.description, m.category, m.icon, m.co2_impact, m.points
         FROM user_missions um
         JOIN missions m ON um.mission_id = m.id
@@ -283,23 +246,22 @@ router.get('/history', requireAuth, [
     const params = [req.user.id];
     
     if (status) {
-        query += ' AND um.status = ?';
+        sql += ' AND um.status = ?';
         params.push(status);
     }
     
-    query += ' ORDER BY um.assigned_date DESC LIMIT ? OFFSET ?';
+    sql += ' ORDER BY um.assigned_date DESC LIMIT ? OFFSET ?';
     params.push(limit, offset);
     
-    const missions = db.prepare(query).all(...params);
+    const missions = await query(sql, params);
     
-    // Get total count
-    let countQuery = 'SELECT COUNT(*) as total FROM user_missions WHERE user_id = ?';
+    let countSql = 'SELECT COUNT(*) as total FROM user_missions WHERE user_id = ?';
     const countParams = [req.user.id];
     if (status) {
-        countQuery += ' AND status = ?';
+        countSql += ' AND status = ?';
         countParams.push(status);
     }
-    const totalCount = db.prepare(countQuery).get(...countParams);
+    const totalCount = await queryOne(countSql, countParams);
     
     res.json({
         missions: missions.map(m => ({
@@ -316,9 +278,9 @@ router.get('/history', requireAuth, [
             skippedAt: m.skipped_at,
         })),
         pagination: {
-            page,
-            limit,
-            total: totalCount.total,
+            page: parseInt(page),
+            limit: parseInt(limit),
+            total: parseInt(totalCount.total),
             pages: Math.ceil(totalCount.total / limit),
         },
     });
@@ -326,15 +288,9 @@ router.get('/history', requireAuth, [
 
 /**
  * GET /api/missions/all
- * Get all available missions
  */
 router.get('/all', requireAuth, asyncHandler(async (req, res) => {
-    const db = getDatabase();
-    
-    const missions = db.prepare(`
-        SELECT * FROM missions WHERE is_active = 1 ORDER BY category, difficulty
-    `).all();
-    
+    const missions = await query('SELECT * FROM missions WHERE is_active = 1 ORDER BY category, difficulty');
     const categories = [...new Set(missions.map(m => m.category))];
     
     res.json({
@@ -356,22 +312,18 @@ router.get('/all', requireAuth, asyncHandler(async (req, res) => {
 /**
  * Check and award badges
  */
-function checkBadges(db, userId, stats) {
+async function checkBadges(userId, stats) {
     const earnedBadges = [];
     
-    // Get user's current badges
-    const existingBadges = db.prepare(`
-        SELECT badge_id FROM user_badges WHERE user_id = ?
-    `).all(userId).map(b => b.badge_id);
+    const existingBadges = await query('SELECT badge_id FROM user_badges WHERE user_id = ?', [userId]);
+    const existingIds = existingBadges.map(b => b.badge_id);
     
-    // Get all badges
-    const allBadges = db.prepare('SELECT * FROM badges WHERE is_active = 1').all();
+    const allBadges = await query('SELECT * FROM badges WHERE is_active = 1');
     
     for (const badge of allBadges) {
-        if (existingBadges.includes(badge.id)) continue;
+        if (existingIds.includes(badge.id)) continue;
         
         let earned = false;
-        
         switch (badge.requirement_type) {
             case 'missions_completed':
                 earned = stats.missionsCompleted >= badge.requirement_value;
@@ -385,16 +337,14 @@ function checkBadges(db, userId, stats) {
         }
         
         if (earned) {
-            db.prepare(`
-                INSERT INTO user_badges (id, user_id, badge_id)
-                VALUES (?, ?, ?)
-            `).run(generateId(), userId, badge.id);
-            
-            // Add badge points to user
-            db.prepare(`
-                UPDATE user_progress SET total_points = total_points + ? WHERE user_id = ?
-            `).run(badge.points, userId);
-            
+            await execute(
+                'INSERT INTO user_badges (id, user_id, badge_id) VALUES (?, ?, ?)',
+                [generateId(), userId, badge.id]
+            );
+            await execute(
+                'UPDATE user_progress SET total_points = total_points + ? WHERE user_id = ?',
+                [badge.points, userId]
+            );
             earnedBadges.push({
                 id: badge.id,
                 name: badge.name,
